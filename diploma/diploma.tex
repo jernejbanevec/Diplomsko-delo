@@ -81,9 +81,10 @@ Optimalna preslikava $G^T$ tako maksimizira $sled(S_{B}^{\ell})$ in minimizira $
 \textbf{-- NEJASNOST!}
 
 Kljub temu, da je ta optimizacijski kriterij lažje izračunljiv ima svoje pomanjkljivosti. Opazimo lahko, da kriterij lahko uporabimo le v primeru, ko je matrika $S_W^\ell$ nesingularna oz. da kriterija nemorem uporabiti, ko je matrika $S_W^\ell$ singularna (torej kadar je njena determinanta enaka 0). Ker pa za determinanto matrike velja:
-$$ det(S_W^\ell) = det(G^T S_W G) = det(G^T) det(S_W) det(G) \text{,}
+$$ det(S_W^\ell) = det(G^T S_W G) = det(G^T) \cdot det(S_W) \cdot det(G) \text{,}
 $$
-je $det(S_W^\ell)$ enaka 0 kadar je $det(S_W)$ enaka 0, torej kadar je matrika $S_W$ singularna. Do te situacije pa lahko pride kar precej pogosto. 
+je $det(S_W^\ell)$ enaka 0 kadar je $det(S_W)$ enaka 0, torej kadar je matrika $S_W$ singularna. Do te situacije pa lahko pride kar precej pogosto. Matrika $S_W \in  \mathbb{R}^{m \times m}$ je singularna namreč v vseh primerih, ko je za matriko $A \in  \mathbb{R}^{m \times n}$ velja $m > n$, saj je potem $m$-dimenzionalna matrika $S_W$, ki je sestavljena iz $n$ vektorjev (iz $a_j - c^{(i)} \hspace{2mm} \text{za} \hspace{2mm} \forall i \in \{1,\ldots \text{,} k\} \hspace{2mm} \text{in} \hspace{2mm} \forall j \in N_j $). Iz $n$ vektorjev pa lahko sestavimo le $n$ dimenzionalen prostor, torej bo $m \times m$ matrika iz teh vektorjev očitno singularna, torej bo njena determinanta enaka 0.
+Do tega problema pride na primer v primeru, ko je pridobivanje drago oz. zahtevno in so pridobljeni podatki visokih dimenzij (dimenzije podatkov so večje od števila podatkov).
 
 
 \section{Matematična priprava - posplošeni singularni razcep}

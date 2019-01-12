@@ -1,0 +1,6 @@
+\select@language {slovene}
+\beamer@sectionintoc {1}{Posplo\IeC {\v s}ena diskriminantna analiza}{3}{0}{1}
+\beamer@sectionintoc {2}{Posplo\IeC {\v s}ena diskriminantna analiza kot optimizacijski problem}{8}{0}{2}
+\beamer@sectionintoc {3}{Posplo\IeC {\v s}en singularni razcep}{9}{0}{3}
+\beamer@sectionintoc {4}{Zgled}{10}{0}{4}
+\beamer@sectionintoc {5}{Viri}{13}{0}{5}

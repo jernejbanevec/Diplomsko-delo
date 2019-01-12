@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\pagestyle{empty}
+
+\newcommand\coolunder[2]{\mathrlap{\smash{\underbrace{\phantom{%
+    \begin{matrix} #2 \end{matrix}}}_{\mbox{$#1$}}}}#2}
+
+\newcommand\coolrightbrace[2]{%
+\left.\vphantom{\begin{matrix} #1 \end{matrix}}\right\}#2}
+
+\begin{document}
+$$Q= 
+\begin{pmatrix}
+\coolunder{S}{Q_1},  & \coolunder{Z}{Q_2} 
+\end{pmatrix}$$
+\end{document}
+

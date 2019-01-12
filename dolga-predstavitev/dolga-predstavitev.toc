@@ -1,0 +1,9 @@
+\select@language {slovene}
+\beamer@sectionintoc {1}{Posplo\IeC {\v s}ena diskriminantna analiza}{3}{0}{1}
+\beamer@sectionintoc {2}{Posplo\IeC {\v s}ena diskriminantna analiza kot optimizacijski problem}{9}{0}{2}
+\beamer@sectionintoc {3}{Iskanje optimalnega G}{10}{0}{3}
+\beamer@sectionintoc {4}{Posplo\IeC {\v s}eni singularni razcep}{11}{0}{4}
+\beamer@sectionintoc {5}{Iskanje optimalnega G z uporabo GSVD}{15}{0}{5}
+\beamer@sectionintoc {6}{Algoritem LDA/GSVD}{17}{0}{6}
+\beamer@sectionintoc {7}{Zgled}{19}{0}{7}
+\beamer@sectionintoc {8}{Viri}{23}{0}{8}

@@ -107,7 +107,7 @@ Originalna definicija posplošenega singularnega razcepa (Van Loan)
 Iz matrik $K_A$ in $K_B$ tvorimo zdrženo matriko $K = \left(\begin{array}{c} K_A \\ K_B \end{array}\right)$, na kateri naredimo singularni razcep. Iz singularnega razcepa dobimo matriki $Q \in \mathbb{R}^{(p+n) \times (p+n)}$ in matriko $Z_1 \in \mathbb{R}^{m \times m}$, tako da velja 
 \begin{equation}
 Q^T \left(\begin{array}{c} K_A \\ K_B \end{array}\right) Z_1 = diag(\gamma_1,..., \gamma_m) \hspace{2mm} \text{kjer za} \hspace{1mm}  \hspace{1mm} \text{velja} 
-\gamma_1 \geq \ldots \geq \gamma_k > \gamma_{k+1} = \ldots \gamma_m \text{.} %\label{eq:1}
+\gamma_1 \geq \ldots \geq \gamma_k > \gamma_{k+1} = \ldots \gamma_m \text{.} \label{eq:1}
 \end{equation}
 \textbf{-- DOPOLNI! Ali je samo diag za napisat ali celo razširjeno matriko?}
 V kolikor matriko $Z_1$ razdelimo na dve matriki: $Z_{11} \in \mathbb{R}^{m \times k}$, ki je sestavljena iz prvih $k$ stolpcev matrike $Z_1$ in $Z_{12} \in \mathbb{R}^{(m-k) \times n}$, ki je sestavljena iz preostalih $m-k$ stolpcev matrike $Z_1$, lahko vidimo da velja:
@@ -116,8 +116,8 @@ $$
 Po predpostavki velja $p \geq m$ in ker je očitno tudi $m \geq k$ sledi: $p \geq n \geq k$. Sedaj definirajmo matriko 
 $$ D := diag(\gamma_1,..., \gamma_k \in \mathbb{R}^{k \times k}) \text{.}
 $$
-Tako iz zgornje enačbe \eqref{eq:1} dobimo:
-$$
+Tako iz zgornje enačbe \textit{\eqref{eq:1}} dobimo:
+\begin{equation}
 \begin{pmatrix}
 A Z_{11} & A Z_{12} \\ 
 B Z_{11} & B Z_{12}
@@ -126,8 +126,8 @@ B Z_{11} & B Z_{12}
 D & 0 \\ 
 0 & 0 \\
 0 & 0
-\end{pmatrix} \text{,}
-$$
+\end{pmatrix} \text{DOPIŠI MEJE!,} \label{eq:2}
+\end{equation}
 iz česar sledi:
 $$
 \begin{pmatrix}
@@ -197,9 +197,71 @@ I_k & 0\\
 \end{pmatrix} \text{.}
 \end{gather*}
 
-Sedaj singularni razcep naredimo na matriki $B_1$. Za matriko $B_1$ vemo, da ima isti rang kot matrika $B$, saj vemo, da je matrika $Z_{11}$ polnega ranga (je namreč podmatrika ortogonalne matrike $Z$) in vemo, da je matrika $D^{-1}$ polnega ranga. Označimo: $r = rang(B) = rang(B_1)$. Iz singularnega razcepa za matriko $B_1$ dobimo ortogonalni matriki $V$ in $Z_2$, da velja:
-$V^T B_q Z_2 = diag(\beta_1, \ldots, \beta_p)$, kjer je $p = min{}$
+Sedaj singularni razcep naredimo na matriki $B_1$. Za matriko $B_1$ vemo, da ima isti rang kot matrika $B$, saj velja, da je matrika $Z_{11}$ polnega ranga (je namreč podmatrika ortogonalne matrike $Z$) in vemo, da je matrika $D^{-1}$ polnega ranga. Označimo: $r = rang(B) = rang(B_1)$. Iz singularnega razcepa za matriko $B_1$ dobimo ortogonalni matriki $V \in \mathbb{R}^{ n \times n}$ in $Z_2 \in \mathbb{R}^{ k \times k}$, da velja:
+\begin{equation}
+V^T B_q Z_2 = diag(\beta_1, \ldots, \beta_p) \text{,} 
+\end{equation} kjer je $p = min\{n, k\}$ in velja 
+$ \beta_1 \geq \beta_2 \geq \ldots \geq \beta_r > \beta_{r+1} = \ldots = 0 $. Enačbo lahko tudi obrnemo in velja $B_1 = B Z_{11} D^{-1}$
 
+Iz enačbe \textit{\eqref{eq:2}} sledi, da velja:
+$$
+B Z_{12} = 0^{n \times k} \text{,}
+$$
+iz česar pa sledi, da je $\beta_{p+1} = \ldots = \beta_{q} = 0$.
+Opazimo, da velja tudi:
+\begin{gather*}
+V^T B Z
+\begin{pmatrix}
+D^{-1} Z_2 & 0\\ 
+0 & I_{m-k}
+\end{pmatrix} = 
+\begin{pmatrix}
+V^T B Z_{11} D^{-1} Z_2 & 0\\ 
+0 & V^T B Z_{12} I_{m-k}
+\end{pmatrix} \\ =
+\begin{pmatrix}
+diag(\beta_1, \ldots, \beta_p) & 0\\ 
+0 & diag(\beta_{p+1}, \ldots, \beta_q)
+\end{pmatrix} \text{.}
+\end{gather*}
+
+Podobno bomo pokazali tudi za matriko $A$. Za $G$ definirajmo matriko, ki jo dobimo s preoblikovanjem enačbe \textit{\eqref{eq:3}}:
+$$ G := B_1 Z_2 = V diag(\beta_1, \ldots, \beta_p) \text{.}
+$$
+Opazimo, da so stolpci matrike $A_1 Z_2$ medsebojno ortogonalni, ker velja:
+\begin{gather*}
+(A_1 Z_2)^T (A_1 Z_2) = Z_2^T A_1^T A_1 Z_2 \\
+= Z_2^T (I_{k} - B_1^T B_1) Z_2 = Z_2^T Z_2 -  Z_2^T B_1^T B_1 Z_2 \\
+= I_k - G^T G = I_k - diag(\beta_1, \ldots, \beta_p) V^T V diag(\beta_1, \ldots, \beta_p) \\
+= diag(1 - \beta_1^2, \ldots,1 - \beta_p^2) \text{.}
+\end{gather*}
+Tako se v diagonalne vrednosti preslikajo dolžine posameznih stolpcev (skalarni produkti enakih stolpcev), vsi ostali skalarni produkti pa so enaki 0. Če za matriko A dodatno definiramo $\alpha_i = 0 \text{za} i = k+1, \ldots, n$ lahko vidimo, da iz $A_1 = A Z_{11} D^{-1}$ sledi:
+$$ U^T A_1 Z_2 = U^T A Z_{11} D^{-1} Z_2 = diag(\alpha_1, \ldots, \alpha_k) \text{.}
+$$ 
+Podobno, kot za matriko $B$ tu lahko pokažemo:
+\begin{gather*}
+U^T A Z_1 
+\begin{pmatrix}
+D^{-1} Z_2 & 0\\ 
+0 & I_{m-k}
+\end{pmatrix} \\
+=
+\begin{pmatrix}
+U^T A Z_{11} D^{-1} Z_2 & 0\\ 
+0 & U^T A Z_{12} I_{m-k}
+\end{pmatrix} =
+\begin{pmatrix}
+diag(\alpha_1, \ldots, \alpha_k) & 0\\ 
+0 & diag(\alpha_{k+1}, \ldots, \alpha_n)
+\end{pmatrix} \text{,}
+\end{gather*}
+kjer smo pri prehodu v zadnjo vrstico ponovno uporabili enačbo \textit{\eqref{eq:2}}. Sedaj definiramo matriko $X$ na sledeči način:
+$$ X := Z_1 
+\begin{pmatrix}
+D^{-1} Z_2 & 0\\ 
+0 & I_{m-k}
+\end{pmatrix}
+$$
 \end{proof}
 
 Problem tega izreka ja, da se ga ne da uporabiti, kadar dimenzije matrike $K_A$ niso ustrezne. Zaradi tega pretirano zavezujočega pogoja se odločita C.C. Paige in M.A. Saunders ta posplošeni singularni izrek še dodatno posplošiti. Tako dobimo naslednji izrek:

@@ -23,7 +23,7 @@
 \section{Uvod}
 
 \subsection{Abstraktni uvod}
-Diskriminantna analiza se že dolga leta uporablja za določevanje lastnosti, ki ohranjajo razlike med razredi. Definirana je kot optimizacijski problem, ki vključuje kovariančne matrike, ki predstavljajo razprešenost podatkov znotraj posameznega razreda in razpršenost oziroma ločenost posameznih razredov. Diskriminantna analiza pa sama po sebi zahteva, da je ena od teh kovariančnih matrik nesingularna, kar omejuje njeno uporabo na matrikah določenih dimenzij. V nadaljevanju tako preučimo več različnih optimizacijskih kriterijev in poskušamo njihovo uporabo razširiti na vse matrike z uporabo posplošenega singularnega razcepa. Na ta način se izognemo pogoju nesingularnosti, ki ga zahteva diskriminantna analiza. Na ta način dobimo posplošeno diskriminantno analizo, ki jo lahko uporabimo tudi kadar je ena matrika nesingularna (v nadaljevanju lahko vidimo, da je matrika nesingularna kadar je velikost vzorca manjša kot pa dimenzija posamezne meritve  \textbf{-- NEJASNOST!}). V nadaljevanju bom testiral učinkovitost posplošene diskriminantne analize in jo, kjer bo to mogoče, primerjal tudi z diskriminantno analizo.
+Diskriminantna analiza se že dolga leta uporablja za določevanje lastnosti, ki ohranjajo razlike med razredi. Definirana je kot optimizacijski problem, ki vključuje kovariančne matrike, ki predstavljajo razprešenost podatkov znotraj posameznega razreda in razpršenost oziroma ločenost posameznih razredov. Diskriminantna analiza pa sama po sebi zahteva, da je ena od teh kovariančnih matrik nesingularna, kar omejuje njeno uporabo na matrikah določenih dimenzij. V nadaljevanju tako preučimo več različnih optimizacijskih kriterijev in poskušamo njihovo uporabo razširiti na vse matrike z uporabo posplošenega singularnega razcepa. Na ta način se izognemo pogoju nesingularnosti, ki ga zahteva diskriminantna analiza. Na ta način dobimo posplošeno diskriminantno analizo, ki jo lahko uporabimo tudi kadar je ena matrika nesingularna (v nadaljevanju lahko vidimo, da je matrika nesingularna kadar je velikost vzorca manjša kot pa dimenzija posamezne meritve  \textbf{-- NEJASNOST!}). V nadaljevanju bom testiral učinkovitost posplošene diskriminantne analize in jo, kjer bo to mogoče, primerjal tudi z običajno diskriminantno analizo.
 
 \subsection{Matematični uvod}
 Cilj diskriminantne analize je združevati lastnosti originalnih podatkov na način, ki kar najučinkoviteje ločuje med razredi, v katerih so podatki. Pri takšnem združevanju lastnosti podatkov se dimenzija teh podatkov zmanjša na način, ki najbolje ohranja strukture določenih razredov.  
@@ -36,8 +36,8 @@ A_1, & A_2, & \ldots, & A_k
 \hspace{2mm} \text{kjer} \hspace{2mm} A_i \in \mathbb{R}^{m \times n_i} \text{.}
 $$ 
 
-Cilj diskriminantne analize najti preslikavo $G^T$, ki v novem, manjdimenzionalnem prostoru, kar najbolje ohranja razrede, v katerih so podatki.
-Za preslikavo $G^T$ torej velja: $$G^T : \mathbb{R}^m \rightarrow \mathbb{R}^\ell ,$$ kjer je $\ell \leq m - 1$. Torej preslikava $G^T$ nek $m$-dimenzionalen vektor preslika v nov vektor v $\ell$-dimezionalnem prostoru (navadno velja $\ell \leq m$), v katerem so razredi podatkov ohranjeni, razpršenost podatkov znotraj razredov je zmanjšana, razlike med razredi pa so povečane.
+Cilj diskriminantne analize je najti preslikavo $G^T$, ki v novem, manjdimenzionalnem prostoru, kar najbolje ohranja razrede, v katerih so podatki.
+Za preslikavo $G^T$ torej velja: $$G^T : \mathbb{R}^m \rightarrow \mathbb{R}^\ell ,$$ kjer je $\ell \leq m - 1$. Torej preslikava $G^T$ nek $m$-dimenzionalen vektor preslika v nov vektor v $\ell$-dimezionalnem prostoru (navadno velja $\ell \leq m$), v katerem so razredi podatkov ohranjeni, razpršenost podatkov znotraj razredov je zmanjšana, razlike med razredi pa se povečajo.
 
 Tu število $n_i$ predstavlja moč indeksne množice razreda $i$. To indeksno množico razreda $i$ označujemo z $N_i$. Očitno velja tudi: $$
 \sum_{i=1}^{k}n_i = n \text{.}$$
@@ -49,7 +49,7 @@ in centroid celotnih podatkov, ki je izračunan kot povprečje vseh stolpcev:
 $$c = \frac{1}{n} \sum_{j = 1}^{n} a_j \text{.}
 $$
 
-Razpršenost podatkov v razredih, razpršenost vseh podatkov ter razpršenost oziroma razlike med razredi je smiselno predstaviti s pomočjo matrik. Zato v nadaljevanju definiramo matriko, ki predstavlja matriko razpršenosti podatkov znotraj razredov:
+Razpršenost podatkov znotraj posameznih razredov, razpršenost vseh podatkov ter razpršenost oziroma razlike med razredi je smiselno predstaviti s pomočjo matrik. Zato v nadaljevanju definiramo matriko, ki predstavlja matriko razpršenosti podatkov znotraj razredov:
 $$S_W = \sum_{i = 1}^{k} \sum_{j \in N_i}(a_j - c^{(i)})(a_j - c^{(i)})^T\text{,}$$
 matriko, ki predstavlja matriko razpršenosti oz razlik med razred:
 $$S_B = \sum_{i = 1}^{k} \sum_{j \in N_i} ( c^{(i)} - c)( c^{(i)} - c)^T = \sum_{i = 1}^{k} n_i ( c^{(i)} - c)( c^{(i)} - c)^T$$
@@ -57,13 +57,13 @@ in matriko celotne razpršenosti podatkov:
 $$S_M = \sum_{j = 1}^{n} (a_j - c)(a_j - c)^T$$
 
 Med zgoraj definiranimi matrikami velja tudi enakost:
-$S_M = S_W + S_B \text{.}$ \textbf{-- DOKAŽI}
+$S_M = S_W + S_B \text{.}$ \textbf{-- DOKAŽI (pozneje, ko vpelješ še matrike H)}
 
 S pomočjo preslikave $G^T$ preslikamo v $\ell$-dimezionalen prostor tudi matrike $S_W$, $S_B$ in $S_M$:
 $$ S_{W}^{\ell} = G^T S_W G \text{,} \hspace{2mm} S_{B}^{\ell} = G^T S_B G \text{,} \hspace{2mm} S_{M}^{\ell} = G^T S_M G \text{.}
 $$
 
-Iz danih matrik razpršenosti podatkov bi radi tvorili kriterij kvalitete razredov. Kriterij kvalitete razredov bi imel visoko vrednost, kadar bi bili razredi, v katerih so podatki, strnjeni in dobro ločeni med seboj. Opazimo lahko, da $sled(S_W)$ predstavlja kako skupaj so si podatki v posameznem razredu, saj velja:
+Iz danih matrik razpršenosti podatkov bi radi tvorili kriterij kvalitete strukture razredov. Kriterij kvalitete strukture razredov mora imeti visoko vrednost, kadar so razredi, v katerih so podatki, strnjeni in dobro ločeni med seboj. Opazimo lahko, da $sled(S_W)$ predstavlja, kako skupaj so si podatki v posameznem razredu, saj velja:
 \begin{gather*} 
 sled(S_W) = \sum_{t=1}^{m} (\sum_{i = 1}^{k} \sum_{j \in N_i}(a_{j_t} - c_t^{(i)})^2)
 = \sum_{i = 1}^{k} \sum_{j \in N_i} ( \sum_{t=1}^{m} (a_{j_t} - c_t^{(i)})^2) \\
@@ -77,24 +77,26 @@ sled(S_B) = \sum_{t=1}^{m} (\sum_{i = 1}^{k} \sum_{j \in N_i}(c_t^{(i)} - c_t)^2
 = \sum_{i = 1}^{k} \sum_{j \in N_i} \norm{ c_t^{(i)} - c_t}_2^2 \text{.}
 \end{gather*}
 
-Optimalna preslikava $G^T$ tako maksimizira $sled(S_{B}^{\ell})$ in minimizira $sled(S_{W}^{\ell})$. Smiselen kriterij se tako zdi $$sled( G^T S_B G) / sled( G^T S_W G) \text{,}$$ ki pa ga zaradi težke izračunljivosti aproksimiramo kar z $$sled((S_W^\ell)^{-1}S_B^\ell) \text{.}$$
+Optimalna preslikava $G^T$ tako maksimizira $sled(S_{B}^{\ell})$ in minimizira $sled(S_{W}^{\ell})$. Smiselen kriterij se tako zdi $$sled( G^T S_B G) / sled( G^T S_W G) \text{,}$$ ki pa ga zaradi težke izračunljivosti aproksimiramo kar z kriterijem $$sled((S_W^\ell)^{-1}S_B^\ell) \text{.}$$
 \textbf{-- NEJASNOST!}
 
-Kljub temu, da je ta optimizacijski kriterij lažje izračunljiv ima svoje pomanjkljivosti. Opazimo lahko, da kriterij lahko uporabimo le v primeru, ko je matrika $S_W^\ell$ nesingularna oz. da kriterija nemorem uporabiti, ko je matrika $S_W^\ell$ singularna (torej kadar je njena determinanta enaka 0). Ker pa za determinanto matrike velja:
+Kljub temu, da je ta optimizacijski kriterij lažje izračunljiv ima svoje pomanjkljivosti. Opazimo lahko, da kriterij lahko uporabimo le v primeru, ko je matrika $S_W^\ell$ nesingularna oziroma da kriterija nemorem uporabiti, ko je matrika $S_W^\ell$ singularna (torej kadar je njena determinanta enaka 0). Ker pa za determinanto matrike velja linearnost, ki jo v našem primeru uporabimo na sledeči način:
 $$ det(S_W^\ell) = det(G^T S_W G) = det(G^T) \cdot det(S_W) \cdot det(G) \text{,}
 $$
-je $det(S_W^\ell)$ enaka 0 kadar je $det(S_W)$ enaka 0, torej kadar je matrika $S_W$ singularna. Do te situacije pa lahko pride kar precej pogosto. Matrika $S_W \in  \mathbb{R}^{m \times m}$ je singularna namreč v vseh primerih, ko je za matriko $A \in  \mathbb{R}^{m \times n}$ velja $m > n$, saj je potem $m$-dimenzionalna matrika $S_W$, ki je sestavljena iz $n$ vektorjev (iz $a_j - c^{(i)} \hspace{2mm} \text{za} \hspace{2mm} \forall i \in \{1,\ldots \text{,} k\} \hspace{2mm} \text{in} \hspace{2mm} \forall j \in N_j $). Iz $n$ vektorjev pa lahko sestavimo le $n$ dimenzionalen prostor, torej bo $m \times m$ matrika iz teh vektorjev očitno singularna, torej bo njena determinanta enaka 0.
-Na primer, do tega problema pride v primeru, ko je pridobivanje podatko drago oz. zahtevno in so pridobljeni podatki visokih dimenzij (dimenzija posameznega podatka je večja od števila vseh pridobljenih podatkov).
+je $det(S_W^\ell)$ enaka 0 kadar je $det(S_W)$ enaka 0, torej kadar je matrika $S_W$ singularna. Do te situacije pa lahko pride kar precej pogosto. Matrika $S_W \in  \mathbb{R}^{m \times m}$ je singularna namreč v vseh primerih, ko je za matriko $A \in  \mathbb{R}^{m \times n}$ velja $m > n$, saj je potem $m$-dimenzionalna matrika $S_W$, ki je sestavljena iz $n$ vektorjev (iz $a_j - c^{(i)} \hspace{2mm} \text{za} \hspace{2mm} \forall i \in \{1,\ldots \text{,} k\} \hspace{2mm} \text{in} \hspace{2mm} \forall j \in N_j $). Iz $n$ vektorjev pa lahko sestavimo le $n$ dimenzionalen prostor, torej bo $m \times m$ matrika iz teh vektorjev očitno singularna. Njena determinanta bo tako enaka 0.
+Na primer, do tega problema pride v primeru, ko je pridobivanje podatkov drago oz. zahtevno in so pridobljeni podatki visokih dimenzij (dimenzija posameznega podatka je večja od števila vseh pridobljenih podatkov).
 
-Poznamo več načinov, kako aplicirati diskriminantno analizo na matriki $A \in \mathbb{R}^{m \times n}$ z $m > n$. V grobem jih ločimo na tiste, kjer dimenzijo zmanjšamo v dveh korakih in na tiste, kjer dimenzijo podatkov zmanjšamo v enem koraku. V prvem načinu se faza diskriminante analize nadaljuje v fazo, v kateri zanemarimo oblike posameznih razredov. Najpopularnejša metoda za prvi del tega procesa je zmanjšanje rang s pomočjo singularnega razcepa. To je tudi glavno orodje metode imenovane principalna komponentna analiza. Kakorkoli, celotna predstava dvostopenjskih načinov je precej občutljiva na zmanjšanje dimenzije v prvi fazi. Sam se bom bolj osredotočil na način, ki posploši diskriminantno analizo tako, da teoretično optimalno zmanjša dimenzijo, brez na bi uvedel dodaten korak. Zato obravnavamo kriterij 
+Poznamo več načinov, kako aplicirati diskriminantno analizo na matriki $A \in \mathbb{R}^{m \times n}$ z $m > n$. V grobem jih ločimo na tiste, kjer dimenzijo podatkov zmanjšamo v dveh korakih in na tiste, kjer dimenzijo podatkov zmanjšamo v enem koraku. V prvem načinu se faza diskriminante analize nadaljuje v fazo, v kateri zanemarimo oblike posameznih razredov. Najpopularnejša metoda za prvi del tega procesa je zmanjšanje ranga matrike s pomočjo singularnega razcepa. To je tudi glavno orodje metode imenovane principalna komponentna analiza. Kakorkoli, celotna predstava dvostopenjskih načinov je precej občutljiva na zmanjšanje dimenzije v prvi fazi. Sam se bom v svojem diplomskem delu bolj osredotočil na način, ki posploši diskriminantno analizo tako, da teoretično optimalno zmanjša dimenzijo podatkov, brez ba bi uvedel dodaten korak. V ta namen obravnavamo kriterij 
 $$ sled((S_2^Y)^{-1} S_1^Y) \hspace{1mm} \text{,}
 $$
-kjer sta matriki $S_2$ in $S_1$ izbrani iz matrik $S_W$, $S_B$ in $S_M$. Klasična diskriminantna analiza predstavi svojo rešitev s pomočjo posplošenega problema lastnih vrednosti, kadar je matrika $S_2$ nesingularna. Z prestrukturiranjem problema tako, da uporabimo posplošeni singularni razcep, pa razširimo uporabnost diskriminantne analize tudi na primer, ko je marika $S_2$ singularna.
+kjer sta matriki $S_2$ in $S_1$ izbrani iz matrik $S_W$, $S_B$ in $S_M$.  Kadar je matrika $S_2$ nesingularna, klasična diskriminantna analiza predstavi svojo rešitev s pomočjo posplošenega problema lastnih vrednosti. S prestrukturiranjem problema tako, da uporabimo posplošeni singularni razcep, pa lahko razširimo uporabnost diskriminantne analize tudi na primer, ko je matrika $S_2$ singularna.
 
 \section{Matematična priprava - posplošeni singularni razcep}
 Originalna definicija posplošenega singularnega razcepa (Van Loan)
 \begin{izrek}[Posplošeni singularni izrek (Van Loan):]
-\label{izrek:SVD} Za matriki $K_A \in \mathbb{R}^{p \times m}$ z $p \geq m$ in $K_B \in \mathbb{R}^{n \times m}$ obstajata ortogonalni matriki $U \in \mathbb{R}^{p \times p}$ in $V \in \mathbb{R}^{n \times n}$ ter nesingularna matrika $X \in \mathbb{R}^{m \times m}$, da velja $$ U^T K_A X = diag(\alpha_1,..., \alpha_m) \text{in} V^T K_B X = diag(\beta_1,..., \beta_q) $$ kjer $q = min(n,m)$, $\alpha_i \geq 0$ za $1 \leq i \leq m$ in  $\beta_i \geq 0$ za  $1 \leq i \leq q$.
+\label{izrek:SVD} Za matriki $K_A \in \mathbb{R}^{p \times m}$ z $p \geq m$ in $K_B \in \mathbb{R}^{n \times m}$ obstajata ortogonalni matriki $U \in \mathbb{R}^{p \times p}$ in $V \in \mathbb{R}^{n \times n}$ ter nesingularna matrika $X \in \mathbb{R}^{m \times m}$, da velja 
+$$ U^T K_A X = diag(\alpha_1,..., \alpha_m) \hspace{2mm} \text{in} \hspace{2mm} V^T K_B X = diag(\beta_1,..., \beta_q) \text{,}
+$$ kjer $q = min(n,m)$, $\alpha_i \geq 0$ za $1 \leq i \leq m$ in  $\beta_i \geq 0$ za  $1 \leq i \leq q$.
 \end{izrek}
 \begin{proof}
 % PREVERI SPODNJE PRETVORBE
@@ -104,13 +106,13 @@ Originalna definicija posplošenega singularnega razcepa (Van Loan)
 % k_1 = k
 % n = m
 
-Iz matrik $K_A$ in $K_B$ tvorimo zdrženo matriko $K = \left(\begin{array}{c} K_A \\ K_B \end{array}\right)$, na kateri naredimo singularni razcep. Iz singularnega razcepa dobimo matriki $Q \in \mathbb{R}^{(p+n) \times (p+n)}$ in matriko $Z_1 \in \mathbb{R}^{m \times m}$, tako da velja 
+Iz matrik $K_A$ in $K_B$ tvorimo združeno matriko $K = \left(\begin{array}{c} K_A \\ K_B \end{array}\right)$, na kateri naredimo singularni razcep. Iz singularnega razcepa dobimo matriki $Q \in \mathbb{R}^{(p+n) \times (p+n)}$ in matriko $Z_1 \in \mathbb{R}^{m \times m}$, tako da velja 
 \begin{equation}
-Q^T \left(\begin{array}{c} K_A \\ K_B \end{array}\right) Z_1 = diag(\gamma_1,..., \gamma_m) \hspace{2mm} \text{kjer za} \hspace{1mm}  \hspace{1mm} \text{velja} 
+Q^T \left(\begin{array}{c} K_A \\ K_B \end{array}\right) Z_1 = diag(\gamma_1,..., \gamma_m) \hspace{2mm} \text{kjer za} \hspace{1mm}  \hspace{1mm} \text{velja} \hspace{2mm}
 \gamma_1 \geq \ldots \geq \gamma_k > \gamma_{k+1} = \ldots \gamma_m \text{.} \label{eq:1}
 \end{equation}
 \textbf{-- DOPOLNI! Ali je samo diag za napisat ali celo razširjeno matriko?}
-V kolikor matriko $Z_1$ razdelimo na dve matriki: $Z_{11} \in \mathbb{R}^{m \times k}$, ki je sestavljena iz prvih $k$ stolpcev matrike $Z_1$ in $Z_{12} \in \mathbb{R}^{(m-k) \times n}$, ki je sestavljena iz preostalih $m-k$ stolpcev matrike $Z_1$, lahko vidimo da velja:
+V kolikor matriko $Z_1$ razdelimo na dve matriki: $Z_{11} \in \mathbb{R}^{m \times k}$, ki je sestavljena iz prvih $k$ stolpcev matrike $Z_1$ in $Z_{12} \in \mathbb{R}^{m \times (m-k)}$, ki je sestavljena iz preostalih $m-k$ stolpcev matrike $Z_1$, lahko vidimo da velja:
 $$ Q^T K \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right) =  \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right) \text{.}
 $$
 Po predpostavki velja $p \geq m$ in ker je očitno tudi $m \geq k$ sledi: $p \geq n \geq k$. Sedaj definirajmo matriko 
@@ -119,8 +121,8 @@ $$
 Tako iz zgornje enačbe \textit{\eqref{eq:1}} dobimo:
 \begin{equation}
 \begin{pmatrix}
-A Z_{11} & A Z_{12} \\ 
-B Z_{11} & B Z_{12}
+K_A Z_{11} & K_A Z_{12} \\ 
+K_B Z_{11} & K_B Z_{12}
 \end{pmatrix} = Q
 \begin{pmatrix}
 D & 0 \\ 
@@ -131,8 +133,8 @@ D & 0 \\
 iz česar sledi:
 $$
 \begin{pmatrix}
-A Z_{11} \\ 
-B Z_{11}
+K_A Z_{11} \\ 
+K_B Z_{11}
 \end{pmatrix} = Q
 \begin{pmatrix}
 D \\ 
@@ -165,14 +167,14 @@ Q_{21} D
 $$
 Iz tega neposredno sledi enakost:
 $$
-A Z_{11} = Q_{11} D \implies A Z_{11} D^{-1} = Q_{11} =: A_1 \text{,}
+K_A Z_{11} = Q_{11} D \implies K_A Z_{11} D^{-1} = Q_{11} =: K_{A_1} \text{,}
 $$ kjer dodatno definiramo matriko $A_1$
 in enakost:
 $$
-B Z_{11} = Q_{21} D \implies B Z_{11} D^{-1} = Q_{21} =: B_1 \text{,}
+K_B Z_{11} = Q_{21} D \implies K_B Z_{11} D^{-1} = Q_{21} =: K_{B_1} \text{,}
 $$ kjer dodatno definiramo matriko $B_1$.
 
-Ker je matrika $Q$ ortogonalna dodatno velja $A_1^TA_1 + B_1^TB_1 = I_k$, kjer je $I_k$ identična matrika dimzije $k \times k$. To enačbo lahko dobimo tako, da razpišemo spodnjo enačbo:
+Ker je matrika $Q$ ortogonalna dodatno velja $K_{A_1}^TK_{A_1} + K_{B_1}^TK_{B_1} = I_k$, kjer je $I_k$ identična matrika dimzije $k \times k$. To enačbo lahko pokažemo tako, da razpišemo spodnjo enačbo:
 \begin{gather*}
 Q^T Q = 
 \begin{pmatrix}
@@ -188,7 +190,7 @@ Q_{11}^T Q_{11} + Q_{21}^T Q_{21} & Q_{11}^T Q_{12} + Q_{21}^T Q_{22} \\
 Q_{12}^T Q_{11} + Q_{22}^T Q_{21} & Q_{12}^T Q_{12} + Q_{22}^T Q_{22}
 \end{pmatrix} \\ =
 \begin{pmatrix}
-A_1^T A_1 + B_1^T B_1 & Q_{11}^T Q_{12} + Q_{21}^T Q_{22} \\ 
+K_{A_1}^TK_{A_1} + K_{B_1}^TK_{B_1} & Q_{11}^T Q_{12} + Q_{21}^T Q_{22} \\ 
 Q_{12}^T Q_{11} + Q_{22}^T Q_{21} & Q_{12}^T Q_{12} + Q_{22}^T Q_{22}
 \end{pmatrix}  = I =
 \begin{pmatrix}
@@ -197,27 +199,27 @@ I_k & 0\\
 \end{pmatrix} \text{.}
 \end{gather*}
 
-Sedaj singularni razcep naredimo na matriki $B_1$. Za matriko $B_1$ vemo, da ima isti rang kot matrika $B$, saj velja, da je matrika $Z_{11}$ polnega ranga (je namreč podmatrika ortogonalne matrike $Z$) in vemo, da je matrika $D^{-1}$ polnega ranga. Označimo: $r = rang(B) = rang(B_1)$. Iz singularnega razcepa za matriko $B_1$ dobimo ortogonalni matriki $V \in \mathbb{R}^{ n \times n}$ in $Z_2 \in \mathbb{R}^{ k \times k}$, da velja:
+Sedaj singularni razcep naredimo na matriki $K_{B_1}$. Za matriko $K_{B_1}$ vemo, da ima isti rang kot matrika $K_B$, saj velja, da je matrika $Z_{11}$ polnega ranga (je namreč podmatrika ortogonalne matrike $Z$) in vemo, da je matrika $D^{-1}$ polnega ranga. Označimo: $r = rang(K_B) = rang(K_{B_1})$. Iz singularnega razcepa za matriko $K_{B_1}$ dobimo ortogonalni matriki $V \in \mathbb{R}^{ n \times n}$ in $Z_2 \in \mathbb{R}^{ k \times k}$, da velja:
 \begin{equation}
-V^T B_q Z_2 = diag(\beta_1, \ldots, \beta_p) \text{,} 
+V^T K_{B_1} Z_2 = diag(\beta_1, \ldots, \beta_p) \text{,} 
 \end{equation} kjer je $p = min\{n, k\}$ in velja 
-$ \beta_1 \geq \beta_2 \geq \ldots \geq \beta_r > \beta_{r+1} = \ldots = 0 $. Enačbo lahko tudi obrnemo in velja $B_1 = B Z_{11} D^{-1}$
+$ \beta_1 \geq \beta_2 \geq \ldots \geq \beta_r > \beta_{r+1} = \ldots = 0 $. Enačbo lahko tudi obrnemo in velja $K_{B_1} = K_B Z_{11} D^{-1}$
 
 Iz enačbe \textit{\eqref{eq:2}} sledi, da velja:
 $$
-B Z_{12} = 0^{n \times k} \text{,}
+K_B Z_{12} = 0^{n \times k} \text{,}
 $$
 iz česar pa sledi, da je $\beta_{p+1} = \ldots = \beta_{q} = 0$.
 Opazimo, da velja tudi:
 \begin{gather*}
-V^T B Z
+V^T K_B Z
 \begin{pmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
 \end{pmatrix} = 
 \begin{pmatrix}
-V^T B Z_{11} D^{-1} Z_2 & 0\\ 
-0 & V^T B Z_{12} I_{m-k}
+V^T K_B Z_{11} D^{-1} Z_2 & 0\\ 
+0 & V^T K_B Z_{12} I_{m-k}
 \end{pmatrix} \\ =
 \begin{pmatrix}
 diag(\beta_1, \ldots, \beta_p) & 0\\ 
@@ -225,30 +227,30 @@ diag(\beta_1, \ldots, \beta_p) & 0\\
 \end{pmatrix} \text{.}
 \end{gather*}
 
-Podobno bomo pokazali tudi za matriko $A$. Za $G$ definirajmo matriko, ki jo dobimo s preoblikovanjem enačbe \textit{\eqref{eq:3}}:
-$$ G := B_1 Z_2 = V diag(\beta_1, \ldots, \beta_p) \text{.}
+Podobno bomo pokazali tudi za matriko $K_A$. Za $G$ definirajmo matriko, ki jo dobimo s preoblikovanjem enačbe \textit{\eqref{eq:3}}:
+$$ G := K_{B_1} Z_2 = V diag(\beta_1, \ldots, \beta_p) \text{.}
 $$
 Opazimo, da so stolpci matrike $A_1 Z_2$ medsebojno ortogonalni, ker velja:
 \begin{gather*}
-(A_1 Z_2)^T (A_1 Z_2) = Z_2^T A_1^T A_1 Z_2 \\
-= Z_2^T (I_{k} - B_1^T B_1) Z_2 = Z_2^T Z_2 -  Z_2^T B_1^T B_1 Z_2 \\
+(K_{A_1} Z_2)^T (K_{A_1} Z_2) = Z_2^T K_{A_1}^T K_{A_1} Z_2 \\
+= Z_2^T (I_{k} - K_{B_1}^T K_{B_1}) Z_2 = Z_2^T Z_2 -  Z_2^T K_{B_1}^T K_{B_1} Z_2 \\
 = I_k - G^T G = I_k - diag(\beta_1, \ldots, \beta_p) V^T V diag(\beta_1, \ldots, \beta_p) \\
 = diag(1 - \beta_1^2, \ldots,1 - \beta_p^2) \text{.}
 \end{gather*}
-Tako se v diagonalne vrednosti preslikajo dolžine posameznih stolpcev (skalarni produkti enakih stolpcev), vsi ostali skalarni produkti pa so enaki 0. Če za matriko A dodatno definiramo $\alpha_i = 0 \text{za} i = k+1, \ldots, n$ lahko vidimo, da iz $A_1 = A Z_{11} D^{-1}$ sledi:
-$$ U^T A_1 Z_2 = U^T A Z_{11} D^{-1} Z_2 = diag(\alpha_1, \ldots, \alpha_k) \text{.}
+Tako se v diagonalne vrednosti preslikajo dolžine posameznih stolpcev (skalarni produkti enakih stolpcev), vsi ostali skalarni produkti pa so enaki 0. Če za matriko A dodatno definiramo $\alpha_i = 0 \text{za} i = k+1, \ldots, n$ lahko vidimo, da iz $K_{A_1} = K_A Z_{11} D^{-1}$ sledi:
+$$ U^T K_{A_1} Z_2 = U^T K_A Z_{11} D^{-1} Z_2 = diag(\alpha_1, \ldots, \alpha_k) \text{.}
 $$ 
 Podobno, kot za matriko $B$ tu lahko pokažemo:
 \begin{gather*}
-U^T A Z_1 
+U^T K_A Z_1 
 \begin{pmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
 \end{pmatrix} \\
 =
 \begin{pmatrix}
-U^T A Z_{11} D^{-1} Z_2 & 0\\ 
-0 & U^T A Z_{12} I_{m-k}
+U^T K_A Z_{11} D^{-1} Z_2 & 0\\ 
+0 & U^T K_A Z_{12} I_{m-k}
 \end{pmatrix} =
 \begin{pmatrix}
 diag(\alpha_1, \ldots, \alpha_k) & 0\\ 
@@ -261,10 +263,10 @@ $$ X := Z_1
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
 \end{pmatrix}
-$$
+$$ \textbf{-- NEJASNOST (oni tu vzamejo brez matrike $Z_1$)!}
 \end{proof}
 
-Problem tega izreka ja, da se ga ne da uporabiti, kadar dimenzije matrike $K_A$ niso ustrezne. Zaradi tega pretirano zavezujočega pogoja se odločita C.C. Paige in M.A. Saunders ta posplošeni singularni izrek še dodatno posplošiti. Tako dobimo naslednji izrek:
+Problem tega izreka pa je, da se ga ne da uporabiti, kadar dimenzije matrike $K_A$ niso ustrezne. Zaradi tega pretirano zavezujočega pogoja se odločita C.C. Paige in M.A. Saunders ta posplošeni singularni izrek še dodatno posplošiti. Tako dobimo naslednji izrek:
 \begin{izrek}[Posplošeni singularni izrek (Paige in Saunders):]
 \label{izrek:GSVD} Naj bosta dani matriki $K_A \in \mathbb{R}^{p \times m}$ in $K_B \in \mathbb{R}^{n \times m}$. Potem za $K = \left(\begin{array}{c} K_A \\ K_B \end{array}\right)$ in $t = rang(K)$ obstajajo ortogonalne matrike $U \in \mathbb{R}^{p \times p}$, $V \in \mathbb{R}^{n \times n}$, $W \in \mathbb{R}^{t \times t}$ in $Q \in \mathbb{R}^{m \times m}$, da velja: 
 $$U^T K_A Q = \Sigma_A  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right) \hspace{4mm} \text{in} \hspace{4mm} V^T K_B Q = \Sigma_B  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right),$$ kjer je 
@@ -322,7 +324,7 @@ Singularni razcep podobno kot na matriki $K$ naredimo tudi na matriki $P_{11}$. 
 
 (Spodnji del je vprašljiv? \textbf{-- DOPOLNI!})
 
-Na matriki $P_{21}$ uporabimo čudežni razcep (s Householderjevimi zrcaljenji) in tako dobimo matriko $V \in \mathbb{C}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} =
+Na matriki $P_{21}$ uporabimo \textbf{-- DOPOLNI!}) razcep (s Householderjevimi zrcaljenji) in tako dobimo matriko $V \in \mathbb{C}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} =
 \begin{pmatrix} 
 0 &  \\
 & L_1

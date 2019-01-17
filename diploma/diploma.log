@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  16 JAN 2019 21:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  17 JAN 2019 22:18
 entering extended mode
 **./diploma.tex
 (diploma.tex
@@ -263,32 +263,40 @@ OT1/lmr/m/n/10 )$ \T1/lmr/m/n/10 in mi-ni-mi-zira $\OML/lmm/m/it/10 sled\OT1/lm
 r/m/n/10 (\OML/lmm/m/it/10 S[]\OT1/lmr/m/n/10 )$\T1/lmr/m/n/10 .
  []
 
-[3] [4]
-Overfull \hbox (0.58609pt too wide) detected at line 198
+[3]
+Overfull \hbox (4.47322pt too wide) detected at line 113
+\OML/lmm/m/it/10 Q[] [] Z[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 diag\OT1/lmr/m/n
+/10 (\OML/lmm/m/it/10 []; :::; []\OT1/lmr/m/n/10 ) []  [] \OML/lmm/m/it/10 [
+] \OMS/lmsy/m/n/10  []  \OML/lmm/m/it/10 [] > [] \OT1/lmr/m/n/10 = [] \OML/
+lmm/m/it/10 [][]
+ []
+
+[4]
+Overfull \hbox (0.58609pt too wide) detected at line 200
 []
  []
 
 
-LaTeX Warning: Reference `eq:3' on page 5 undefined on input line 228.
+LaTeX Warning: Reference `eq:3' on page 5 undefined on input line 230.
 
 [5]
-Overfull \hbox (13.68927pt too wide) detected at line 257
+Overfull \hbox (28.70319pt too wide) detected at line 259
 []
  []
 
 [6]
-Overfull \hbox (0.90578pt too wide) in paragraph at lines 321--322
+Overfull \hbox (0.90578pt too wide) in paragraph at lines 323--324
 \T1/lmr/m/n/10 kjer je ma-trika $\OML/lmm/m/it/10 D[]$ \T1/lmr/m/n/10 di-a-go-n
 alna ma-trika z di-a-go-nal-nimi vre-dnostmi $\OML/lmm/m/it/10 []; :::; [];$
  []
 
 [7]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 372.
+(Font)              <12> on input line 374.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 372.
+(Font)              <8> on input line 374.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 372.
+(Font)              <6> on input line 374.
  [8] (diploma.aux)
 
 LaTeX Warning: There were undefined references.
@@ -297,11 +305,11 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  2129 strings out of 492970
  27397 string characters out of 3126149
- 100161 words of memory out of 3000000
+ 99161 words of memory out of 3000000
  5974 multiletter control sequences out of 15000+200000
  65445 words of font info for 57 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,14n,27p,1177b,231s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,14n,27p,1187b,231s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.e
 nc}{C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mat
 hsy.enc}{C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/l
@@ -318,17 +326,18 @@ Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi7.pfb><C:/Users/Jernej/AppData/Lo
 cal/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Jernej/AppDat
 a/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Users/Jernej/Ap
 pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Users/Jerne
-j/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pfb><C:/Users/Je
-rnej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users
-/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><C:/
-Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb
-><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy7
-.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/l
-msy8.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
-amsfonts/symbols/msbm10.pfb>
-Output written on diploma.pdf (8 pages, 229097 bytes).
+j/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr5.pfb><C:/Users/Je
+rnej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr7.pfb><C:/Users
+/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Us
+ers/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><
+C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.
+pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lm
+sy7.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
+m/lmsy8.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/symbols/msbm10.pfb>
+Output written on diploma.pdf (8 pages, 245471 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
+ 108 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

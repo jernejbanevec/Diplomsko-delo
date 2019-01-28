@@ -427,12 +427,13 @@ $$ U^T K_B X = \left(\begin{array}{cc} \Sigma_B, & 0 \end{array}\right) \text{.}
 $$
 Tako je definirana matrika $X$ ravno iskana matrika iz prve posplošitve singularnega razcepa in matriki $\left(\begin{array}{cc} \Sigma_A, & 0 \end{array}\right)$ in $ U^T K_B X = \left(\begin{array}{cc} \Sigma_B, & 0 \end{array}\right)$ ravno iskani diagonalni matriki.
 
-Za nadaljnje delo definirajmo matriki
-$$H_W := [A_1 - c^{(1)}e^{(1)^T}, \ldots, A_k - c^{(k)}e^{(k)^T}]$$
+Za nadaljnje delo definirajmo matrike
+$$H_W := [A_1 - c^{(1)}e^{(1)^T}, \ldots, A_k - c^{(k)}e^{(k)^T}] \text{,}$$
+$$H_B := [(c^{(1)} - c)e^{(1)^T}, \ldots,(c^{(k)} - c) e^{(k)^T}]$$
 in
-$$H_B := [(c^{(1)} - c)e^{(1)^T}, \ldots,(c^{(k)} - c) e^{(k)^T}] \text{,}$$
+$$H_M := [a_1 - c, ..., a_n - c] = A - ce^T = H_W + H_B\text{,}$$
 kjer velja:
-$e^{(i)} = (1,\ldots, 1) ^T \in \mathbb{R}^{ n_i \times 1 } \text{.}$
+$e^{(i)} = (1,\ldots, 1) ^T \in \mathbb{R}^{ n_i \times 1 }$ in $e =  (1,\ldots, 1) ^T \in \mathbb{R}^{ n \times 1 }$.
 
 \section{Matematična rešitev problema}
 \subsection{Posplošitev linearne diskriminantne analize}

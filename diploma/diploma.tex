@@ -368,6 +368,72 @@ L
 %    \draw[decorate,transform canvas={yshift=0.5em},thick] (m-1-2.north west) -- node[above=2pt] {$R$} (m-1-4.north east);
 %\end{tikzpicture}
 
+Iz posplošenega singularnega razcepa, ki sta ga definirala Paige in Saunders neposredno sledi Van Loanova posplošitev singularnega razcepa. 
+S preoblikovanjem enačbe \textit{\eqref{eq:3}} --\textbf{tu bi moralo pisati enačba 3}, dobimo:
+$$U^T K_A Q = \left(\begin{array}{cc} \Sigma_A, & 0 \end{array}\right)
+\begin{pmatrix}
+W^TR & 0 \\
+0 & I 
+\end{pmatrix} \text{.}$$
+Inverz matrike
+$\begin{pmatrix}
+W^TR & 0 \\
+0 & I 
+\end{pmatrix} $
+je kar matrika 
+$\begin{pmatrix}
+R^{-1} W & 0 \\
+0 & I 
+\end{pmatrix} \text{,}$
+saj veljata obe enakosi iz definicije inverza, torej:
+$$\begin{pmatrix}
+R^{-1} W & 0 \\
+0 & I 
+\end{pmatrix}
+\begin{pmatrix}
+W^TR & 0 \\
+0 & I 
+\end{pmatrix}
+= I \hspace{3mm}\text{in} \hspace{3mm}
+\begin{pmatrix}
+W^TR & 0 \\
+0 & I 
+\end{pmatrix}
+\begin{pmatrix}
+R^{-1} W & 0 \\
+0 & I 
+\end{pmatrix}
+= I \text{.}$$
+Iz enačbe \textit{\eqref{eq:3}} tako tu očitno sledi:
+$$ U^T K_A Q
+\begin{pmatrix}
+R^{-1} W & 0 \\
+0 & I 
+\end{pmatrix}
+=
+\left(\begin{array}{cc} \Sigma_A, & 0 \end{array}\right) \text{.}
+$$
+Matriko $X$ definiramo kot:
+$$ Q
+\begin{pmatrix}
+R^{-1} W & 0 \\
+0 & I 
+\end{pmatrix}
+$$ in dobimo ravno Van Loanovo posplošitev razcepa:
+$$ U^T K_A X = \left(\begin{array}{cc} \Sigma_A, & 0 \end{array}\right) \text{.}
+$$
+Podobno lahko pokažemo tudi za matriko $K_B$, za katero dobimo enačbo:
+$$ U^T K_B X = \left(\begin{array}{cc} \Sigma_B, & 0 \end{array}\right) \text{.}
+$$
+Tako je definirana matrika $X$ ravno iskana matrika iz prve posplošitve singularnega razcepa in matriki $\left(\begin{array}{cc} \Sigma_A, & 0 \end{array}\right)$ in $ U^T K_B X = \left(\begin{array}{cc} \Sigma_B, & 0 \end{array}\right)$ ravno iskani diagonalni matriki.
+
+Za nadaljnje delo definirajmo matriki
+$$H_W := [A_1 - c^{(1)}e^{(1)^T}, \ldots, A_k - c^{(k)}e^{(k)^T}]$$
+in
+$$H_B := [(c^{(1)} - c)e^{(1)^T}, \ldots,(c^{(k)} - c) e^{(k)^T}] \text{,}$$
+kjer velja:
+$e^{(i)} = (1,\ldots, 1) ^T \in \mathbb{R}^{ n_i \times 1 } \text{.}$
+
 \section{Matematična rešitev problema}
 \subsection{Posplošitev linearne diskriminantne analize}
 

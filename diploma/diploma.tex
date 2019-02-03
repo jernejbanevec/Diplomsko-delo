@@ -435,13 +435,30 @@ $$H_M := [a_1 - c, ..., a_n - c] = A - ce^T = H_W + H_B\text{,}$$
 kjer velja:
 $e^{(i)} = (1,\ldots, 1) ^T \in \mathbb{R}^{ n_i \times 1 }$ in $e =  (1,\ldots, 1) ^T \in \mathbb{R}^{ n \times 1 }$.
 
-S pomočjo teh matrik lahko definiramo tudi matrike.
+S pomočjo teh matrik lahko definiramo tudi matrike razpršenosti podatkov. Matriko $S_W$ lahko definiramo kot produkt matrike $H_W$ z njeno transponiranko, torej:
+$$S_W = H_W H_W^T \text{,}$$
+matriko $S_B$ lahko definiramo na podoben način:
+$$S_B = H_B H_B^T \text{,}$$
+prav tako pa tudi matrika $S_M$:
+$$S_M = H_M H_M^T \text{.}$$
 
+S pomočjo tega razcepa lahko tudi na drugačen način pokažemo, da je matrika $S_W$, kadar velja $m>n$, singularna. Razvidno je namreč, da je ta matrika $S_W$ definirana kot produkt dveh matrik, kjer je matrika $H_W$ dimenzije $m \times n$, matrika $H_W^T$ pa dimenzije $n \times m$. V kolikor velja $m>n$, sta tako ti dve matrike največ ranga $n$.
+Ker pa za rang matrike velja, da je rang produkta dveh matrik navzgor omejen z manjšim izmed rangov teh dveh posameznih matrik ($rang(AB) \leq \min(rang(A), rang(B)$), je posledično tudi matrika $S_W$ največ ranga $n$ in torej očitno singularna.
+
+\textbf{-- Tu mogoče dopiši glede matrik $K_A$ in $K_B$}
 
 \section{Matematična rešitev problema}
-\subsection{Posplošitev linearne diskriminantne analize}
+V tem odstavku prikažemo uporabo posplošenega singularnega razcepa v namen razširjene uporabe posplošene diskriminantne analize.
+ 
+\subsection{Optimizacija optimizacijskega kriterija $J_1 = sled(S_2^{-1} S_1)$ za nesingularno matriko $S_2$}
+Tu izhajamo iz optimizacije optimizacijskega kriterija 
+$$J_1(G) = sled((G^T S_2 G)^{-1} (G^T S_1 G))$$
+z izbiro optimalne preslikave $G$, kjer sta matriki $S_1$ in $S_2$ izbrani izmed matrik $S_W$, $S_B$ in $S_M$. Ker je tu matrika $S_2$ nesingularna in je sestavljena kot produkt matrike in transponiranke te matrike je simetrično pozitivno definitna (posldično so vse lastne vrednosti te matrike večje ali enake 0). Za simetrično poitivno definitno matriko pa obstaja razcep Choleskega; tako vemo da obstaja spodnjetrikotna matrike V s pozitivnimi elementi na diagonali, da velja:
+$$ S_2 = V V^T \text{.}
+$$
 
-\subsection{Posplošitev maksimizacijskega kriterija $sled((S_W^Y)^{-1}S_B^Y)$}
+
+\subsection{Posplošitev maksimizacijskega kriterija $sled((S_W^Y)^{-1}S_B^Y)$ za singularno matriko $S_2$}
 
 \section{Algoritem}
 

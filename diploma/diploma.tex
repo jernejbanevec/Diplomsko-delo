@@ -282,7 +282,7 @@ $$ \textbf{-- NEJASNOST (oni tu vzamejo brez matrike $Z_1$)!}
 \end{proof}
 
 Problem tega izreka pa je, da se ga ne da uporabiti, kadar dimenzije matrike $K_A$ niso ustrezne. Zaradi tega pretirano zavezujočega pogoja se odločita C.C. Paige in M.A. Saunders ta posplošeni singularni izrek še dodatno posplošiti. Tako dobimo naslednji izrek:
-\begin{izrek}[Posplošeni singularni izrek (Paige in Saunders):]
+\begin{izrek}[Posplošeni singularni razcep (Paige in Saunders):]
 \label{izrek:GSVD} Naj bosta dani matriki $K_A \in \mathbb{R}^{p \times m}$ in $K_B \in \mathbb{R}^{n \times m}$. Potem za $K = \left(\begin{array}{c} K_A \\ K_B \end{array}\right)$ in $t = rang(K)$ obstajajo ortogonalne matrike $U \in \mathbb{R}^{p \times p}$, $V \in \mathbb{R}^{n \times n}$, $W \in \mathbb{R}^{t \times t}$ in $Q \in \mathbb{R}^{m \times m}$, da velja: 
 $$U^T K_A Q = \Sigma_A  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right) \hspace{4mm} \text{in} \hspace{4mm} V^T K_B Q = \Sigma_B  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right),$$ kjer je 
 $$\Sigma_A = \begin{pmatrix} 
@@ -498,6 +498,65 @@ $$
 
 \section{Zaključek}
 
+\section{Priloge}
+
+\begin{izrek}[Singularni razcep]
+\label{izrek:SVD} Za vsako matriko $A \in \mathbb{R}^{m \times n}$, z lastnostjo $m \geq n$, obstaja singularni razcep 
+$$A = U \Sigma V^T \text{,}$$
+kjer sta $U \in \mathbb{R}^{m \times m}$ in $V \in \mathbb{R}^{n \times n}$ ortogonalni matriki, $\Sigma \in \mathbb{R}^{m \times n}$ je oblike
+$$
+\Sigma = 
+\begin{pmatrix} 
+\sigma_1 &  & \\
+ & \ddots & \\
+ & & \sigma_n  \\
+ & & 
+\end{pmatrix}$$
+in $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_n \geq 0$ so singularne vrednosti matrike $A$.
+\end{izrek}
+\begin{proof}
+Ker je $A^TA$ simetrična pozitivno semidefinitna matrika, so vse njene lastne vrednosti nenegativne. Označimo in uredimo jih kot
+$$\sigma_1^2 \geq \sigma_2^2 \geq \ldots \geq \sigma_n^2 \geq 0 \text{.}$$
+Ustrezni ortonormirani lastni vektorji $v_1, \ldots, v_n$ zadoščajo
+$A^T A v_i = \sigma_i^2 v_i$ za $i = 1, \ldots, n \text{.}$
+Naj bo $\sigma_r > 0$ in $\sigma_{r+1} = \cdots = \sigma_n = 0 \text{.}$
+Matriko $V$ razdelimo na $V_1 = 
+\left( v_1, \ldots, v_r
+\right)$ in $V_2 = 
+\left( v_{r+1}, \ldots, v_n
+\right) \text{.}$ Iz
+$$ (AV_2)^T (AV_2) = V_2^T A^T A V_2 = V_2^T \left( 0, \ldots, 0 \right) = 0
+$$
+sledi $AV_2 = 0 \text{.}$ Sedaj definiramo $u_i := \frac{1}{\sigma_i} Av_i$ za $i = 1, \ldots, r \text{.}$
+Vekorji $u_1, \ldots, u_r$ so ortonormirani, saj je
+$$ u_i^T u_j = \frac{1}{\sigma_i \sigma_j} v_i^T A^T A v_j = \frac{\sigma_j}{\sigma_i} v_i^T v_j = \delta_{ij} \text{,} \hspace{3mm} i,j = 1, \ldots, r \text{,}
+$$
+kjer smo v zapisu uproabili t.i. \emph{Kroneckerjev delta}, definiran z $\delta_{ij} = 1$ za $i = j$ in $\delta_{ij} = 0$ za $i \neq j$. Označimo 
+$U_1 = 
+\left( u_1 \hspace{2mm} \cdots \hspace{2mm} u_r
+\right)$ in dopolnimo z $U_2 = 
+\left( u_{r+1} \hspace{2mm} \cdots \hspace{2mm} u_n
+\right)$, da je $ U = \left( U_1 \hspace{2mm} U_2 \right)$ ortogonalna matrika. Matrika $U^T A V$ ima obliko 
+$$
+U^T A V = 
+\begin{pmatrix} 
+U_1^T A V_1 & U_1^T A V_2 \\
+U_2^T A V_1 & U_2^T A V_2
+\end{pmatrix}
+\text{.}
+$$
+Desna bloka sta zaradi $AV_2 = 0$ enaka $0$. Za $i = 1, \ldots, r$ in $k = 1, \ldots, m$ velja
+$$ u_k^T A v_i = \sigma_i u_k^T u_i = \sigma_i \delta{ik} \text{,}
+$$
+torej $U_2^T A V_1 = 0$ in $U_1^T A V_1 = diag(\sigma_1, \ldots, \sigma_r) \text{.}$ Dobimo singularni razcep $A = U \Sigma V^T \text{,}$ kjer je $S = diag(\sigma_1, \ldots, \sigma_r)$ in 
+$$ \Sigma = 
+\begin{pmatrix} 
+S & 0 \\
+0 & 0
+\end{pmatrix}
+\text{.}$$
+
+\end{proof}
 \section{Viri}
 
 \end{document}

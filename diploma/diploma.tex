@@ -121,10 +121,12 @@ $$ U^T K_A X =
 \end{matrix} \\ \hdashline[2pt/2pt]
 0_{p-m, m}
 \end{bmatrix} 
+% !!KONEC DEFINICIJE PRVE MATRIKE!!
 \hspace{2mm} \text{in} \hspace{2mm}
  V^T K_B X = 
 \Sigma_B \text{,}
 $$ kjer je $q = min(n,m) \text{,}$
+% !!DEFINICIJA DRUGE MATRIKE!!
 \begin{gather*}
 \Sigma_B = 
 \left[
@@ -138,6 +140,7 @@ $$ kjer je $q = min(n,m) \text{,}$
 0_{n-q, q} & 0_{n-q, m-q}
 \end{array} \right] \text{,} 
 \end{gather*} %\hspace{2mm}
+% !!KONEC DEFINICIJE DRUGE MATRIKE!!
 $
 \alpha_i \geq 0 \hspace{2mm} \text{za} \hspace{2mm}
  1 \leq i \leq m \hspace{2mm} \text{in} \hspace{2mm}
@@ -153,31 +156,51 @@ $
 % k_1 = k
 % n = m
 
-Iz matrik $K_A$ in $K_B$ tvorimo združeno matriko $K = \left(\begin{array}{c} K_A \\ K_B \end{array}\right)$, na kateri naredimo singularni razcep. Iz singularnega razcepa dobimo matriki $Q \in \mathbb{R}^{(p+n) \times (p+n)}$ in matriko $Z_1 \in \mathbb{R}^{m \times m}$, tako da velja 
+Iz matrik $K_A$ in $K_B$ tvorimo združeno $(p+n)\times m$ matriko $K = \left(\begin{array}{c} K_A \\ K_B \end{array}\right)$, na kateri naredimo singularni razcep. Iz singularnega razcepa dobimo matriki $Q \in \mathbb{R}^{(p+n) \times (p+n)}$ in matriko $Z_1 \in \mathbb{R}^{m \times m}$, tako da velja 
 \begin{equation}
-Q^T \left(\begin{array}{c} K_A \\ K_B \end{array}\right) Z_1 = diag(\gamma_1,..., \gamma_m) \hspace{2mm} \text{kjer za} \hspace{1mm}  \hspace{1mm} \text{velja} \hspace{2mm}
+Q^T \left(\begin{array}{c} K_A \\ K_B \end{array}\right) Z_1 = 
+\begin{bmatrix}
+\begin{matrix}
+\gamma_1 & & \\
+ & \ddots & \\
+ & & \gamma_m
+\end{matrix} \\ \hdashline[2pt/2pt]
+0_{p+n-m, m}
+\end{bmatrix} 
+\hspace{2mm} \text{kjer velja} \hspace{2mm}
 \gamma_1 \geq \ldots \geq \gamma_k > \gamma_{k+1} = \ldots \gamma_m \text{.} \label{eq:1}
 \end{equation}
-\textbf{-- DOPOLNI! Ali je samo diag za napisat ali celo razširjeno matriko?}
+\textbf{-- DOPOLNI! Tu je potrebno pisati celo razširjeno matriko kot produkt singularnega razcepa!!}
 V kolikor matriko $Z_1$ razdelimo na dve matriki: $Z_{11} \in \mathbb{R}^{m \times k}$, ki je sestavljena iz prvih $k$ stolpcev matrike $Z_1$ in $Z_{12} \in \mathbb{R}^{m \times (m-k)}$, ki je sestavljena iz preostalih $m-k$ stolpcev matrike $Z_1$, lahko vidimo da velja:
-$$ Q^T K \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right) =  \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right) \text{.}
+$$ Q^T K \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right) = 
+\begin{bmatrix}
+\begin{matrix}
+\lambda_1 & & & & & \\
+ & \ddots & & & & \\
+ & & \lambda_k & & & \\
+ & & & \lambda_{k+1} & & \\
+ & & & & \ddots & \\
+ & & & & & \lambda_n 
+\end{matrix} \\ \hdashline[2pt/2pt]
+0_{p+n-m, m}
+\end{bmatrix}
+\text{.}
 $$
 Po predpostavki velja $p \geq m$ in ker je očitno tudi $m \geq k$ sledi: $p \geq n \geq k$. Sedaj definirajmo matriko 
-$$ D := diag(\gamma_1,..., \gamma_k \in \mathbb{R}^{k \times k}) \text{.}
+$$ D := diag(\gamma_1,..., \gamma_k) \in \mathbb{R}^{k \times k} \text{.}
 $$
-Tako iz zgornje enačbe \textit{\eqref{eq:1}} dobimo:
+Tako iz zgornje enačbe \textit{\eqref{eq:1}} dobimo
 \begin{equation}
 \begin{pmatrix}
 K_A Z_{11} & K_A Z_{12} \\ 
 K_B Z_{11} & K_B Z_{12}
 \end{pmatrix} = Q
 \begin{pmatrix}
-D & 0 \\ 
-0 & 0 \\
-0 & 0
-\end{pmatrix} \text{DOPIŠI MEJE!,} \label{eq:2}
+D & 0_{k, m-k} \\ 
+0_{p+n-k, k} & 0_{p+n-k, m-k} 
+\end{pmatrix} \text{,} \label{eq:2}
 \end{equation}
-iz česar sledi:
+iz česar sledi
 $$
 \begin{pmatrix}
 K_A Z_{11} \\ 
@@ -187,13 +210,13 @@ K_B Z_{11}
 D \\ 
 0
 \end{pmatrix}
-$$ in v kolikor še matriko $Q$ razdelimo na podmatrike na naslednji način:
+$$ in v kolikor še matriko $Q$ razdelimo na podmatrike na naslednji način
 $$ Q = 
 \begin{pmatrix}
 Q_{11} & Q_{12} \\ 
 Q_{21} & Q_{22}
 \end{pmatrix} \text{,}
-$$ kjer je matrika $Q_{11} \in \mathbb{R}^{k \times k}$, matrika $Q_{12} \in \mathbb{R}^{k \times (p+n-k)}$, matrika $Q_{21} \in \mathbb{R}^{ (p+n-k) \times k}$ in matrika matrika $Q_{22} \in \mathbb{R}^{ (p+n-k) \times (p+n-k)}$, ugotovimo, da je:
+$$ kjer je matrika $Q_{11} \in \mathbb{R}^{k \times k}$, matrika $Q_{12} \in \mathbb{R}^{k \times (p+n-k)}$, matrika $Q_{21} \in \mathbb{R}^{ (p+n-k) \times k}$ in matrika matrika $Q_{22} \in \mathbb{R}^{ (p+n-k) \times (p+n-k)}$, ugotovimo, da je
 $$Q
 \begin{pmatrix}
 D \\ 
@@ -212,16 +235,16 @@ Q_{11} D \\
 Q_{21} D
 \end{pmatrix} \text{.}
 $$
-Iz tega neposredno sledi enakost:
+Iz tega neposredno sledi enakost
 $$
 K_A Z_{11} = Q_{11} D \implies K_A Z_{11} D^{-1} = Q_{11} =: K_{A_1} \text{,}
-$$ kjer dodatno definiramo matriko $A_1$
-in enakost:
+$$
+in enakost
 $$
 K_B Z_{11} = Q_{21} D \implies K_B Z_{11} D^{-1} = Q_{21} =: K_{B_1} \text{,}
-$$ kjer dodatno definiramo matriko $B_1$.
+$$.
 
-Ker je matrika $Q$ ortogonalna dodatno velja $K_{A_1}^TK_{A_1} + K_{B_1}^TK_{B_1} = I_k$, kjer je $I_k$ identična matrika dimzije $k \times k$. To enačbo lahko pokažemo tako, da razpišemo spodnjo enačbo:
+Ker je matrika $Q$ ortogonalna, dodatno velja $K_{A_1}^TK_{A_1} + K_{B_1}^TK_{B_1} = I_k$, kjer je $I_k$ identična matrika dimzije $k \times k$. To enakost lahko pokažemo tako, da razpišemo spodnjo enačbo
 \begin{gather*}
 Q^T Q = 
 \begin{pmatrix}

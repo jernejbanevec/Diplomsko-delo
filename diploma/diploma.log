@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  10 FEB 2019 19:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  13 FEB 2019 21:37
 entering extended mode
 **./diploma.tex
 (diploma.tex
@@ -189,7 +189,31 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
-\c@izrek=\count102
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\arydshln\arydshln
+.sty"
+Package: arydshln 2018/12/26 v1.75 
+\dashlinedash=\dimen113
+\dashlinegap=\dimen114
+\adl@box=\box28
+\adl@height=\dimen115
+\adl@heightsave=\dimen116
+\adl@depth=\dimen117
+\adl@depthsave=\dimen118
+\adl@finaldepth=\dimen119
+\adl@columns=\count102
+\adl@ncol=\count103
+\adl@currentcolumn=\count104
+\adl@currentcolumnsave=\count105
+\adl@totalheight=\count106
+\adl@totalheightsave=\count107
+\adl@dash=\count108
+\adl@gap=\count109
+\adl@cla=\count110
+\adl@clb=\count111
+\adl@everyvbox=\toks28
+\adl@LTpagetotal=\dimen120
+)
+\c@izrek=\count112
 
 
 LaTeX Warning: Unused global option(s):
@@ -202,56 +226,56 @@ LaTeX Warning: Label `izrek:SVD' multiply defined.
 )
 \openout1 = `diploma.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 22.
  ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 35.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 36.
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 35.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 36.
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 35.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 36.
 
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 35.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 36.
 
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 35.
+(Font)              <10> on input line 36.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 35.
+(Font)              <7> on input line 36.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 35.
-LaTeX Font Info:    Try loading font information for U+msa on input line 35.
+(Font)              <5> on input line 36.
+LaTeX Font Info:    Try loading font information for U+msa on input line 36.
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 35.
+LaTeX Font Info:    Try loading font information for U+msb on input line 36.
  ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd
 "
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -259,63 +283,63 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {C:/Users/Jernej/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 [2]
-Overfull \hbox (0.28099pt too wide) in paragraph at lines 95--95
+Overfull \hbox (0.28099pt too wide) in paragraph at lines 96--96
 []\T1/lmr/m/n/10 Optimalna pre-sli-kava $\OML/lmm/m/it/10 G[]$ \T1/lmr/m/n/10 t
 ako ma-ksi-mi-zira $\OML/lmm/m/it/10 sled\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 S[]\
 OT1/lmr/m/n/10 )$ \T1/lmr/m/n/10 in mi-ni-mi-zira $\OML/lmm/m/it/10 sled\OT1/lm
 r/m/n/10 (\OML/lmm/m/it/10 S[]\OT1/lmr/m/n/10 )$\T1/lmr/m/n/10 .
  []
 
-[3]
-Overfull \hbox (4.47322pt too wide) detected at line 128
+[3] [4]
+Overfull \hbox (4.47322pt too wide) detected at line 161
 \OML/lmm/m/it/10 Q[] [] Z[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 diag\OT1/lmr/m/n
 /10 (\OML/lmm/m/it/10 []; :::; []\OT1/lmr/m/n/10 ) []  [] \OML/lmm/m/it/10 [
 ] \OMS/lmsy/m/n/10  []  \OML/lmm/m/it/10 [] > [] \OT1/lmr/m/n/10 = [] \OML/
 lmm/m/it/10 [][]
  []
 
-[4]
-Overfull \hbox (0.58609pt too wide) detected at line 215
+
+Overfull \hbox (0.58609pt too wide) detected at line 248
 []
  []
 
 [5]
 
-LaTeX Warning: Reference `eq:3' on page 6 undefined on input line 245.
+LaTeX Warning: Reference `eq:3' on page 6 undefined on input line 278.
 
 
-Overfull \hbox (28.70319pt too wide) detected at line 274
+Overfull \hbox (28.70319pt too wide) detected at line 307
 []
  []
 
 [6] [7]
-Overfull \hbox (0.90578pt too wide) in paragraph at lines 338--339
+Overfull \hbox (0.90578pt too wide) in paragraph at lines 371--372
 \T1/lmr/m/n/10 kjer je ma-trika $\OML/lmm/m/it/10 D[]$ \T1/lmr/m/n/10 di-a-go-n
 alna ma-trika z di-a-go-nal-nimi vre-dnostmi $\OML/lmm/m/it/10 []; :::; [];$
  []
 
-
-LaTeX Warning: Reference `eq:3' on page 8 undefined on input line 406.
-
 [8]
 
-LaTeX Warning: Reference `eq:3' on page 9 undefined on input line 441.
+LaTeX Warning: Reference `eq:3' on page 9 undefined on input line 439.
+
+
+LaTeX Warning: Reference `eq:3' on page 9 undefined on input line 474.
 
 [9]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 487.
+(Font)              <12> on input line 520.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 487.
+(Font)              <8> on input line 520.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 487.
+(Font)              <6> on input line 520.
 
-Overfull \hbox (1.67542pt too wide) in paragraph at lines 487--487
+Overfull \hbox (1.67542pt too wide) in paragraph at lines 520--520
 []\T1/lmr/bx/n/12 Optimizacija op-ti-mi-za-cij-skega kri-te-rija $\OML/lmm/m/it
 /12 J[] \OT1/lmr/m/n/12 = \OML/lmm/m/it/12 sled\OT1/lmr/m/n/12 (\OML/lmm/m/it/1
 2 S[]S[]\OT1/lmr/m/n/12 )$
  []
 
-[10] [11] (diploma.aux)
+[10] [11] [12] (diploma.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -324,13 +348,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2129 strings out of 492970
- 27397 string characters out of 3126149
- 99161 words of memory out of 3000000
- 5974 multiletter control sequences out of 15000+200000
+ 2334 strings out of 492970
+ 30217 string characters out of 3126149
+ 107753 words of memory out of 3000000
+ 6175 multiletter control sequences out of 15000+200000
  65445 words of font info for 57 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,14n,27p,1156b,231s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,23n,27p,1156b,383s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-math
 it.enc}{C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm
 -mathsy.enc}{C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/
@@ -356,9 +380,9 @@ pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lm
 sy7.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
 m/lmsy8.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb>
-Output written on diploma.pdf (11 pages, 282365 bytes).
+Output written on diploma.pdf (12 pages, 283920 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
+ 120 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

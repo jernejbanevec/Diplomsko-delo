@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage{arydshln}
 \newtheorem{izrek}{Izrek}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand\bigzero{\makebox(0,0){\text{\huge0}}}
@@ -108,10 +109,42 @@ kjer sta matriki $S_2$ in $S_1$ predstavljata poljubno matriko izmed $S_W$, $S_B
 
 \section{Matematična priprava - posplošeni singularni razcep}
 Originalna definicija posplošenega singularnega razcepa (Van Loan) je sledeča.
-\begin{izrek}[Posplošeni singularni izrek (Van Loan):]
+\begin{izrek}[Posplošeni singularni izrek (Van Loan)]
 \label{izrek:SVD} Za matriki $K_A \in \mathbb{R}^{p \times m}$ z $p \geq m$ in $K_B \in \mathbb{R}^{n \times m}$ obstajata ortogonalni matriki $U \in \mathbb{R}^{p \times p}$ in $V \in \mathbb{R}^{n \times n}$ ter nesingularna matrika $X \in \mathbb{R}^{m \times m}$, da velja 
-$$ U^T K_A X = diag(\alpha_1,..., \alpha_m) \hspace{2mm} \text{in} \hspace{2mm} V^T K_B X = diag(\beta_1,..., \beta_q) \text{,}
-$$ kjer $q = min(n,m)$, $\alpha_i \geq 0$ za $1 \leq i \leq m$ in  $\beta_i \geq 0$ za  $1 \leq i \leq q$.
+$$ U^T K_A X = 
+% !!DEFINICIJA PRVE MATRIKE!!
+\begin{bmatrix}
+\begin{matrix}
+\alpha_1 & & \\
+ & \ddots & \\
+ & & \alpha_m
+\end{matrix} \\ \hdashline[2pt/2pt]
+0_{p-m, m}
+\end{bmatrix} 
+\hspace{2mm} \text{in} \hspace{2mm}
+ V^T K_B X = 
+\Sigma_B \text{,}
+$$ kjer je $q = min(n,m) \text{,}$
+\begin{gather*}
+q = min(n,m) \text{,} % \hspace{2mm}
+\Sigma_B = 
+\left[
+\begin{array}{c;{2pt/2pt}c}
+\begin{matrix}
+\beta_1 & & \\
+ & \ddots & \\
+ & & \beta_m
+\end{matrix} & 0_{q, m - q}
+ \\ \hdashline[2pt/2pt]
+0_{n-q, q} & 0_{n-q, m-q}
+\end{array} \right] \text{,} 
+\end{gather*} %\hspace{2mm}
+$
+\alpha_i \geq 0 \hspace{2mm} \text{za} \hspace{2mm}
+ 1 \leq i \leq m \hspace{2mm} \text{in} \hspace{2mm}
+  \beta_i \geq 0 \hspace{2mm} \text{za} \hspace{2mm} 1 \leq i \leq q
+\text{.}
+$
 \end{izrek}
 \begin{proof}
 % PREVERI SPODNJE PRETVORBE

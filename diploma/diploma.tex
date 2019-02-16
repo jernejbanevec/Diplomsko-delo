@@ -134,7 +134,7 @@ $$ kjer je $q = min(n,m) \text{,}$
 \begin{matrix}
 \beta_1 & & \\
  & \ddots & \\
- & & \beta_m
+ & & \beta_q
 \end{matrix} & 0_{q, m - q}
  \\ \hdashline[2pt/2pt]
 0_{n-q, q} & 0_{n-q, m-q}
@@ -167,26 +167,31 @@ Q^T \left(\begin{array}{c} K_A \\ K_B \end{array}\right) Z_1 =
 \end{matrix} \\ \hdashline[2pt/2pt]
 0_{p+n-m, m}
 \end{bmatrix} 
-\hspace{2mm} \text{kjer velja} \hspace{2mm}
-\gamma_1 \geq \ldots \geq \gamma_k > \gamma_{k+1} = \ldots \gamma_m \text{.} \label{eq:1}
+\text{,}
+\label{eq:1}
 \end{equation}
+kjer za
+$
+k = rang(K) \hspace{2mm} \text{velja} \hspace{2mm} 
+\gamma_1 \geq \ldots \geq \gamma_k > \gamma_{k+1} = \ldots \gamma_m \text{.} $
+
 \textbf{-- DOPOLNI! Tu je potrebno pisati celo razširjeno matriko kot produkt singularnega razcepa!!}
 V kolikor matriko $Z_1$ razdelimo na dve matriki: $Z_{11} \in \mathbb{R}^{m \times k}$, ki je sestavljena iz prvih $k$ stolpcev matrike $Z_1$ in $Z_{12} \in \mathbb{R}^{m \times (m-k)}$, ki je sestavljena iz preostalih $m-k$ stolpcev matrike $Z_1$, lahko vidimo da velja:
 $$ Q^T K \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right) = 
 \begin{bmatrix}
 \begin{matrix}
-\lambda_1 & & & & & \\
+\gamma_1 & & & & & \\
  & \ddots & & & & \\
- & & \lambda_k & & & \\
- & & & \lambda_{k+1} & & \\
+ & & \gamma_k & & & \\
+ & & & \gamma_{k+1} & & \\
  & & & & \ddots & \\
- & & & & & \lambda_n 
+ & & & & & \gamma_m 
 \end{matrix} \\ \hdashline[2pt/2pt]
 0_{p+n-m, m}
 \end{bmatrix}
 \text{.}
 $$
-Po predpostavki velja $p \geq m$ in ker je očitno tudi $m \geq k$ sledi: $p \geq n \geq k$. Sedaj definirajmo matriko 
+Po predpostavki velja $p \geq m$ in ker je očitno tudi $m \geq k$ sledi: $p \geq m \geq k$. Sedaj definirajmo matriko 
 $$ D := diag(\gamma_1,..., \gamma_k) \in \mathbb{R}^{k \times k} \text{.}
 $$
 Tako iz zgornje enačbe \textit{\eqref{eq:1}} dobimo
@@ -216,7 +221,7 @@ $$ Q =
 Q_{11} & Q_{12} \\ 
 Q_{21} & Q_{22}
 \end{pmatrix} \text{,}
-$$ kjer je matrika $Q_{11} \in \mathbb{R}^{k \times k}$, matrika $Q_{12} \in \mathbb{R}^{k \times (p+n-k)}$, matrika $Q_{21} \in \mathbb{R}^{ (p+n-k) \times k}$ in matrika matrika $Q_{22} \in \mathbb{R}^{ (p+n-k) \times (p+n-k)}$, ugotovimo, da je
+$$ kjer je matrika $Q_{11} \in \mathbb{R}^{p \times k}$, matrika $Q_{12} \in \mathbb{R}^{p \times (p+n-k)}$, matrika $Q_{21} \in \mathbb{R}^{ n \times k}$ in matrika matrika $Q_{22} \in \mathbb{R}^{ n \times (p+n-k)}$, ugotovimo, da je
 $$Q
 \begin{pmatrix}
 D \\ 
@@ -237,13 +242,14 @@ Q_{21} D
 $$
 Iz tega neposredno sledi enakost
 $$
-K_A Z_{11} = Q_{11} D \implies K_A Z_{11} D^{-1} = Q_{11} =: K_{A_1} \text{,}
+K_A Z_{11} = Q_{11} D \implies K_A Z_{11} D^{-1} = Q_{11} =: K_{A_1}  \in \mathbb{R}^{p \times k} \text{,}
 $$
 in enakost
 $$
-K_B Z_{11} = Q_{21} D \implies K_B Z_{11} D^{-1} = Q_{21} =: K_{B_1} \text{,}
+K_B Z_{11} = Q_{21} D \implies K_B Z_{11} D^{-1} = Q_{21} =: K_{B_1} \in \mathbb{R}^{ n \times k} \text{,}
 $$.
 
+%Ta del prestavi bolj dol!
 Ker je matrika $Q$ ortogonalna, dodatno velja $K_{A_1}^TK_{A_1} + K_{B_1}^TK_{B_1} = I_k$, kjer je $I_k$ identična matrika dimzije $k \times k$. To enakost lahko pokažemo tako, da razpišemo spodnjo enačbo
 \begin{gather*}
 Q^T Q = 
@@ -268,32 +274,65 @@ I_k & 0\\
 0 & I_{p+n-k}
 \end{pmatrix} \text{.}
 \end{gather*}
+%Ta del do sem!
 
 Sedaj singularni razcep naredimo na matriki $K_{B_1}$. Za matriko $K_{B_1}$ vemo, da ima isti rang kot matrika $K_B$, saj velja, da je matrika $Z_{11}$ polnega ranga (je namreč podmatrika ortogonalne matrike $Z$) in vemo, da je matrika $D^{-1}$ polnega ranga. Označimo: $r = rang(K_B) = rang(K_{B_1})$. Iz singularnega razcepa za matriko $K_{B_1}$ dobimo ortogonalni matriki $V \in \mathbb{R}^{ n \times n}$ in $Z_2 \in \mathbb{R}^{ k \times k}$, da velja:
-\begin{equation}
-V^T K_{B_1} Z_2 = diag(\beta_1, \ldots, \beta_p) \text{,} 
-\end{equation} kjer je $p = min\{n, k\}$ in velja 
-$ \beta_1 \geq \beta_2 \geq \ldots \geq \beta_r > \beta_{r+1} = \ldots = 0 $. Enačbo lahko tudi obrnemo in velja $K_{B_1} = K_B Z_{11} D^{-1}$
+\begin{gather*}
+V^T K_{B_1} Z_2 = 
+\left[
+\begin{array}{c;{2pt/2pt}c}
+\begin{matrix}
+\beta_1 & & \\
+ & \ddots & \\
+ & & \beta_t
+\end{matrix} & 0_{t, k - t}
+ \\ \hdashline[2pt/2pt]
+0_{n-t, t} & 0_{n-t, k-t}
+\end{array} \right] \text{,} 
+\end{gather*}
+kjer je $t = min\{n, k\}$ in velja 
+$ \beta_1 \geq \beta_2 \geq \ldots \geq \beta_r > \beta_{r+1} = \ldots = 0 $.
 
-Iz enačbe \textit{\eqref{eq:2}} sledi, da velja:
+Iz enačbe \textit{\eqref{eq:2}} sledi, da velja
 $$
-K_B Z_{12} = 0^{n \times k} \text{,}
+K_B Z_{12} = 0_{n, m-k} \text{.}
 $$
-iz česar pa sledi, da je $\beta_{p+1} = \ldots = \beta_{q} = 0$.
 Opazimo, da velja tudi:
 \begin{gather*}
-V^T K_B Z
+V^T K_B Z_1
+\begin{pmatrix}
+D^{-1} Z_2 & 0\\ 
+0 & I_{m-k}
+\end{pmatrix} = 
+V^T K_B \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right)
+\begin{pmatrix}
+D^{-1} Z_2 & 0\\ 
+0 & I_{m-k}
+\end{pmatrix} = \\
+V^T K_B
+\begin{pmatrix}
+ Z_{11} D^{-1} Z_2 & 0\\ 
+0 & Z_{12} 
+\end{pmatrix} =
+\begin{pmatrix}
+V^T K_B Z_{11} D^{-1} Z_2 & 0\\ 
+0 & V^T K_B Z_{12} 
+\end{pmatrix} = \\
+\begin{pmatrix}
+V^T K_{B_1} Z_2 & 0\\ 
+0 & 0_{m-k, m-k} 
+\end{pmatrix}\text{.}
+\end{gather*}
+Če dodatno definirajmo še $\beta_{t+1} = \ldots = \beta_{q} = 0$, dobimo ravno
+\begin{gather*}
+V^T K_B Z_1
 \begin{pmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
 \end{pmatrix} = 
 \begin{pmatrix}
-V^T K_B Z_{11} D^{-1} Z_2 & 0\\ 
-0 & V^T K_B Z_{12} I_{m-k}
-\end{pmatrix} \\ =
-\begin{pmatrix}
-diag(\beta_1, \ldots, \beta_p) & 0\\ 
-0 & diag(\beta_{p+1}, \ldots, \beta_q)
+diag(\beta_1, \ldots, \beta_t) & 0\\ 
+0 & diag(\beta_{t+1}, \ldots, \beta_q)
 \end{pmatrix} \text{.}
 \end{gather*}
 

@@ -124,11 +124,11 @@ $$ U^T K_A X =
 % !!KONEC DEFINICIJE PRVE MATRIKE!!
 \hspace{2mm} \text{in} \hspace{2mm}
  V^T K_B X = 
-\Sigma_B \text{,}
+\Sigma_{B_q} \text{,}
 $$ kjer je $q = min(n,m) \text{,}$
 % !!DEFINICIJA DRUGE MATRIKE!!
 \begin{gather*}
-\Sigma_B = 
+\Sigma_{B_q} = 
 \left[
 \begin{array}{c;{2pt/2pt}c}
 \begin{matrix}
@@ -173,10 +173,9 @@ Q^T \left(\begin{array}{c} K_A \\ K_B \end{array}\right) Z_1 =
 kjer za
 $
 k = rang(K) \hspace{2mm} \text{velja} \hspace{2mm} 
-\gamma_1 \geq \ldots \geq \gamma_k > \gamma_{k+1} = \ldots \gamma_m \text{.} $
+\gamma_1 \geq \ldots \geq \gamma_k > \gamma_{k+1} = \ldots \gamma_m = 0\text{.} $
 
-\textbf{-- DOPOLNI! Tu je potrebno pisati celo razširjeno matriko kot produkt singularnega razcepa!!}
-V kolikor matriko $Z_1$ razdelimo na dve matriki: $Z_{11} \in \mathbb{R}^{m \times k}$, ki je sestavljena iz prvih $k$ stolpcev matrike $Z_1$ in $Z_{12} \in \mathbb{R}^{m \times (m-k)}$, ki je sestavljena iz preostalih $m-k$ stolpcev matrike $Z_1$, lahko vidimo da velja:
+V kolikor matriko $Z_1$ razdelimo na dve matriki: $Z_{11} \in \mathbb{R}^{m \times k}$, ki je sestavljena iz prvih $k$ stolpcev matrike $Z_1$ in $Z_{12} \in \mathbb{R}^{m \times (m-k)}$, ki je sestavljena iz preostalih $m-k$ stolpcev matrike $Z_1$, lahko vidimo, da velja
 $$ Q^T K \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right) = 
 \begin{bmatrix}
 \begin{matrix}
@@ -242,15 +241,115 @@ Q_{21} D
 $$
 Iz tega neposredno sledi enakost
 $$
-K_A Z_{11} = Q_{11} D \implies K_A Z_{11} D^{-1} = Q_{11} =: K_{A_1}  \in \mathbb{R}^{p \times k} \text{,}
+K_A Z_{11} = Q_{11} D \implies K_A Z_{11} D^{-1} = Q_{11} =: K_{A_1}  \in \mathbb{R}^{p \times k} %\text{,}
 $$
 in enakost
 $$
-K_B Z_{11} = Q_{21} D \implies K_B Z_{11} D^{-1} = Q_{21} =: K_{B_1} \in \mathbb{R}^{ n \times k} \text{,}
+K_B Z_{11} = Q_{21} D \implies K_B Z_{11} D^{-1} = Q_{21} =: K_{B_1} \in \mathbb{R}^{ n \times k} \text{.}
 $$.
 
-%Ta del prestavi bolj dol!
-Ker je matrika $Q$ ortogonalna, dodatno velja $K_{A_1}^TK_{A_1} + K_{B_1}^TK_{B_1} = I_k$, kjer je $I_k$ identična matrika dimzije $k \times k$. To enakost lahko pokažemo tako, da razpišemo spodnjo enačbo
+Sedaj singularni razcep naredimo na matriki $K_{B_1}$. Za matriko $K_{B_1}$ vemo, da ima isti rang kot matrika $K_B$, saj velja, da je matrika $Z_{11}$ polnega ranga (je namreč podmatrika ortogonalne matrike $Z$) in vemo, da je matrika $D^{-1}$ polnega ranga. Označimo: $r = rang(K_B) = rang(K_{B_1})$. Iz singularnega razcepa za matriko $K_{B_1}$ dobimo ortogonalni matriki $V \in \mathbb{R}^{ n \times n}$ in $Z_2 \in \mathbb{R}^{ k \times k}$, da velja:
+\begin{equation}
+V^T K_{B_1} Z_2 = \Sigma_{B_t}
+ \text{,}  \label{eq:3}
+\end{equation}
+kjer je $t = min\{n, k\}$, 
+$\Sigma_{B_t} = 
+\left[
+\begin{array}{c;{2pt/2pt}c}
+\begin{matrix}
+\beta_1 & & \\
+ & \ddots & \\
+ & & \beta_t
+\end{matrix} & 0_{t, k - t}
+ \\ \hdashline[2pt/2pt]
+0_{n-t, t} & 0_{n-t, k-t}
+\end{array} \right]$
+in velja 
+$ \beta_1 \geq \beta_2 \geq \ldots \geq \beta_r > \beta_{r+1} = \ldots = \beta_t = 0 $.
+
+Iz enačbe \textit{\eqref{eq:2}} sledi, da velja
+$$
+K_B Z_{12} = 0_{n, m-k} \text{.}
+$$
+Opazimo, da velja tudi:
+\begin{gather*}
+V^T K_B Z_1
+\begin{pmatrix}
+D^{-1} Z_2 & 0\\ 
+0 & I_{m-k}
+\end{pmatrix} = 
+V^T K_B \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right)
+\begin{pmatrix}
+D^{-1} Z_2 & 0\\ 
+0 & I_{m-k}
+\end{pmatrix} = \\
+V^T K_B
+\begin{pmatrix}
+ Z_{11} D^{-1} Z_2 & Z_{12} 
+\end{pmatrix} =
+\begin{pmatrix}
+V^T K_B Z_{11} D^{-1} Z_2 & V^T K_B Z_{12} 
+\end{pmatrix} = \\
+\begin{pmatrix}
+V^T K_{B_1} Z_2 & 0_{n, m-k} 
+\end{pmatrix} =
+\begin{pmatrix}
+\Sigma_{B_t} & 0_{n, m-k} 
+\end{pmatrix} = \\
+\left[
+\begin{array}{c;{2pt/2pt}c}
+\begin{matrix}
+\beta_1 & & \\
+ & \ddots & \\
+ & & \beta_t
+\end{matrix} & 0_{t, m - t}
+ \\ \hdashline[2pt/2pt]
+0_{n-t, t} & 0_{n-t, m-t}
+\end{array} \right]
+\text{.}
+\end{gather*}
+Če za $q = \min\{n,m\}$ dodatno definirajmo še $\beta_{t+1} = \ldots = \beta_{q} = 0$, dobimo ravno
+\begin{gather*}
+V^T K_B Z_1
+\begin{pmatrix}
+D^{-1} Z_2 & 0\\ 
+0 & I_{m-k}
+\end{pmatrix} = 
+\left[
+\begin{array}{c;{2pt/2pt}c}
+\begin{matrix}
+\beta_1 & & \\
+ & \ddots & \\
+ & & \beta_q
+\end{matrix} & 0_{q, m - q}
+ \\ \hdashline[2pt/2pt]
+0_{n-q, q} & 0_{n-q, m-q}
+\end{array} \right]
+\text{,}
+\end{gather*}
+kar je pa ravno matrika $\Sigma_{B_q}$ iz izreka. Matriko $X$ tako definiramo na sledeči način
+$$ X := Z_1 
+\begin{pmatrix}
+D^{-1} Z_2 & 0\\ 
+0 & I_{m-k}
+\end{pmatrix}
+\text{.}$$
+
+Dokazati pa moramo tudi, da zgornja matrika $X$ reši tudi enačbo iz izreka za matriko $K_A$, torej, da obstaja tudi taka matrika $U$, da velja
+\begin{gather*}
+ U^T K_A X = 
+\begin{bmatrix}
+\begin{matrix}
+\alpha_1 & & \\
+ & \ddots & \\
+ & & \alpha_m
+\end{matrix} \\ \hdashline[2pt/2pt]
+0_{p-m, m}
+\end{bmatrix} 
+\end{gather*}
+
+Ker je matrika $Q$ ortogonalna, dodatno velja $K_{A_1}^TK_{A_1} + K_{B_1}^TK_{B_1} = I_k$, kjer je $I_k$ identična matrika dimenzije $k \times k$. To enakost lahko pokažemo tako, da razpišemo spodnjo enačbo
 \begin{gather*}
 Q^T Q = 
 \begin{pmatrix}
@@ -274,105 +373,107 @@ I_k & 0\\
 0 & I_{p+n-k}
 \end{pmatrix} \text{.}
 \end{gather*}
-%Ta del do sem!
 
-Sedaj singularni razcep naredimo na matriki $K_{B_1}$. Za matriko $K_{B_1}$ vemo, da ima isti rang kot matrika $K_B$, saj velja, da je matrika $Z_{11}$ polnega ranga (je namreč podmatrika ortogonalne matrike $Z$) in vemo, da je matrika $D^{-1}$ polnega ranga. Označimo: $r = rang(K_B) = rang(K_{B_1})$. Iz singularnega razcepa za matriko $K_{B_1}$ dobimo ortogonalni matriki $V \in \mathbb{R}^{ n \times n}$ in $Z_2 \in \mathbb{R}^{ k \times k}$, da velja:
+Za $G$ tako definirajmo matriko, ki jo dobimo s preoblikovanjem enačbe \textit{\eqref{eq:3}}:
+$$ G := K_{B_1} Z_2 = V \Sigma_{B_t} \in \mathbb{R}^{n \times k} \text{.}
+$$
+
+Na matriki $K_{A_1} Z_2$ naredimo Householderjeva zrcaljenja: Dobimo matriko ortogonalno matriko $U^T \in \mathbb{R}^{p \times p}$, da velja
+$$ U^T K_{A_1} Z_2 = R \text{,}
+$$
+kjer je $R \in \mathbb{R}^{p \times k}$ matrika z zgornjo trapezno obliko. Ker je matrika $U$ ortogonalna, velja $ K_{A_1} Z_2 = U R$.
+
+Opazimo lahko, da so stolpci matrike $K_{A_1} Z_2$ medsebojno ortogonalni, saj velja
 \begin{gather*}
-V^T K_{B_1} Z_2 = 
+(K_{A_1} Z_2)^T (K_{A_1} Z_2) = Z_2^T K_{A_1}^T K_{A_1} Z_2 %\\
+= Z_2^T (I_{k} - K_{B_1}^T K_{B_1}) Z_2 = Z_2^T Z_2 -  Z_2^T K_{B_1}^T K_{B_1} Z_2 \\
+= I_k - G^T G = I_k - \Sigma_{B_t}^T V^T V \Sigma_{B_t} %\\
+= I_k - 
 \left[
 \begin{array}{c;{2pt/2pt}c}
 \begin{matrix}
-\beta_1 & & \\
+\beta_1^2 & & \\
  & \ddots & \\
- & & \beta_t
-\end{matrix} & 0_{t, k - t}
+ & & \beta_t^2
+\end{matrix} & 0_{k - t,k - t}
  \\ \hdashline[2pt/2pt]
-0_{n-t, t} & 0_{n-t, k-t}
-\end{array} \right] \text{,} 
+0_{k - t, k - t} & 0_{k - t, k - t}
+\end{array} \right] \\
+= 
+\left[
+\begin{array}{c;{2pt/2pt}c}
+\begin{matrix}
+1 - \beta_1^2 & & \\
+ & \ddots & \\
+ & & 1 - \beta_t^2
+\end{matrix} & 0_{k - t,k - t}
+ \\ \hdashline[2pt/2pt]
+0_{k - t, k - t} & I_{k - t, k - t}
+\end{array} \right]  = diag(1-\beta_1^2, \ldots, 1-\beta_k^2) \text{,}
 \end{gather*}
-kjer je $t = min\{n, k\}$ in velja 
-$ \beta_1 \geq \beta_2 \geq \ldots \geq \beta_r > \beta_{r+1} = \ldots = 0 $.
+kjer smo dodatno definirali še $\beta_{t+1} = \ldots = \beta_{k} = 0$. 
+Iz tega sledi, da je matrika $R$ oblike 
+$$ R = 
+\begin{bmatrix}
+\begin{matrix}
+\sqrt{1 - \beta_1^2} & & \\
+ & \ddots & \\
+ & & \sqrt{1 - \beta_k^2}
+\end{matrix} \\ \hdashline[2pt/2pt]
+0_{p-k, k}
+\end{bmatrix} \text{,}
+$$ saj velja 
+$$
+(K_{A_1} Z_2)^T (K_{A_1} Z_2) = R^T U^T U R = R^T R = diag(1-\beta_1^2, \ldots, 1-\beta_k^2) \text{.}
+$$
 
-Iz enačbe \textit{\eqref{eq:2}} sledi, da velja
-$$
-K_B Z_{12} = 0_{n, m-k} \text{.}
-$$
-Opazimo, da velja tudi:
+Velja tudi
 \begin{gather*}
-V^T K_B Z_1
+U^T K_A Z_1
 \begin{pmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
 \end{pmatrix} = 
-V^T K_B \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right)
+U^T K_A \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right)
 \begin{pmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
 \end{pmatrix} = \\
-V^T K_B
+U^T K_A
 \begin{pmatrix}
- Z_{11} D^{-1} Z_2 & 0\\ 
-0 & Z_{12} 
+ Z_{11} D^{-1} Z_2 & Z_{12} 
 \end{pmatrix} =
 \begin{pmatrix}
-V^T K_B Z_{11} D^{-1} Z_2 & 0\\ 
-0 & V^T K_B Z_{12} 
+U^T K_A Z_{11} D^{-1} Z_2 & U^T K_A Z_{12} 
 \end{pmatrix} = \\
 \begin{pmatrix}
-V^T K_{B_1} Z_2 & 0\\ 
-0 & 0_{m-k, m-k} 
-\end{pmatrix}\text{.}
-\end{gather*}
-Če dodatno definirajmo še $\beta_{t+1} = \ldots = \beta_{q} = 0$, dobimo ravno
-\begin{gather*}
-V^T K_B Z_1
-\begin{pmatrix}
-D^{-1} Z_2 & 0\\ 
-0 & I_{m-k}
-\end{pmatrix} = 
-\begin{pmatrix}
-diag(\beta_1, \ldots, \beta_t) & 0\\ 
-0 & diag(\beta_{t+1}, \ldots, \beta_q)
-\end{pmatrix} \text{.}
-\end{gather*}
-
-Podobno bomo pokazali tudi za matriko $K_A$. Za $G$ definirajmo matriko, ki jo dobimo s preoblikovanjem enačbe \textit{\eqref{eq:3}}:
-$$ G := K_{B_1} Z_2 = V diag(\beta_1, \ldots, \beta_p) \text{.}
-$$
-Opazimo, da so stolpci matrike $A_1 Z_2$ medsebojno ortogonalni, ker velja:
-\begin{gather*}
-(K_{A_1} Z_2)^T (K_{A_1} Z_2) = Z_2^T K_{A_1}^T K_{A_1} Z_2 \\
-= Z_2^T (I_{k} - K_{B_1}^T K_{B_1}) Z_2 = Z_2^T Z_2 -  Z_2^T K_{B_1}^T K_{B_1} Z_2 \\
-= I_k - G^T G = I_k - diag(\beta_1, \ldots, \beta_p) V^T V diag(\beta_1, \ldots, \beta_p) \\
-= diag(1 - \beta_1^2, \ldots,1 - \beta_p^2) \text{.}
-\end{gather*}
-Tako se v diagonalne vrednosti preslikajo dolžine posameznih stolpcev (skalarni produkti enakih stolpcev), vsi ostali skalarni produkti pa so enaki 0. Če za matriko A dodatno definiramo $\alpha_i = 0 \text{za} i = k+1, \ldots, n$ lahko vidimo, da iz $K_{A_1} = K_A Z_{11} D^{-1}$ sledi:
-$$ U^T K_{A_1} Z_2 = U^T K_A Z_{11} D^{-1} Z_2 = diag(\alpha_1, \ldots, \alpha_k) \text{.}
-$$ 
-Podobno, kot za matriko $B$ tu lahko pokažemo:
-\begin{gather*}
-U^T K_A Z_1 
-\begin{pmatrix}
-D^{-1} Z_2 & 0\\ 
-0 & I_{m-k}
-\end{pmatrix} \\
-=
-\begin{pmatrix}
-U^T K_A Z_{11} D^{-1} Z_2 & 0\\ 
-0 & U^T K_A Z_{12} I_{m-k}
+U^T K_{A_1} Z_2 & 0_{p, m-k} 
 \end{pmatrix} =
 \begin{pmatrix}
-diag(\alpha_1, \ldots, \alpha_k) & 0\\ 
-0 & diag(\alpha_{k+1}, \ldots, \alpha_n)
-\end{pmatrix} \text{,}
+U^T U R & 0_{p, m-k}
+\end{pmatrix} =
+\begin{pmatrix}
+R & 0_{p, m-k} 
+\end{pmatrix} = \\
+\left[
+\begin{array}{c;{2pt/2pt}c}
+\begin{matrix}
+\alpha_i & & \\
+ & \ddots & \\
+ & & \alpha_k
+\end{matrix} & 0_{k, m-k}
+ \\ \hdashline[2pt/2pt]
+0_{p-k, k} & 0_{p-k, m-k}
+\end{array} \right] \text{,}
 \end{gather*}
-kjer smo pri prehodu v zadnjo vrstico ponovno uporabili enačbo \textit{\eqref{eq:2}}. Sedaj definiramo matriko $X$ na sledeči način:
-$$ X := Z_1 
+kjer smo dodatno definirali $\alpha_i = \sqrt{1-\beta_i^2}$ za $i = 1, \ldots, k$.
+S tem smo pokazali, da matrika $$ X = Z_1 
 \begin{pmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
 \end{pmatrix}
-$$ \textbf{-- NEJASNOST (oni tu vzamejo brez matrike $Z_1$)!}
+$$
+zadošča tako razcepu matrike $K_A$ kot tudi matriek $K_B$ iz izreka in s tem dokazali izrek.
 \end{proof}
 
 Problem tega izreka pa je, da se ga ne da uporabiti, kadar dimenzije matrike $K_A$ niso ustrezne. Zaradi tega pretirano zavezujočega pogoja se odločita C.C. Paige in M.A. Saunders ta posplošeni singularni izrek še dodatno posplošiti. Tako dobimo naslednji izrek:
@@ -483,21 +584,8 @@ V \Sigma_B W^HR & 0
 $$.
 \end{proof}
 
-
-% DODATNO - IZPIS MATIK Z DIMENZIJAMI
-%\begin{tikzpicture}[decoration=brace]
-%    \matrix (m) [matrix of math nodes,left delimiter=[,right delimiter={]}] {
-%        a & b & c & d \\
-%        e & f & g & h \\
-%        i & j & k & l \\
-%        m & n & o & p \\
-%    };
-%    \draw[decorate,transform canvas={xshift=-1.5em},thick] (m-3-1.south west) -- node[left=2pt] {$A$} (m-1-1.north west);
-%    \draw[decorate,transform canvas={yshift=0.5em},thick] (m-1-2.north west) -- node[above=2pt] {$R$} (m-1-4.north east);
-%\end{tikzpicture}
-
 Iz posplošenega singularnega razcepa, ki sta ga definirala Paige in Saunders neposredno sledi Van Loanova posplošitev singularnega razcepa. 
-S preoblikovanjem enačbe \textit{\eqref{eq:3}} --\textbf{tu bi moralo pisati enačba 3}, dobimo:
+S preoblikovanjem enačbe \textit{\eqref{eq:3}}, dobimo:
 $$U^T K_A Q = \left(\begin{array}{cc} \Sigma_A, & 0 \end{array}\right)
 \begin{pmatrix}
 W^TR & 0 \\

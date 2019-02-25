@@ -504,11 +504,14 @@ Definiramo matriko $K \in \mathbb{R}^{(p+n) \times m}$, ki je sestavljena iz mat
 K_A \\
 K_B 
 \end{pmatrix}.$$
-Na zgoraj definirani matriki $K$ lahko sedaj naredimo singularni razcep. Tako vemo, da za matriko $K$ obstajata ortogonalni matriki $P \in \mathbb{R}^{(n+p) \times (n+p)}$ in $Q \in \mathbb{R}^{m \times m}$, da velja $$ P K Q^T = 
+Na zgoraj definirani matriki $K$ lahko sedaj naredimo singularni razcep. Tako vemo, da za matriko $K$ obstajata ortogonalni matriki $P \in \mathbb{R}^{(n+p) \times (n+p)}$ in $Q \in \mathbb{R}^{m \times m}$, da velja 
+\begin{equation} P K Q^T = 
 \begin{pmatrix} 
 R & 0 \\
 0 & 0 
-\end{pmatrix} \text{,}$$ kjer je $R$ diagonalna matrika enakega ranga kot matrika $K$. Matriki $Q$ in $P$ razdelimo na podmatrike na sledeči način:
+\end{pmatrix} \text{,} \label{eq:4}
+\end{equation}
+kjer je $R$ diagonalna matrika enakega ranga kot matrika $K$. Matriki $Q$ in $P$ razdelimo na podmatrike na sledeči način:
 $$  Q = \left(\begin{array}{c} Q_1 | Q_2 \end{array}\right)
 \hspace{4mm} \text{in} \hspace{4mm}
 P = \left(\begin{array}{c} P_1 | P_2 \end{array}\right)
@@ -602,7 +605,7 @@ $  D_B =
 \beta_{r+1} & & \\
  & \ddots & \\
  & & \beta_{r+s}
-\end{pmatrix}$
+\end{pmatrix}$.
 Za matriko $L$ pa velja $L = \Sigma_B =
 \begin{pmatrix}
 0_{p-k+r, r} & & \\ 
@@ -613,6 +616,66 @@ Zgornja matrika $\begin{pmatrix}
 \Sigma_A \\
 L
 \end{pmatrix}$ je ortogonalna, saj je produkt ortogonalnih matrik. Posledično so njeni stolpci ortonormirani, iz česar sledi $\alpha_{r+i}^2 + \beta_{r+i}^2 = 1$ za $i = 1, \ldots, r$.
+Iz enačbe  \textit{\eqref{eq:4}} sledi
+\begin{equation}
+\begin{pmatrix} 
+K_A \\
+K_B 
+\end{pmatrix} Q =
+\begin{pmatrix} 
+P_{11} & P_{12} \\
+P_{21} & P_{22} 
+\end{pmatrix}
+\begin{pmatrix} 
+R & 0 \\
+0 & 0 
+\end{pmatrix} =
+\begin{pmatrix} 
+P_{11}R & 0 \\
+P_{21}R & 0 
+\end{pmatrix} =
+\begin{pmatrix} 
+U \Sigma_A W^T R & 0 \\
+V \Sigma_B W^T R & 0 
+\end{pmatrix} \text{,} \label{eq:5}
+\end{equation}
+iz česar sledi
+$$
+P_{11} = U \Sigma_A W^T
+\hspace{2mm} \text{in} \hspace{2mm}
+P_{21} = V \Sigma_B W^T \text{.}
+$$
+Če začetno enačbo iz enačbe  \textit{\eqref{eq:5}} pomnožimo iz leve z matriko 
+$
+\begin{pmatrix}
+U^T & \\
+ & V^T
+\end{pmatrix}
+$ dobimo 
+$$
+\begin{pmatrix}
+U^T & \\
+ & V^T
+\end{pmatrix}
+\begin{pmatrix} 
+K_A \\
+K_B 
+\end{pmatrix} Q =
+\begin{pmatrix}
+U^T & \\
+ & V^T
+\end{pmatrix}
+\begin{pmatrix} 
+U \Sigma_A W^T R & 0 \\
+V \Sigma_B W^T R & 0 
+\end{pmatrix} \text{,}
+$$
+iz česar sledi
+$$
+U^T K_A Q = 
+\Sigma_A  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right) \hspace{4mm} \text{in} \hspace{4mm} V^T K_B Q = \Sigma_B  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right) \text{,}
+$$
+s čimer smo dokazali izrek.
 \end{proof}
 
 Iz posplošenega singularnega razcepa, ki sta ga definirala Paige in Saunders neposredno sledi Van Loanova posplošitev singularnega razcepa. 

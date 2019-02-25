@@ -525,10 +525,10 @@ Ker je $P$ ortogonalna matrika, vemo da velja $\norm{P}_2 \leq 1$ in posledično
 
 Singularni razcep podobno kot na matriki $K$ naredimo tudi na matriki $P_{11}$. Tako dobimo takšni matriki $U \in \mathbb{R}^{m \times m}$ in $W \in \mathbb{R}^{k \times k}$, da velja $$ U^T P_{11} W = \Sigma_A \text{,}$$ kjer je $$\Sigma_A = 
 \begin{pmatrix} 
-I_{t, t} &  & \\
+I_{r, r} &  & \\
  & D_A & \\
  & & 0_A  
-\end{pmatrix} \text{,}$$ kjer je $t$ geometrična večkratnost lastne vrednosti $1$, matrika $D_A =
+\end{pmatrix} \text{,}$$ kjer je $r$ geometrična večkratnost lastne vrednosti $1$, matrika $I_{r, r}$ identična matrika dimenzije $r \times r$ in matrika $D_A =
 \begin{pmatrix}
 \alpha_{r+1} & & \\
  & \ddots & \\
@@ -538,7 +538,7 @@ I_{t, t} &  & \\
 
 (Spodnji del je vprašljiv? \textbf{-- DOPOLNI!})
 
-Na matriki $P_{21}$ uporabimo \textbf{-- DOPOLNI!}) razcep (s Householderjevimi zrcaljenji) in tako dobimo matriko $V \in \mathbb{C}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} =
+Na matriki $P_{21}$ uporabimo \textbf{-- DOPOLNI!}) razcep (s Householderjevimi zrcaljenji) in tako dobimo matriko $V \in \mathbb{R}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} =
 \begin{pmatrix} 
 0 &  \\
 & L_1
@@ -555,37 +555,64 @@ P_{11} \\
 P_{21}
 \end{bmatrix} W = 
 \begin{bmatrix}
-U^H P_{11} W \\
-V^H P_{21} W
+U^T P_{11} W \\
+V^TP_{21} W
 \end{bmatrix} =
 \begin{pmatrix}
 \Sigma_A \\
 L
 \end{pmatrix}.
 $$
+To implicira obliko matrike $ \begin{pmatrix}
+\Sigma_A \\
+L
+\end{pmatrix}$, torej
+$$
+\begin{pmatrix}
+\Sigma_A \\
+L
+\end{pmatrix} =
+\left(
+\begin{array}{c;{2pt/2pt}c;{2pt/2pt}c}
+I_{r,r} & & \\ 
+\hdashline[2pt/2pt]
+ & D_A & \\ 
+\hdashline[2pt/2pt]
+ & & 0_{m-r-s, k-r-s} \\ 
+\hdashline[2pt/2pt]
+0_{p-k+r, r} & & \\ 
+\hdashline[2pt/2pt]
+ & D_B & \\ 
+\hdashline[2pt/2pt]
+ & & I_{k-r-s, k-r-s}
+\end{array} \right) 
+%=
+%\begin{pmatrix}
+%I_{r, r} &  & \\
+% & D_A & \\
+% & & 0_{m-r-s, k-r-s} \\
+%0_{p-k+r, r} &  & \\
+% & D_B & \\
+% & & I_{k-r-s, k-r-s}
+%\end{pmatrix} 
+\text{,}
+$$ kjer je matrika $D_B$ diagonalna matrika 
+$  D_B = 
+\begin{pmatrix}
+\beta_{r+1} & & \\
+ & \ddots & \\
+ & & \beta_{r+s}
+\end{pmatrix}$
+Za matriko $L$ pa velja $L = \Sigma_B =
+\begin{pmatrix}
+0_{p-k+r, r} & & \\ 
+ & D_B & \\ 
+ & & I_{k-r-s, k-r-s}
+\end{pmatrix}$.
 Zgornja matrika $\begin{pmatrix}
 \Sigma_A \\
 L
-\end{pmatrix}$ je unitarna, saj je produkt unitarnih matrik. Posledično so njeni stolpci ortonormirani, kar implicira to, da za matrik $L$ veljajo vse lastnosti, ki morajo veljati za matriko $\Sigma_B$.
-
-S preoblikovanjem zgornje formule in uporabi (zgornjega) singularnega razcepa na sestavljeni matriki $C = 
-\begin{pmatrix}
-A \\
-B
-\end{pmatrix}$ se izkaže, da velja:
-$$ 
-\begin{pmatrix}
-A \\
-B
-\end{pmatrix}
-Q =
-\left(\begin{array}{lr} P_1R, & 0 \end{array}\right)
-=
-\begin{pmatrix}
-U \Sigma_A W^HR & 0 \\
-V \Sigma_B W^HR & 0
-\end{pmatrix}
-$$.
+\end{pmatrix}$ je ortogonalna, saj je produkt ortogonalnih matrik. Posledično so njeni stolpci ortonormirani, iz česar sledi $\alpha_{r+i}^2 + \beta_{r+i}^2 = 1$ za $i = 1, \ldots, r$.
 \end{proof}
 
 Iz posplošenega singularnega razcepa, ki sta ga definirala Paige in Saunders neposredno sledi Van Loanova posplošitev singularnega razcepa. 

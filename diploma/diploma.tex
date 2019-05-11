@@ -27,7 +27,7 @@
 
 \textbf{-- Ta odstavek je potrebno dopolniti!}
 
-Diskriminantna analiza se že dolga leta uporablja za določevanje lastnosti, ki poudarjajo razlike med razredi. Definirana je kot optimizacijski problem, ki vključuje kovariančne matrike, ki predstavljajo razpršenost podatkov znotraj posameznega razreda in razpršenost oziroma ločenost posameznih razredov. Diskriminantna analiza pa sama po sebi zahteva, da je ena od teh kovariančnih matrik nesingularna, kar omejuje njeno uporabo na matrikah določenih dimenzij. V nadaljevanju tako preučimo več različnih optimizacijskih kriterijev in poskušamo njihovo uporabo razširiti na vse matrike z uporabo posplošenega singularnega razcepa. Na ta način se izognemo pogoju nesingularnosti, ki ga zahteva diskriminantna analiza. Na ta način dobimo posplošeno diskriminantno analizo, ki jo lahko uporabimo tudi, kadar je ena matrika nesingularna (v nadaljevanju lahko vidimo, da je matrika nesingularna kadar je velikost vzorca manjša kot pa dimenzija posamezne meritve. V nadaljevanju bom testiral učinkovitost posplošene diskriminantne analize in jo, kjer bo to mogoče, primerjal tudi z običajno diskriminantno analizo.
+Diskriminantna analiza se že dolga leta uporablja za določevanje lastnosti, ki poudarjajo razlike med razredi. Definirana je kot optimizacijski problem, ki vključuje kovariančne matrike, ki predstavljajo razpršenost podatkov znotraj posameznega razreda in razpršenost oziroma ločenost posameznih razredov. Diskriminantna analiza pa sama po sebi zahteva, da je ena od teh kovariančnih matrik nesingularna, kar omejuje njeno uporabo na matrikah določenih dimenzij. V nadaljevanju tako preučimo več različnih optimizacijskih kriterijev in poskušamo njihovo uporabo razširiti na vse matrike z uporabo posplošenega singularnega razcepa. Na ta način se izognemo pogoju nesingularnosti, ki ga zahteva diskriminantna analiza. Tako pridemo do posplošene diskriminantne analize, ki jo lahko uporabimo tudi, kadar je ena matrika singularna (v nadaljevanju lahko vidimo, da je matrika singularna, kadar je velikost vzorca manjša, kot pa je dimenzija posamezne meritve. V nadaljevanju bomo testirali učinkovitost posplošene diskriminantne analize in jo, kjer bo to mogoče, primerjali tudi z običajno diskriminantno analizo.
 
 \subsection{Matematični uvod}
 
@@ -479,7 +479,7 @@ zadošča tako razcepu matrike $K_A$ kot tudi matriek $K_B$ iz izreka in s tem d
 Problem tega izreka pa je, da se ga ne da uporabiti, kadar dimenzije matrike $K_A$ niso ustrezne. Zaradi tega pretirano zavezujočega pogoja se odločita C.C. Paige in M.A. Saunders ta posplošeni singularni izrek še dodatno posplošiti. Tako dobimo naslednji izrek:
 % !!!!!! Druga posplošitev Singularnega razcepa - IZREK !!!!!
 \begin{izrek}[Posplošeni singularni razcep (Paige in Saunders)]
-\label{izrek:GSVD} Naj bosta dani matriki $K_A \in \mathbb{R}^{p \times m}$ in $K_B \in \mathbb{R}^{n \times m}$. Potem za $K = \left(\begin{array}{c} K_A \\ K_B \end{array}\right)$ in $t = rang(K)$ obstajajo ortogonalne matrike $U \in \mathbb{R}^{p \times p}$, $V \in \mathbb{R}^{n \times n}$, $W \in \mathbb{R}^{t \times t}$ in $Q \in \mathbb{R}^{m \times m}$, da velja 
+\label{izrek:GSVD} Naj bosta dani matriki $K_A \in \mathbb{R}^{p \times m}$ in $K_B \in \mathbb{R}^{n \times m}$. Potem za $K = \left(\begin{array}{c} K_A \\ K_B \end{array}\right)$ in $k = rang(K)$ obstajajo ortogonalne matrike $U \in \mathbb{R}^{p \times p}$, $V \in \mathbb{R}^{n \times n}$, $W \in \mathbb{R}^{k \times k}$ in $Q \in \mathbb{R}^{m \times m}$, da velja 
 $$U^T K_A Q = \Sigma_A  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right) \hspace{4mm} \text{in} \hspace{4mm} V^T K_B Q = \Sigma_B  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right) \text{,}$$ kjer sta
 $$\Sigma_A = \begin{pmatrix} 
 I_A &  & \\
@@ -491,9 +491,9 @@ I_A &  & \\
  & D_B & \\
  & & I_B  
 \end{pmatrix} \text{,}$$ 
-$R \in \mathbb{R}^{t \times t}$ je nesingularna matrika, matriki $I_A \in \mathbb{R}^{r \times r}$ in $I_B \in \mathbb{R}^{(t-r-s) \times (t-r-s)}$ identični matriki, kjer je 
+$R \in \mathbb{R}^{k \times k}$ je nesingularna matrika, matriki $I_A \in \mathbb{R}^{r \times r}$ in $I_B \in \mathbb{R}^{(k-r-s) \times (k-r-s)}$ identični matriki, kjer je 
 $$r = rang(K) - rang(K_B) \hspace{4mm} \text{in} \hspace{4mm} s = rang(K_A) + rang(K_B) - rang(K),$$
-$0_A \in \mathbb{R}^{(p-r-s) \times (t-r-s)}$ in $0_B \in \mathbb{R}^{(n-t+r) \times r}$ ničelni matriki, ki imata lahko tudi ničelno število vrstic ali stolpcev, matriki
+$0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ in $0_B \in \mathbb{R}^{(n-k+r) \times r}$ ničelni matriki, ki imata lahko tudi ničelno število vrstic ali stolpcev, matriki
 $D_A = diag(\alpha_{r+1},..., \alpha_{r+s})$ in $D_B = diag(\beta_{r+1},..., \beta_{r+s})$ pa diagonalni matriki, ki zadoščata pogoju
 $$1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0 \hspace{4mm} \text{in} \hspace{4mm} 0 < \beta_{r+1} \leq \ldots \leq \beta_{r+s} < 1$$
 pri $\alpha_i^2 + \beta_i^2 = 1$ za $ i = r+1,\ldots, r+s$.
@@ -504,14 +504,14 @@ Definiramo matriko $K \in \mathbb{R}^{(p+n) \times m}$, ki je sestavljena iz mat
 K_A \\
 K_B 
 \end{pmatrix}.$$
-Na zgoraj definirani matriki $K$ lahko sedaj naredimo singularni razcep. Tako vemo, da za matriko $K$ obstajata ortogonalni matriki $P \in \mathbb{R}^{(n+p) \times (n+p)}$ in $Q \in \mathbb{R}^{m \times m}$, da velja 
+Z $k$ označimo rang te matrike $K$, torej $k = rang(K)$. Na zgoraj definirani matriki $K$ lahko sedaj naredimo singularni razcep. Tako vemo, da za matriko $K$ obstajata ortogonalni matriki $P \in \mathbb{R}^{(n+p) \times (n+p)}$ in $Q \in \mathbb{R}^{m \times m}$, da velja 
 \begin{equation} P K Q^T = 
 \begin{pmatrix} 
-R & 0 \\
-0 & 0 
+R & 0_{k, m-k} \\
+0_{n+p-k, k} & 0_{n+p-k, m-k} 
 \end{pmatrix} \text{,} \label{eq:4}
 \end{equation}
-kjer je $R$ diagonalna matrika enakega ranga kot matrika $K$. Matriki $Q$ in $P$ razdelimo na podmatrike na sledeči način:
+kjer je $R$ diagonalna matrika ranga $k$. Matriki $Q$ in $P$ razdelimo na podmatrike na sledeči način:
 $$  Q = \left(\begin{array}{c} Q_1 | Q_2 \end{array}\right)
 \hspace{4mm} \text{in} \hspace{4mm}
 P = \left(\begin{array}{c} P_1 | P_2 \end{array}\right)
@@ -521,37 +521,35 @@ P_{11} & P_{12} \\
 P_{21} & P_{22} 
 \end{pmatrix},
 $$
-kjer je matrika $Q_1 \in \mathbb{R}^{n \times k}$ sestavljena iz prvih $k$ stolpcev matrike $Q$, matrika $Q_2 \in \mathbb{R}^{n \times (n-k)}$ pa iz preostalih $n-k$ stolpcev matrike $Q$, podmatrike matrike $P$ pa so sledečih oblik: $P_{11} \in \mathbb{R}^{m \times k}$, $P_{12} \in \mathbb{R}^{m \times (m+p-n)}$, $P_{21} \in \mathbb{R}^{p \times k}$ in $P_{22} \in \mathbb{R}^{p \times (m+p-n)}$.
+kjer je matrika $Q_1 \in \mathbb{R}^{m \times k}$ sestavljena iz prvih $k$ stolpcev matrike $Q$, matrika $Q_2 \in \mathbb{R}^{m \times (m-k)}$ pa iz preostalih $m-k$ stolpcev matrike $Q$, podmatrike matrike $P$ pa so sledečih oblik: $P_{11} \in \mathbb{R}^{m \times k}$, $P_{12} \in \mathbb{R}^{m \times (m+p-k)}$, $P_{21} \in \mathbb{R}^{p \times k}$ in $P_{22} \in \mathbb{R}^{p \times (m+p-k)}$.
 %, matrika $P_1 \in \mathbb{R}^{(p+m) \times k}$ iz prvih $k$ stolpcev matrike $P$ in njena podmatrika $P_{11} \in \mathbb{C}^{p \times t}$ pa iz prvih m vrstic matrike $P_1$.
 
-Ker je $P$ ortogonalna matrika, vemo da velja $\norm{P}_2 \leq 1$ in posledično tudi $\norm{P_{11}}_2 \leq \norm{P_{1}}_2 \leq \norm{P}_2 \leq 1$. Posledično nobena singularna vrednost matrike $P_{11}$ ni večja od $1$. %Velja po izreku iz numeričnih metod, ne vem kako se kliče
+Ker je $P$ ortogonalna matrika, vemo, da velja $\norm{P}_2 \leq 1$ in posledično tudi $\norm{P_{11}}_2 \leq \norm{P_{1}}_2 \leq \norm{P}_2 \leq 1$. Posledično nobena singularna vrednost matrike $P_{11}$ ni večja od $1$. %Velja po izreku iz numeričnih metod, ne vem kako se kliče
 
 Singularni razcep podobno kot na matriki $K$ naredimo tudi na matriki $P_{11}$. Tako dobimo takšni matriki $U \in \mathbb{R}^{m \times m}$ in $W \in \mathbb{R}^{k \times k}$, da velja $$ U^T P_{11} W = \Sigma_A \text{,}$$ kjer je $$\Sigma_A = 
 \begin{pmatrix} 
 I_{r, r} &  & \\
  & D_A & \\
  & & 0_A  
-\end{pmatrix} \text{,}$$ kjer je $r$ geometrična večkratnost lastne vrednosti $1$, matrika $I_{r, r}$ identična matrika dimenzije $r \times r$ in matrika $D_A =
+\end{pmatrix} \text{,}$$ kjer je $r$ geometrična večkratnost lastne vrednosti $1$, matrika $I_{r, r}$ identična matrika dimenzije $r \times r$, matrika $D_A =
 \begin{pmatrix}
 \alpha_{r+1} & & \\
  & \ddots & \\
  & & \alpha_{r+s}
-\end{pmatrix}$ diagonalna matrika, $r+s$ pa predstavlja rang matrike $P_{11}$.
+\end{pmatrix}$ diagonalna matrika, kjer $r+s$ predstavlja rang matrike $P_{11}$ in $0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ je ničelna matrika, ki ima lahko nič vrstic ali nič stolpcev.
 % za katere velja $1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0.$
 
-(Spodnji del je vprašljiv? \textbf{-- DOPOLNI!})
-
-Na matriki $P_{21}$ uporabimo \textbf{-- DOPOLNI!}) razcep (s Householderjevimi zrcaljenji) in tako dobimo matriko $V \in \mathbb{R}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} =
+Na matriki $P_{21}$ uporabimo \textbf{(-- DOPOLNI!)} razcep (s Householderjevimi zrcaljenji) in tako dobimo matriko $V \in \mathbb{R}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} =
 \begin{pmatrix} 
-0 &  \\
-& L_1
-\end{pmatrix}
-,$$ kjer je matrika $L_1$ spodnjetrikotna z diagonalnimi elementi večjimi od $0$.
+0 & 0 \\
+0 & L_1
+\end{pmatrix} 
+,$$ \textbf{(-- POVEJ KATERIH DIMENZIJ SO TE NIČELNE MATRIKE!)} kjer je matrika $L_1$ spodnjetrikotna z diagonalnimi elementi večjimi od $0$.
 Opazimo lahko, da velja spodnja enakost
 $$
 \begin{pmatrix} 
-U^T & 0 \\
-0 & V^T
+U^T & 0_{m, n} \\
+0_{n, m} & V^T
 \end{pmatrix}
 \begin{bmatrix}
 P_{11} \\
@@ -566,7 +564,10 @@ V^TP_{21} W
 L
 \end{pmatrix}.
 $$
-To implicira obliko matrike $ \begin{pmatrix}
+Zgornja matrika $\begin{pmatrix}
+\Sigma_A \\
+L
+\end{pmatrix}$ je ortogonalna, saj je produkt ortogonalnih matrik. To implicira obliko matrike $ \begin{pmatrix}
 \Sigma_A \\
 L
 \end{pmatrix}$, torej
@@ -612,12 +613,14 @@ Za matriko $L$ pa velja $L = \Sigma_B =
  & D_B & \\ 
  & & I_{k-r-s, k-r-s}
 \end{pmatrix}$.
-Zgornja matrika $\begin{pmatrix}
+Iz ortogonalnosti matrike $\begin{pmatrix}
 \Sigma_A \\
 L
-\end{pmatrix}$ je ortogonalna, saj je produkt ortogonalnih matrik. Posledično so njeni stolpci ortonormirani, iz česar sledi $\alpha_{r+i}^2 + \beta_{r+i}^2 = 1$ za $i = 1, \ldots, r$.
+\end{pmatrix}$ sledi tudi, da so njeni stolpci ortonormirani (torej tudi po meri enaki 1), iz česar sledi $\alpha_{r+i}^2 + \beta_{r+i}^2 = 1$ za $i = 1, \ldots, s$.
+
 Iz enačbe  \textit{\eqref{eq:4}} sledi
 \begin{equation}
+%\begin{gather*}
 \begin{pmatrix} 
 K_A \\
 K_B 
@@ -627,17 +630,18 @@ P_{11} & P_{12} \\
 P_{21} & P_{22} 
 \end{pmatrix}
 \begin{pmatrix} 
-R & 0 \\
-0 & 0 
+R & 0_{k, m-k} \\
+0_{n+p-k, k} & 0_{n+p-k, m-k}  
 \end{pmatrix} =
 \begin{pmatrix} 
-P_{11}R & 0 \\
-P_{21}R & 0 
+P_{11}R & 0_{m, m-k} \\
+P_{21}R & 0_{p, m-k} 
 \end{pmatrix} =
 \begin{pmatrix} 
-U \Sigma_A W^T R & 0 \\
-V \Sigma_B W^T R & 0 
+U \Sigma_A W^T R & 0_{m, m-k} \\
+V \Sigma_B W^T R & 0_{p, m-k} 
 \end{pmatrix} \text{,} \label{eq:5}
+%\end{gather*}
 \end{equation}
 iz česar sledi
 $$
@@ -648,26 +652,26 @@ $$
 Če začetno enačbo iz enačbe  \textit{\eqref{eq:5}} pomnožimo iz leve z matriko 
 $
 \begin{pmatrix}
-U^T & \\
- & V^T
+U^T & 0_{m, n} \\
+0_{n, m} & V^T
 \end{pmatrix}
 $ dobimo 
 $$
 \begin{pmatrix}
-U^T & \\
- & V^T
+U^T & 0_{m, n} \\
+0_{n, m} & V^T
 \end{pmatrix}
 \begin{pmatrix} 
 K_A \\
 K_B 
 \end{pmatrix} Q =
 \begin{pmatrix}
-U^T & \\
- & V^T
+U^T & 0_{m, n} \\
+0_{n, m} & V^T
 \end{pmatrix}
 \begin{pmatrix} 
-U \Sigma_A W^T R & 0 \\
-V \Sigma_B W^T R & 0 
+U \Sigma_A W^T R & 0_{m, m-k} \\
+V \Sigma_B W^T R & 0_{p, m-k} 
 \end{pmatrix} \text{,}
 $$
 iz česar sledi

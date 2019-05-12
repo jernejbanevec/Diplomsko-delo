@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  11 MAY 2019 13:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  12 MAY 2019 16:35
 entering extended mode
 **./diploma.tex
 (diploma.tex
@@ -283,7 +283,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {C:/Users/Jernej/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 [2]
-Overfull \hbox (0.28099pt too wide) in paragraph at lines 96--96
+Overfull \hbox (0.28099pt too wide) in paragraph at lines 94--94
 []\T1/lmr/m/n/10 Optimalna pre-sli-kava $\OML/lmm/m/it/10 G[]$ \T1/lmr/m/n/10 t
 ako ma-ksi-mi-zira $\OML/lmm/m/it/10 sled\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 S[]\
 OT1/lmr/m/n/10 )$ \T1/lmr/m/n/10 in mi-ni-mi-zira $\OML/lmm/m/it/10 sled\OT1/lm
@@ -291,17 +291,12 @@ r/m/n/10 (\OML/lmm/m/it/10 S[]\OT1/lmr/m/n/10 )$\T1/lmr/m/n/10 .
  []
 
 [3] [4] [5] [6]
-Overfull \hbox (0.58609pt too wide) detected at line 375
-[]
- []
-
-
-Overfull \hbox (33.02686pt too wide) detected at line 413
+Overfull \hbox (0.58609pt too wide) detected at line 390
 []
  []
 
 [7]
-Overfull \hbox (0.1486pt too wide) in paragraph at lines 493--495
+Overfull \hbox (0.1486pt too wide) in paragraph at lines 516--518
 $\OML/lmm/m/it/10 R \OMS/lmsy/m/n/10 2 \U/msb/m/n/10 R[]$ \T1/lmr/m/it/10 je ne
 -sin-gu-larna ma-trika, ma-triki $\OML/lmm/m/it/10 I[] \OMS/lmsy/m/n/10 2 \U/ms
 b/m/n/10 R[]$ \T1/lmr/m/it/10 in $\OML/lmm/m/it/10 I[] \OMS/lmsy/m/n/10 2 \U/ms
@@ -309,25 +304,25 @@ b/m/n/10 R[]$
  []
 
 [8] [9]
-Overfull \hbox (94.14209pt too wide) detected at line 645
+Overfull \hbox (94.14209pt too wide) detected at line 668
 [] \OML/lmm/m/it/10 Q \OT1/lmr/m/n/10 = [] [] = [] = [] []
  []
 
 [10] [11]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 767.
+(Font)              <12> on input line 790.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 767.
+(Font)              <8> on input line 790.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 767.
+(Font)              <6> on input line 790.
 
-Overfull \hbox (1.67542pt too wide) in paragraph at lines 767--767
+Overfull \hbox (1.67542pt too wide) in paragraph at lines 790--790
 []\T1/lmr/bx/n/12 Optimizacija op-ti-mi-za-cij-skega kri-te-rija $\OML/lmm/m/it
 /12 J[] \OT1/lmr/m/n/12 = \OML/lmm/m/it/12 sled\OT1/lmr/m/n/12 (\OML/lmm/m/it/1
 2 S[]S[]\OT1/lmr/m/n/12 )$
  []
 
-[12] [13] [14] (diploma.aux)
+[12] [13] (diploma.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -335,7 +330,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  2336 strings out of 492970
  30229 string characters out of 3126149
- 112778 words of memory out of 3000000
+ 113778 words of memory out of 3000000
  6177 multiletter control sequences out of 15000+200000
  65445 words of font info for 57 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -365,9 +360,9 @@ pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lm
 sy7.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
 m/lmsy8.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb>
-Output written on diploma.pdf (14 pages, 293165 bytes).
+Output written on diploma.pdf (13 pages, 291478 bytes).
 PDF statistics:
- 127 PDF objects out of 1000 (max. 8388607)
+ 124 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

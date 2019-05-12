@@ -31,16 +31,16 @@ Diskriminantna analiza se že dolga leta uporablja za določevanje lastnosti, ki
 
 \subsection{Matematični uvod}
 
-Cilj diskriminantne analize je združevati lastnosti originalnih podatkov na način, ki kar najučinkoviteje ločuje med razredi, v katerih so podatki. Pri takšnem združevanju lastnosti podatkov se dimenzija teh podatkov zmanjša na način, ki najbolje ohranja strukture določenih razredov.  
+Cilj diskriminantne analize je združiti lastnosti originalnih podatkov na način, ki kar najučinkoviteje ločuje med razredi, v katerih so podatki. Pri takšnem združevanju lastnosti podatkov se dimenzija teh podatkov zmanjša tako, da se struktura teh podatkov in določenih razredov kar najbolje ohrani.
 
-Tu predpostavimo, da so podatki zloženi v matriko $A \in \mathbb{R}^{m \times n}$, kjer $m$ predstavlja dimenzijo posamezne meritve, $n$ pa predstavlja število meritev oz. podatkov. Denimo, da so podatki v matriki $A$ iz $k$ različnih razredov. Tako so stolpci $a_1, a_2, \ldots, a_n$ matrike $A$ združeni v $k$ podmatrik, ki predstavljajo razrede, v katerih so podatki:
+Predpostavimo, da so podatki zloženi v matriko $A \in \mathbb{R}^{m \times n}$, kjer $m$ predstavlja dimenzijo posamezne meritve, $n$ pa predstavlja število meritev oz. podatkov. Denimo, da so podatki v matriki $A$ iz $k$ različnih razredov. Tako so stolpci $a_1, a_2, \ldots, a_n$ matrike $A$ združeni v $k$ podmatrik, ki predstavljajo razrede, v katerih so podatki:
 $$ A = 
 \begin{pmatrix}
 A_1, & A_2, & \ldots, & A_k
 \end{pmatrix} \text{,}
 \hspace{2mm} \text{kjer} \hspace{2mm} A_i \in \mathbb{R}^{m \times n_i} \text{.}
 $$ 
-Tu število $n_i$ predstavlja moč indeksne množice razreda $i$. To indeksno množico razreda $i$ označujemo z $N_i$. Očitno velja tudi $$
+Tu število $n_i$ predstavlja moč indeksne množice razreda $i$. To indeksno množico razreda $i$ označimo z $N_i$. Očitno velja tudi $$
 \sum_{i=1}^{k}n_i = n \text{.}$$
 Matriko $A$ lahko poleg razdelitve na podmatrike razdelimo tudi na stolpce. Matrika $A = \left( a_{i ,j} \right)  \in \mathbb{R}^{m \times n}$ je tako sestavljena iz $n$ posameznih stolpcev, kjer $i$-ti stolpec označimo z $a_i$:
 $$ a_i =
@@ -53,8 +53,8 @@ a_{m, i}
 \text{.}
 $$
 
-Cilj diskriminantne analize je najti linearno preslikavo iz $\mathbb{R}^m$ v $\mathbb{R}^\ell$, ki v novem prostoru, kar najbolje poudari razrede, v katerih so podatki. Tu navadno velja $\ell \leq m - 1$, torej da je prostor, v katerega ta linearna preslikava slika manjdimenzionalen kot prvotni prostor. To iskano linearno preslikavo predstavimo z matriko $G^T \in \mathbb{R}^{\ell \times m}$.
-Za preslikavo $G^T$ torej velja: $$G^T : \mathbb{R}^m \rightarrow \mathbb{R}^\ell \text{,}$$. Torej preslikava $G^T$ nek $m$-dimenzionalen vektor preslika v nov vektor v $\ell$-dimezionalnem prostoru (navadno velja $\ell \leq m$), v katerem so razredi podatkov poudarjeni, razpršenost podatkov znotraj razredov je zmanjšana, razlike med razredi pa so povečane.
+Cilj diskriminantne analize je najti linearno preslikavo iz $\mathbb{R}^m$ v $\mathbb{R}^\ell$, ki v novem prostoru kar najbolje poudari razrede, v katerih so podatki. Tu navadno velja $\ell \leq m - 1$, torej da je prostor, v katerega ta linearna preslikava slika, manjdimenzionalen kot prvotni prostor. To iskano linearno preslikavo predstavimo z matriko $G^T \in \mathbb{R}^{\ell \times m}$.
+Za preslikavo $G^T$ torej velja $$G^T : \mathbb{R}^m \rightarrow \mathbb{R}^\ell \text{.}$$ Torej preslikava $G^T$ nek $m$-dimenzionalen vektor preslika v nov vektor v $\ell$-dimezionalnem prostoru, v katerem so razredi podatkov poudarjeni, razpršenost podatkov znotraj razredov je zmanjšana, razlike med razredi pa so povečane.
 
 Za nadaljnje izračune moramo definirati tudi centroid $i$-tega razreda, ki je izračunan kot povprečje stolpcev v $i$-tem razredu, 
 $$c^{(i)} = \frac{1}{n_i} \sum_{j \in N_i} a_j \text{,}
@@ -69,46 +69,57 @@ ki predstavlja matriko razpršenosti podatkov znotraj razredov, matriko
 $$S_B = \sum_{i = 1}^{k} \sum_{j \in N_i} ( c^{(i)} - c)( c^{(i)} - c)^T = \sum_{i = 1}^{k} n_i ( c^{(i)} - c)( c^{(i)} - c)^T \text{,}$$
 ki predstavlja matriko razpršenosti oziroma razlik med razredi in matriko
 $$S_M = \sum_{j = 1}^{n} (a_j - c)(a_j - c)^T \text{,}$$
-ki pradstavlja matriko celotne razpršenosti podatkov.
-
-Med zgoraj definiranimi matrikami velja tudi enakost:
-$S_M = S_W + S_B \text{.}$ \textbf{-- DOKAŽI (pozneje, ko vpelješ še matrike H)}
-
-S pomočjo preslikave $G^T$ preslikamo v $\ell$-dimezionalen prostor tudi matrike $S_W$, $S_B$ in $S_M$:
+ki pradstavlja matriko celotne razpršenosti podatkov. Vse tri matrike so velikosti $m \times m$.
+S pomočjo preslikave $G^T$ pa jih preslikamo v matrike velikosti $\ell \times \ell$ na sledeč način:
 $$ S_{W}^{\ell} = G^T S_W G \text{,} \hspace{2mm} S_{B}^{\ell} = G^T S_B G \text{,} \hspace{2mm} S_{M}^{\ell} = G^T S_M G \text{.}
 $$
+%Med zgoraj definiranimi matrikami velja tudi enakost:
+%$S_M = S_W + S_B \text{.}$ \textbf{-- DOKAŽI (pozneje, ko vpelješ še matrike H)}
 
-Iz danih matrik razpršenosti podatkov bi radi tvorili kriterij kvalitete strukture razredov. Kriterij kvalitete strukture razredov mora imeti visoko vrednost, kadar so razredi, v katerih so podatki, strnjeni in dobro ločeni med seboj. Opazimo lahko, da $sled(S_W)$ predstavlja, kako skupaj so si podatki v posameznem razredu, saj velja:
+Iz danih matrik razpršenosti podatkov bi radi tvorili kriterij kvalitete strukture razredov. Kriterij kvalitete strukture razredov mora imeti visoko vrednost, kadar so razredi, v katerih so podatki, strnjeni in dobro ločeni med seboj. Opazimo lahko, da $sled(S_W)$ predstavlja, kako skupaj so si podatki v posameznem razredu, saj velja
 \begin{gather*} 
 sled(S_W) = \sum_{t=1}^{m} \left( \sum_{i = 1}^{k} \sum_{j \in N_i}(a_{t, j} - c_t^{(i)})^2 \right)
-= \sum_{i = 1}^{k} \sum_{j \in N_i} \left(( \sum_{t=1}^{m} (a_{t, j} - c_t^{(i)})^2 \right) \\
+= \sum_{i = 1}^{k} \sum_{j \in N_i} \left( \sum_{t=1}^{m} (a_{t, j} - c_t^{(i)})^2 \right) \\
 = \sum_{i = 1}^{k} \sum_{j \in N_i} \norm{ a_j - c^{(i)}}_2^2 \text{.}
 \end{gather*}
 Podobno $sled(S_B)$ predstavlja ločenost med razredi, saj velja
 \begin{gather*} 
-sled(S_B) = \sum_{t=1}^{m} \left((\sum_{i = 1}^{k} \sum_{j \in N_i}(c_t^{(i)} - c_t)^2\right)
-= \sum_{i = 1}^{k} \sum_{j \in N_i} \left(( \sum_{t=1}^{m} (c_t^{(i)} - c_t)^2 \right) \\
+sled(S_B) = \sum_{t=1}^{m} \left( \sum_{i = 1}^{k} \sum_{j \in N_i}(c_t^{(i)} - c_t)^2\right)
+= \sum_{i = 1}^{k} \sum_{j \in N_i} \left( \sum_{t=1}^{m} (c_t^{(i)} - c_t)^2 \right) \\
 = \sum_{i = 1}^{k} \sum_{j \in N_i} \norm{ c^{(i)} - c}_2^2 
 = \sum_{i = 1}^{k} n_i \norm{ c^{(i)} - c}_2^2
 \text{.}
 \end{gather*}
 
 Optimalna preslikava $G^T$ tako maksimizira $sled(S_{B}^{\ell})$ in minimizira $sled(S_{W}^{\ell})$. Smiselen maksimizacijski kriterij se tako zdi $$sled( G^T S_B G) / sled( G^T S_W G) \text{,}$$ ki pa ga zaradi lažjega računanja aproksimiramo kar s kriterijem $$sled((S_W^\ell)^{-1}S_B^\ell) \text{.}$$
-\textbf{-- NEJASNOST!}
+%\textbf{-- NEJASNOST!}
+% Pojasnitev prvega kriterija: Preslikana matrika S_B mora imeti čim manjšo vsoto lastnih vrednosti, preslikana matrika S_W pa čim večjo.
+% Pojasnitev aproksimacijskega kriterija: Skalarni produkt lastnih vrednosti preslikanih matrik mora biti čim manjši - to je pribljižno enako
 
-Kljub temu, da je ta optimizacijski kriterij lažje izračunljiv ima svoje pomanjkljivosti. Opazimo lahko, da kriterij lahko uporabimo le v primeru, ko je matrika $S_W^\ell$ nesingularna oziroma da kriterija ne moremo uporabiti, ko je matrika $S_W^\ell$ singularna (torej kadar je njena determinanta enaka 0). Ker pa za determinanto matrike velja
+Kljub temu, da je ta optimizacijski kriterij lažje izračunljiv ima svoje pomanjkljivosti. Opazimo lahko, da kriterija ne moremo uporabiti, ko je matrika $S_W^\ell$ singularna, torej kadar je njena determinanta enaka 0. 
+
+\textbf{-- Zelo narobe, razmisli za rešitev! --}
+%Ta del mogoče sploh ne velja!!
+
+Ker pa za determinanto matrike velja
 $$ \det(S_W^\ell) = \det(G^T S_W G) = \det(G^T) \cdot \det(S_W) \cdot \det(G) \text{,}
 $$
-je $\det(S_W^\ell)$ enaka 0 kadar je $\det(S_W)$ enaka 0, torej kadar je matrika $S_W$ singularna. Do te situacije pa lahko pride kar precej pogosto. Matrika $S_W \in  \mathbb{R}^{m \times m}$ je singularna namreč v vseh primerih, ko je za matriko $A \in  \mathbb{R}^{m \times n}$ velja $m > n$, saj je potem $m$-dimenzionalna matrika $S_W$, ki je sestavljena iz $n$ vektorjev $a_j - c^{(i)} \text{,} \hspace{2mm}  i = 1,\ldots \text{,} k \text{,} \hspace{2mm} j \in N_j $. Iz $n$ vektorjev pa lahko sestavimo le $n$ dimenzionalen prostor, torej bo $m \times m$ matrika iz teh vektorjev očitno singularna. Njena determinanta bo tako enaka 0.
+je $\det(S_W^\ell)$ enaka 0 kadar je $\det(S_W)$ enaka 0, torej kadar je matrika $S_W$ singularna. 
+
+\textbf{--}
+
+Do te situacije pa lahko pride kar precej pogosto. Matrika $S_W \in  \mathbb{R}^{m \times m}$ je singularna namreč v vseh primerih, ko za matriko $A \in  \mathbb{R}^{m \times n}$ velja $m > n$, saj je potem po definiciji sestavljena kot vsota $n$ matrik z rangom $1$. $m \times m$ dimenzionalna matrika $S_W$ ima tako rang manjši ali enak $n$, iz česar sledi, da je njena determinanta enaka 0.
 Na primer, do tega problema pride v primeru, ko je pridobivanje podatkov drago oz. zahtevno in so pridobljeni podatki visokih dimenzij (dimenzija posameznega podatka je večja od števila vseh pridobljenih podatkov).
 
-Obstaja več načinov, kako aplicirati diskriminantno analizo na matriki $A \in \mathbb{R}^{m \times n}$ z $m > n$. V grobem jih ločimo na tiste, kjer dimenzijo podatkov zmanjšamo v dveh korakih in na tiste, kjer dimenzijo podatkov zmanjšamo v enem koraku. V prvem načinu se faza diskriminante analize nadaljuje v fazo, v kateri zanemarimo oblike posameznih razredov. Najpopularnejša metoda za prvi del tega procesa je zmanjšanje ranga matrike s pomočjo singularnega razcepa. To je tudi glavno orodje metode imenovane metoda glavnih komponent. Kakorkoli, celotna predstava dvostopenjskih načinov je precej občutljiva na zmanjšanje dimenzije v prvi fazi. V diplomskem delu se bomo osredotočili na način, ki posploši diskriminantno analizo tako, da teoretično optimalno zmanjša dimenzijo podatkov, brez da bi uvedel dodaten korak. V ta namen obravnavamo kriterij 
+Obstaja več načinov, kako aplicirati diskriminantno analizo na matriki $A \in \mathbb{R}^{m \times n}$ z $m > n$. V grobem jih ločimo na tiste, kjer dimenzijo podatkov zmanjšamo v dveh korakih, in na tiste, kjer dimenzijo podatkov zmanjšamo v enem koraku. Pri prvem načinu se faza diskriminante analize nadaljuje v fazo, v kateri zanemarimo oblike posameznih razredov. Najpopularnejša metoda za prvi del tega procesa je zmanjšanje ranga matrike s pomočjo singularnega razcepa. To je tudi glavno orodje metode imenovane metoda glavnih komponent. Kakorkoli, celotna predstava dvostopenjskih načinov je precej občutljiva na zmanjšanje dimenzije v prvi fazi. V diplomskem delu se bomo osredotočili na način, ki posploši diskriminantno analizo tako, da teoretično optimalno zmanjša dimenzijo podatkov brez da bi uvedel dodaten korak. V ta namen bomo obravnavali kriterij 
 $$ sled((S_2^\ell)^{-1} S_1^\ell) \hspace{1mm} \text{,}
 $$
-kjer sta matriki $S_2$ in $S_1$ predstavljata poljubno matriko izmed $S_W$, $S_B$ in $S_M$.  Kadar je matrika $S_2$ nesingularna, klasična diskriminantna analiza predstavi svojo rešitev s pomočjo posplošenega problema lastnih vrednosti. S prestrukturiranjem problema tako, da uporabimo posplošeni singularni razcep, pa lahko razširimo uporabnost diskriminantne analize tudi na primer, ko je matrika $S_2$ singularna.
+kjer matriki $S_2$ in $S_1$ predstavljata poljubno matriko izmed $S_W$, $S_B$ in $S_M$.  Kadar je matrika $S_2$ nesingularna, klasična diskriminantna analiza predstavi svojo rešitev s pomočjo posplošenega problema lastnih vrednosti. S prestrukturiranjem problema tako, da uporabimo posplošeni singularni razcep, pa lahko razširimo uporabnost diskriminantne analize tudi na primer, ko je matrika $S_2$ singularna.
 
 \section{Matematična priprava - posplošeni singularni razcep}
 Originalna definicija posplošenega singularnega razcepa (Van Loan) je sledeča.
+
+% ZAČETEK PRVEGA IZREKA
 \begin{izrek}[Posplošeni singularni izrek (Van Loan)]
 \label{izrek:SVD} Za matriki $K_A \in \mathbb{R}^{p \times m}$ z $p \geq m$ in $K_B \in \mathbb{R}^{n \times m}$ obstajata ortogonalni matriki $U \in \mathbb{R}^{p \times p}$ in $V \in \mathbb{R}^{n \times n}$ ter nesingularna matrika $X \in \mathbb{R}^{m \times m}$, da velja 
 $$ U^T K_A X = 
@@ -143,8 +154,9 @@ $$ kjer je $q = min(n,m) \text{,}$
 % !!KONEC DEFINICIJE DRUGE MATRIKE!!
 $
 \alpha_i \geq 0 \hspace{2mm} \text{za} \hspace{2mm}
- 1 \leq i \leq m \hspace{2mm} \text{in} \hspace{2mm}
+ 1 \leq i \leq m \text{,} \hspace{2mm}
   \beta_i \geq 0 \hspace{2mm} \text{za} \hspace{2mm} 1 \leq i \leq q
+\hspace{2mm} \text{in} \hspace{2mm} \beta_1 \geq \beta_2 \geq \ldots \geq \beta_q
 \text{.}
 $
 \end{izrek}
@@ -175,22 +187,24 @@ $
 k = rang(K) \hspace{2mm} \text{velja} \hspace{2mm} 
 \gamma_1 \geq \ldots \geq \gamma_k > \gamma_{k+1} = \ldots \gamma_m = 0\text{.} $
 
-V kolikor matriko $Z_1$ razdelimo na dve matriki: $Z_{11} \in \mathbb{R}^{m \times k}$, ki je sestavljena iz prvih $k$ stolpcev matrike $Z_1$ in $Z_{12} \in \mathbb{R}^{m \times (m-k)}$, ki je sestavljena iz preostalih $m-k$ stolpcev matrike $Z_1$, lahko vidimo, da velja
-$$ Q^T K \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right) = 
-\begin{bmatrix}
-\begin{matrix}
-\gamma_1 & & & & & \\
- & \ddots & & & & \\
- & & \gamma_k & & & \\
- & & & \gamma_{k+1} & & \\
- & & & & \ddots & \\
- & & & & & \gamma_m 
-\end{matrix} \\ \hdashline[2pt/2pt]
-0_{p+n-m, m}
-\end{bmatrix}
-\text{.}
-$$
-Po predpostavki velja $p \geq m$ in ker je očitno tudi $m \geq k$ sledi: $p \geq m \geq k$. Sedaj definirajmo matriko 
+Matriko $Z_1$ razdelimo na dve matriki, matriko $Z_{11} \in \mathbb{R}^{m \times k}$, ki je sestavljena iz prvih $k$ stolpcev matrike $Z_1$ in matriko $Z_{12} \in \mathbb{R}^{m \times (m-k)}$, ki je sestavljena iz preostalih $m-k$ stolpcev matrike $Z_1$. Pišemo $$Z_1 = \left[ Z_{11} \hspace{2mm} Z_{12} \right] \text{.}$$
+
+%, lahko vidimo, da velja
+%$$ Q^T K \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right) = 
+%\begin{bmatrix}
+%\begin{matrix}
+%\gamma_1 & & & & & \\
+% & \ddots & & & & \\
+% & & \gamma_k & & & \\
+% & & & \gamma_{k+1} & & \\
+% & & & & \ddots & \\
+% & & & & & \gamma_m 
+%\end{matrix} \\ \hdashline[2pt/2pt]
+%0_{p+n-m, m}
+%\end{bmatrix}
+%\text{.}
+%$$
+Po predpostavki velja $p \geq m$ in ker je očitno tudi $m \geq k$ sledi $p \geq m \geq k$. Sedaj definirajmo matriko 
 $$ D := diag(\gamma_1,..., \gamma_k) \in \mathbb{R}^{k \times k} \text{.}
 $$
 Tako iz zgornje enačbe \textit{\eqref{eq:1}} dobimo
@@ -204,7 +218,7 @@ D & 0_{k, m-k} \\
 0_{p+n-k, k} & 0_{p+n-k, m-k} 
 \end{pmatrix} \text{,} \label{eq:2}
 \end{equation}
-iz česar sledi
+od koder sledi
 $$
 \begin{pmatrix}
 K_A Z_{11} \\ 
@@ -213,8 +227,9 @@ K_B Z_{11}
 \begin{pmatrix}
 D \\ 
 0
-\end{pmatrix}
-$$ in v kolikor še matriko $Q$ razdelimo na podmatrike na naslednji način
+\end{pmatrix} \text{.}
+$$
+V kolikor še matriko $Q$ razdelimo na podmatrike na naslednji način
 $$ Q = 
 \begin{pmatrix}
 Q_{11} & Q_{12} \\ 
@@ -246,9 +261,8 @@ $$
 in enakost
 $$
 K_B Z_{11} = Q_{21} D \implies K_B Z_{11} D^{-1} = Q_{21} =: K_{B_1} \in \mathbb{R}^{ n \times k} \text{.}
-$$.
-
-Sedaj singularni razcep naredimo na matriki $K_{B_1}$. Za matriko $K_{B_1}$ vemo, da ima isti rang kot matrika $K_B$, saj velja, da je matrika $Z_{11}$ polnega ranga (je namreč podmatrika ortogonalne matrike $Z$) in vemo, da je matrika $D^{-1}$ polnega ranga. Označimo: $r = rang(K_B) = rang(K_{B_1})$. Iz singularnega razcepa za matriko $K_{B_1}$ dobimo ortogonalni matriki $V \in \mathbb{R}^{ n \times n}$ in $Z_2 \in \mathbb{R}^{ k \times k}$, da velja:
+$$
+Sedaj singularni razcep naredimo na matriki $K_{B_1}$. Za matriko $K_{B_1}$ vemo, da ima isti rang kot matrika $K_B$, saj velja, da je matrika $Z_{11}$ polnega ranga (je namreč podmatrika ortogonalne matrike $Z$) in vemo, da je matrika $D^{-1}$ polnega ranga. Označimo $r = rang(K_B) = rang(K_{B_1})$. Iz singularnega razcepa za matriko $K_{B_1}$ dobimo ortogonalni matriki $V \in \mathbb{R}^{ n \times n}$ in $Z_2 \in \mathbb{R}^{ k \times k}$, da velja
 \begin{equation}
 V^T K_{B_1} Z_2 = \Sigma_{B_t}
  \text{,}  \label{eq:3}
@@ -266,20 +280,20 @@ $\Sigma_{B_t} =
 0_{n-t, t} & 0_{n-t, k-t}
 \end{array} \right]$
 in velja 
-$ \beta_1 \geq \beta_2 \geq \ldots \geq \beta_r > \beta_{r+1} = \ldots = \beta_t = 0 $.
-
-Iz enačbe \textit{\eqref{eq:2}} sledi, da velja
+$ \beta_1 \geq \beta_2 \geq \ldots \geq \beta_r > \beta_{r+1} = \ldots = \beta_t = 0 \text{.}$ 
+\newline
+Iz enačbe \textit{\eqref{eq:2}} sledi, da je
 $$
 K_B Z_{12} = 0_{n, m-k} \text{.}
 $$
-Opazimo, da velja tudi:
+Opazimo, da velja tudi
 \begin{gather*}
 V^T K_B Z_1
 \begin{pmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
 \end{pmatrix} = 
-V^T K_B \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right)
+V^T K_B \left[ Z_{11} \hspace{2mm} Z_{12} \right]
 \begin{pmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
@@ -309,7 +323,7 @@ V^T K_{B_1} Z_2 & 0_{n, m-k}
 \end{array} \right]
 \text{.}
 \end{gather*}
-Če za $q = \min\{n,m\}$ dodatno definirajmo še $\beta_{t+1} = \ldots = \beta_{q} = 0$, dobimo ravno
+Če za $q = \min\{n,m\}$ dodatno definiramo še $\beta_{t+1} = \ldots = \beta_{q} = 0$, dobimo ravno
 \begin{gather*}
 V^T K_B Z_1
 \begin{pmatrix}
@@ -336,7 +350,7 @@ D^{-1} Z_2 & 0\\
 \end{pmatrix}
 \text{.}$$
 
-Dokazati pa moramo tudi, da zgornja matrika $X$ reši tudi enačbo iz izreka za matriko $K_A$, torej, da obstaja tudi taka matrika $U$, da velja
+Dokazati pa moramo tudi, da zgornja matrika $X$ ustreza tudi enačbi iz izreka za matriko $K_A$, torej, da obstaja tudi taka matrika $U$, da velja
 \begin{gather*}
  U^T K_A X = 
 \begin{bmatrix}
@@ -346,7 +360,8 @@ Dokazati pa moramo tudi, da zgornja matrika $X$ reši tudi enačbo iz izreka za 
  & & \alpha_m
 \end{matrix} \\ \hdashline[2pt/2pt]
 0_{p-m, m}
-\end{bmatrix} 
+\end{bmatrix}
+\text{.} 
 \end{gather*}
 
 Ker je matrika $Q$ ortogonalna, dodatno velja $K_{A_1}^TK_{A_1} + K_{B_1}^TK_{B_1} = I_k$, kjer je $I_k$ identična matrika dimenzije $k \times k$. To enakost lahko pokažemo tako, da razpišemo spodnjo enačbo
@@ -373,21 +388,26 @@ I_k & 0\\
 0 & I_{p+n-k}
 \end{pmatrix} \text{.}
 \end{gather*}
-
-Za $G$ tako definirajmo matriko, ki jo dobimo s preoblikovanjem enačbe \textit{\eqref{eq:3}}:
+Definirajmo matriko $G$, ki jo dobimo s preoblikovanjem enačbe \textit{\eqref{eq:3}}:
 $$ G := K_{B_1} Z_2 = V \Sigma_{B_t} \in \mathbb{R}^{n \times k} \text{.}
 $$
 
-Na matriki $K_{A_1} Z_2$ naredimo Householderjeva zrcaljenja: Dobimo matriko ortogonalno matriko $U^T \in \mathbb{R}^{p \times p}$, da velja
-$$ U^T K_{A_1} Z_2 = R \text{,}
-$$
-kjer je $R \in \mathbb{R}^{p \times k}$ matrika z zgornjo trapezno obliko. Ker je matrika $U$ ortogonalna, velja $ K_{A_1} Z_2 = U R$.
+Za matriko $K_{A_1} Z_2$ izračunamo razširjen QR razcep, $ K_{A_1} Z_2 = U R$, kjer je $U \in \mathbb{R}^{p \times p}$ ortogonalna in $R \in \mathbb{R}^{p \times k}$ zgornja trapezna matrika. Tak razcep lahko naredimo na primer z uporabo Householderjevih zrcaljenj.
+
+%STAR DEL!!!
+%naredimo Householderjeva zrcaljenja: Dobimo matriko ortogonalno matriko $U^T \in \mathbb{R}^{p \times p}$, da velja
+%$$ U^T K_{A_1} Z_2 = R \text{,}
+%$$
+%kjer je $R \in \mathbb{R}^{p \times k}$ matrika z zgornjo trapezno obliko. Ker je matrika $U$ ortogonalna, velja $ K_{A_1} Z_2 = U R$.
 
 Opazimo lahko, da so stolpci matrike $K_{A_1} Z_2$ medsebojno ortogonalni, saj velja
 \begin{gather*}
 (K_{A_1} Z_2)^T (K_{A_1} Z_2) = Z_2^T K_{A_1}^T K_{A_1} Z_2 %\\
-= Z_2^T (I_{k} - K_{B_1}^T K_{B_1}) Z_2 = Z_2^T Z_2 -  Z_2^T K_{B_1}^T K_{B_1} Z_2 \\
-= I_k - G^T G = I_k - \Sigma_{B_t}^T V^T V \Sigma_{B_t} %\\
+= Z_2^T (I_{k} - K_{B_1}^T K_{B_1}) Z_2 =
+\\
+Z_2^T Z_2 -  Z_2^T K_{B_1}^T K_{B_1} Z_2
+= I_k - G^T G = I_k - \Sigma_{B_t}^T V^T V \Sigma_{B_t} 
+\\
 = I_k - 
 \left[
 \begin{array}{c;{2pt/2pt}c}
@@ -395,10 +415,11 @@ Opazimo lahko, da so stolpci matrike $K_{A_1} Z_2$ medsebojno ortogonalni, saj v
 \beta_1^2 & & \\
  & \ddots & \\
  & & \beta_t^2
-\end{matrix} & 0_{k - t,k - t}
+\end{matrix} & 0_{t,k - t}
  \\ \hdashline[2pt/2pt]
-0_{k - t, k - t} & 0_{k - t, k - t}
-\end{array} \right] \\
+0_{k - t, k - t} & 0_{t, k - t}
+\end{array} \right] 
+%\\
 = 
 \left[
 \begin{array}{c;{2pt/2pt}c}
@@ -406,10 +427,12 @@ Opazimo lahko, da so stolpci matrike $K_{A_1} Z_2$ medsebojno ortogonalni, saj v
 1 - \beta_1^2 & & \\
  & \ddots & \\
  & & 1 - \beta_t^2
-\end{matrix} & 0_{k - t,k - t}
+\end{matrix} & 0_{t,k - t}
  \\ \hdashline[2pt/2pt]
-0_{k - t, k - t} & I_{k - t, k - t}
-\end{array} \right]  = diag(1-\beta_1^2, \ldots, 1-\beta_k^2) \text{,}
+0_{k - t, k - t} & I_{t, k - t}
+\end{array} \right]  
+\\ 
+= diag(1-\beta_1^2, \ldots, 1-\beta_k^2) \text{,}
 \end{gather*}
 kjer smo dodatno definirali še $\beta_{t+1} = \ldots = \beta_{k} = 0$. 
 Iz tega sledi, da je matrika $R$ oblike 
@@ -426,7 +449,6 @@ $$ saj velja
 $$
 (K_{A_1} Z_2)^T (K_{A_1} Z_2) = R^T U^T U R = R^T R = diag(1-\beta_1^2, \ldots, 1-\beta_k^2) \text{.}
 $$
-
 Velja tudi
 \begin{gather*}
 U^T K_A Z_1
@@ -434,7 +456,8 @@ U^T K_A Z_1
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
 \end{pmatrix} = 
-U^T K_A \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right)
+U^T K_A %\left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right)
+\left[Z_{11} \hspace{2mm} Z_{12} \right]
 \begin{pmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
@@ -466,14 +489,14 @@ R & 0_{p, m-k}
 0_{p-k, k} & 0_{p-k, m-k}
 \end{array} \right] \text{,}
 \end{gather*}
-kjer smo dodatno definirali $\alpha_i = \sqrt{1-\beta_i^2}$ za $i = 1, \ldots, k$.
+kjer smo dodatno definirali $\alpha_i = \sqrt{1-\beta_i^2}$ za $i = 1, \ldots, k$ in $\alpha_{k+1} = \ldots = \alpha_m$.
 S tem smo pokazali, da matrika $$ X = Z_1 
 \begin{pmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
 \end{pmatrix}
 $$
-zadošča tako razcepu matrike $K_A$ kot tudi matriek $K_B$ iz izreka in s tem dokazali izrek.
+zadošča tako razcepu matrike $K_A$ kot tudi razcepu matrike $K_B$ iz izreka in s tem dokazali izrek.
 \end{proof}
 
 Problem tega izreka pa je, da se ga ne da uporabiti, kadar dimenzije matrike $K_A$ niso ustrezne. Zaradi tega pretirano zavezujočega pogoja se odločita C.C. Paige in M.A. Saunders ta posplošeni singularni izrek še dodatno posplošiti. Tako dobimo naslednji izrek:

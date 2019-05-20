@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  12 MAY 2019 16:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  20 MAY 2019 22:19
 entering extended mode
 **./diploma.tex
 (diploma.tex
@@ -226,56 +226,56 @@ LaTeX Warning: Label `izrek:SVD' multiply defined.
 )
 \openout1 = `diploma.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 31.
  ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 36.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 45.
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 36.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 45.
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 36.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 45.
 
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 36.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 45.
 
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 36.
+(Font)              <10> on input line 45.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 36.
+(Font)              <7> on input line 45.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 36.
-LaTeX Font Info:    Try loading font information for U+msa on input line 36.
+(Font)              <5> on input line 45.
+LaTeX Font Info:    Try loading font information for U+msa on input line 45.
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 36.
+LaTeX Font Info:    Try loading font information for U+msb on input line 45.
  ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd
 "
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -283,40 +283,30 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {C:/Users/Jernej/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 [2]
-Overfull \hbox (0.28099pt too wide) in paragraph at lines 94--94
+Overfull \hbox (0.28099pt too wide) in paragraph at lines 103--103
 []\T1/lmr/m/n/10 Optimalna pre-sli-kava $\OML/lmm/m/it/10 G[]$ \T1/lmr/m/n/10 t
 ako ma-ksi-mi-zira $\OML/lmm/m/it/10 sled\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 S[]\
 OT1/lmr/m/n/10 )$ \T1/lmr/m/n/10 in mi-ni-mi-zira $\OML/lmm/m/it/10 sled\OT1/lm
 r/m/n/10 (\OML/lmm/m/it/10 S[]\OT1/lmr/m/n/10 )$\T1/lmr/m/n/10 .
  []
 
-[3] [4] [5] [6]
-Overfull \hbox (0.58609pt too wide) detected at line 390
-[]
- []
-
-[7]
-Overfull \hbox (0.1486pt too wide) in paragraph at lines 516--518
+[3] [4] [5] [6] [7]
+Overfull \hbox (0.1486pt too wide) in paragraph at lines 527--529
 $\OML/lmm/m/it/10 R \OMS/lmsy/m/n/10 2 \U/msb/m/n/10 R[]$ \T1/lmr/m/it/10 je ne
 -sin-gu-larna ma-trika, ma-triki $\OML/lmm/m/it/10 I[] \OMS/lmsy/m/n/10 2 \U/ms
 b/m/n/10 R[]$ \T1/lmr/m/it/10 in $\OML/lmm/m/it/10 I[] \OMS/lmsy/m/n/10 2 \U/ms
 b/m/n/10 R[]$
  []
 
-[8] [9]
-Overfull \hbox (94.14209pt too wide) detected at line 668
-[] \OML/lmm/m/it/10 Q \OT1/lmr/m/n/10 = [] [] = [] = [] []
- []
+[8] [9] [10] [11]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 805.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 805.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 805.
 
-[10] [11]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 790.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 790.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 790.
-
-Overfull \hbox (1.67542pt too wide) in paragraph at lines 790--790
+Overfull \hbox (1.67542pt too wide) in paragraph at lines 805--805
 []\T1/lmr/bx/n/12 Optimizacija op-ti-mi-za-cij-skega kri-te-rija $\OML/lmm/m/it
 /12 J[] \OT1/lmr/m/n/12 = \OML/lmm/m/it/12 sled\OT1/lmr/m/n/12 (\OML/lmm/m/it/1
 2 S[]S[]\OT1/lmr/m/n/12 )$
@@ -328,10 +318,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2336 strings out of 492970
- 30229 string characters out of 3126149
- 113778 words of memory out of 3000000
- 6177 multiletter control sequences out of 15000+200000
+ 2337 strings out of 492970
+ 30233 string characters out of 3126149
+ 113786 words of memory out of 3000000
+ 6178 multiletter control sequences out of 15000+200000
  65445 words of font info for 57 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  27i,23n,27p,1156b,383s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -360,7 +350,7 @@ pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lm
 sy7.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
 m/lmsy8.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb>
-Output written on diploma.pdf (13 pages, 291478 bytes).
+Output written on diploma.pdf (13 pages, 289739 bytes).
 PDF statistics:
  124 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

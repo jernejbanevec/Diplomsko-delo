@@ -8,6 +8,8 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{arydshln}
+%\usepackage{fontspec,xcolor}
+%\usepackage{luacode,luatexbase}
 \newtheorem{izrek}{Izrek}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand\bigzero{\makebox(0,0){\text{\huge0}}}
@@ -18,6 +20,13 @@
 % Kjer so nejasnosti, dodaj znak oz. opozorilo za dopolnitev ali nejasnost
 % \textbf{-- NEJASNOST!}
 % \textbf{-- DOPOLNI!}
+
+%\begin{luacode}
+%local function vartosrcvar ( line )
+%  return string.gsub(line, " var " , " \\src{var} ") 
+%end
+%luatexbase.add_to_callback( "process_input_buffer",  vartosrcvar, "var_to_srcvar")
+%\end{luacode}
 
 \begin{document}
 
@@ -35,14 +44,14 @@ Cilj diskriminantne analize je združiti lastnosti originalnih podatkov na nači
 
 Predpostavimo, da so podatki zloženi v matriko $A \in \mathbb{R}^{m \times n}$, kjer $m$ predstavlja dimenzijo posamezne meritve, $n$ pa predstavlja število meritev oz. podatkov. Denimo, da so podatki v matriki $A$ iz $k$ različnih razredov. Tako so stolpci $a_1, a_2, \ldots, a_n$ matrike $A$ združeni v $k$ podmatrik, ki predstavljajo razrede, v katerih so podatki:
 $$ A = 
-\begin{pmatrix}
+\begin{bmatrix}
 A_1, & A_2, & \ldots, & A_k
-\end{pmatrix} \text{,}
+\end{bmatrix} \text{,}
 \hspace{2mm} \text{kjer} \hspace{2mm} A_i \in \mathbb{R}^{m \times n_i} \text{.}
 $$ 
 Tu število $n_i$ predstavlja moč indeksne množice razreda $i$. To indeksno množico razreda $i$ označimo z $N_i$. Očitno velja tudi $$
 \sum_{i=1}^{k}n_i = n \text{.}$$
-Matriko $A$ lahko poleg razdelitve na podmatrike razdelimo tudi na stolpce. Matrika $A = \left( a_{i ,j} \right)  \in \mathbb{R}^{m \times n}$ je tako sestavljena iz $n$ posameznih stolpcev, kjer $i$-ti stolpec označimo z $a_i$:
+Matriko $A$ lahko poleg razdelitve na podmatrike razdelimo tudi na stolpce. Matrika $A = \left[ a_{i ,j} \right]  \in \mathbb{R}^{m \times n}$ je tako sestavljena iz $n$ posameznih stolpcev, kjer $i$-ti stolpec označimo z $a_i$:
 $$ a_i =
 \begin{bmatrix}
 a_{1, i} \\
@@ -78,14 +87,14 @@ $$
 
 Iz danih matrik razpršenosti podatkov bi radi tvorili kriterij kvalitete strukture razredov. Kriterij kvalitete strukture razredov mora imeti visoko vrednost, kadar so razredi, v katerih so podatki, strnjeni in dobro ločeni med seboj. Opazimo lahko, da $sled(S_W)$ predstavlja, kako skupaj so si podatki v posameznem razredu, saj velja
 \begin{gather*} 
-sled(S_W) = \sum_{t=1}^{m} \left( \sum_{i = 1}^{k} \sum_{j \in N_i}(a_{t, j} - c_t^{(i)})^2 \right)
-= \sum_{i = 1}^{k} \sum_{j \in N_i} \left( \sum_{t=1}^{m} (a_{t, j} - c_t^{(i)})^2 \right) \\
+sled(S_W) = \sum_{t=1}^{m} \left[ \sum_{i = 1}^{k} \sum_{j \in N_i}(a_{t, j} - c_t^{(i)})^2 \right]
+= \sum_{i = 1}^{k} \sum_{j \in N_i} \left[ \sum_{t=1}^{m} (a_{t, j} - c_t^{(i)})^2 \right] \\
 = \sum_{i = 1}^{k} \sum_{j \in N_i} \norm{ a_j - c^{(i)}}_2^2 \text{.}
 \end{gather*}
 Podobno $sled(S_B)$ predstavlja ločenost med razredi, saj velja
 \begin{gather*} 
-sled(S_B) = \sum_{t=1}^{m} \left( \sum_{i = 1}^{k} \sum_{j \in N_i}(c_t^{(i)} - c_t)^2\right)
-= \sum_{i = 1}^{k} \sum_{j \in N_i} \left( \sum_{t=1}^{m} (c_t^{(i)} - c_t)^2 \right) \\
+sled(S_B) = \sum_{t=1}^{m} \left[ \sum_{i = 1}^{k} \sum_{j \in N_i}(c_t^{(i)} - c_t)^2\right]
+= \sum_{i = 1}^{k} \sum_{j \in N_i} \left[ \sum_{t=1}^{m} (c_t^{(i)} - c_t)^2 \right] \\
 = \sum_{i = 1}^{k} \sum_{j \in N_i} \norm{ c^{(i)} - c}_2^2 
 = \sum_{i = 1}^{k} n_i \norm{ c^{(i)} - c}_2^2
 \text{.}
@@ -168,9 +177,9 @@ $
 % k_1 = k
 % n = m
 
-Iz matrik $K_A$ in $K_B$ tvorimo združeno $(p+n)\times m$ matriko $K = \left(\begin{array}{c} K_A \\ K_B \end{array}\right)$, na kateri naredimo singularni razcep. Iz singularnega razcepa dobimo matriki $Q \in \mathbb{R}^{(p+n) \times (p+n)}$ in matriko $Z_1 \in \mathbb{R}^{m \times m}$, tako da velja 
+Iz matrik $K_A$ in $K_B$ tvorimo združeno $(p+n)\times m$ matriko $K = \left[\begin{array}{c} K_A \\ K_B \end{array}\right]$, na kateri naredimo singularni razcep. Iz singularnega razcepa dobimo matriki $Q \in \mathbb{R}^{(p+n) \times (p+n)}$ in matriko $Z_1 \in \mathbb{R}^{m \times m}$, tako da velja 
 \begin{equation}
-Q^T \left(\begin{array}{c} K_A \\ K_B \end{array}\right) Z_1 = 
+Q^T \left[\begin{array}{c} K_A \\ K_B \end{array}\right] Z_1 = 
 \begin{bmatrix}
 \begin{matrix}
 \gamma_1 & & \\
@@ -190,7 +199,7 @@ k = rang(K) \hspace{2mm} \text{velja} \hspace{2mm}
 Matriko $Z_1$ razdelimo na dve matriki, matriko $Z_{11} \in \mathbb{R}^{m \times k}$, ki je sestavljena iz prvih $k$ stolpcev matrike $Z_1$ in matriko $Z_{12} \in \mathbb{R}^{m \times (m-k)}$, ki je sestavljena iz preostalih $m-k$ stolpcev matrike $Z_1$. Pišemo $$Z_1 = \left[ Z_{11} \hspace{2mm} Z_{12} \right] \text{.}$$
 
 %, lahko vidimo, da velja
-%$$ Q^T K \left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right) = 
+%$$ Q^T K \left[\begin{array}{c} Z_{11} | Z_{12} \end{array}\right] = 
 %\begin{bmatrix}
 %\begin{matrix}
 %\gamma_1 & & & & & \\
@@ -209,50 +218,50 @@ $$ D := diag(\gamma_1,..., \gamma_k) \in \mathbb{R}^{k \times k} \text{.}
 $$
 Tako iz zgornje enačbe \textit{\eqref{eq:1}} dobimo
 \begin{equation}
-\begin{pmatrix}
+\begin{bmatrix}
 K_A Z_{11} & K_A Z_{12} \\ 
 K_B Z_{11} & K_B Z_{12}
-\end{pmatrix} = Q
-\begin{pmatrix}
+\end{bmatrix} = Q
+\begin{bmatrix}
 D & 0_{k, m-k} \\ 
 0_{p+n-k, k} & 0_{p+n-k, m-k} 
-\end{pmatrix} \text{,} \label{eq:2}
+\end{bmatrix} \text{,} \label{eq:2}
 \end{equation}
 od koder sledi
 $$
-\begin{pmatrix}
+\begin{bmatrix}
 K_A Z_{11} \\ 
 K_B Z_{11}
-\end{pmatrix} = Q
-\begin{pmatrix}
+\end{bmatrix} = Q
+\begin{bmatrix}
 D \\ 
 0
-\end{pmatrix} \text{.}
+\end{bmatrix} \text{.}
 $$
 V kolikor še matriko $Q$ razdelimo na podmatrike na naslednji način
 $$ Q = 
-\begin{pmatrix}
+\begin{bmatrix}
 Q_{11} & Q_{12} \\ 
 Q_{21} & Q_{22}
-\end{pmatrix} \text{,}
+\end{bmatrix} \text{,}
 $$ kjer je matrika $Q_{11} \in \mathbb{R}^{p \times k}$, matrika $Q_{12} \in \mathbb{R}^{p \times (p+n-k)}$, matrika $Q_{21} \in \mathbb{R}^{ n \times k}$ in matrika matrika $Q_{22} \in \mathbb{R}^{ n \times (p+n-k)}$, ugotovimo, da je
 $$Q
-\begin{pmatrix}
+\begin{bmatrix}
 D \\ 
 0
-\end{pmatrix} = 
-\begin{pmatrix}
+\end{bmatrix} = 
+\begin{bmatrix}
 Q_{11} & Q_{12} \\ 
 Q_{21} & Q_{22}
-\end{pmatrix}
-\begin{pmatrix}
+\end{bmatrix}
+\begin{bmatrix}
 D \\ 
 0
-\end{pmatrix} =
-\begin{pmatrix}
+\end{bmatrix} =
+\begin{bmatrix}
 Q_{11} D \\ 
 Q_{21} D
-\end{pmatrix} \text{.}
+\end{bmatrix} \text{.}
 $$
 Iz tega neposredno sledi enakost
 $$
@@ -289,28 +298,28 @@ $$
 Opazimo, da velja tudi
 \begin{gather*}
 V^T K_B Z_1
-\begin{pmatrix}
+\begin{bmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
-\end{pmatrix} = 
+\end{bmatrix} = 
 V^T K_B \left[ Z_{11} \hspace{2mm} Z_{12} \right]
-\begin{pmatrix}
+\begin{bmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
-\end{pmatrix} = \\
+\end{bmatrix} = \\
 V^T K_B
-\begin{pmatrix}
+\begin{bmatrix}
  Z_{11} D^{-1} Z_2 & Z_{12} 
-\end{pmatrix} =
-\begin{pmatrix}
+\end{bmatrix} =
+\begin{bmatrix}
 V^T K_B Z_{11} D^{-1} Z_2 & V^T K_B Z_{12} 
-\end{pmatrix} = \\
-\begin{pmatrix}
+\end{bmatrix} = \\
+\begin{bmatrix}
 V^T K_{B_1} Z_2 & 0_{n, m-k} 
-\end{pmatrix} =
-\begin{pmatrix}
+\end{bmatrix} =
+\begin{bmatrix}
 \Sigma_{B_t} & 0_{n, m-k} 
-\end{pmatrix} = \\
+\end{bmatrix} = \\
 \left[
 \begin{array}{c;{2pt/2pt}c}
 \begin{matrix}
@@ -326,10 +335,10 @@ V^T K_{B_1} Z_2 & 0_{n, m-k}
 Če za $q = \min\{n,m\}$ dodatno definiramo še $\beta_{t+1} = \ldots = \beta_{q} = 0$, dobimo ravno
 \begin{gather*}
 V^T K_B Z_1
-\begin{pmatrix}
+\begin{bmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
-\end{pmatrix} = 
+\end{bmatrix} = 
 \left[
 \begin{array}{c;{2pt/2pt}c}
 \begin{matrix}
@@ -344,10 +353,10 @@ D^{-1} Z_2 & 0\\
 \end{gather*}
 kar je pa ravno matrika $\Sigma_{B_q}$ iz izreka. Matriko $X$ tako definiramo na sledeči način
 $$ X := Z_1 
-\begin{pmatrix}
+\begin{bmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
-\end{pmatrix}
+\end{bmatrix}
 \text{.}$$
 
 Dokazati pa moramo tudi, da zgornja matrika $X$ ustreza tudi enačbi iz izreka za matriko $K_A$, torej, da obstaja tudi taka matrika $U$, da velja
@@ -367,26 +376,26 @@ Dokazati pa moramo tudi, da zgornja matrika $X$ ustreza tudi enačbi iz izreka z
 Ker je matrika $Q$ ortogonalna, dodatno velja $K_{A_1}^TK_{A_1} + K_{B_1}^TK_{B_1} = I_k$, kjer je $I_k$ identična matrika dimenzije $k \times k$. To enakost lahko pokažemo tako, da razpišemo spodnjo enačbo
 \begin{gather*}
 Q^T Q = 
-\begin{pmatrix}
+\begin{bmatrix}
 Q_{11}^T & Q_{21}^T \\ 
 Q_{12}^T & Q_{22}^T
-\end{pmatrix}
-\begin{pmatrix}
+\end{bmatrix}
+\begin{bmatrix}
 Q_{11} & Q_{12} \\ 
 Q_{21} & Q_{22}
-\end{pmatrix} =
-\begin{pmatrix}
+\end{bmatrix} =
+\begin{bmatrix}
 Q_{11}^T Q_{11} + Q_{21}^T Q_{21} & Q_{11}^T Q_{12} + Q_{21}^T Q_{22} \\ 
 Q_{12}^T Q_{11} + Q_{22}^T Q_{21} & Q_{12}^T Q_{12} + Q_{22}^T Q_{22}
-\end{pmatrix} \\ =
-\begin{pmatrix}
+\end{bmatrix} \\ =
+\begin{bmatrix}
 K_{A_1}^TK_{A_1} + K_{B_1}^TK_{B_1} & Q_{11}^T Q_{12} + Q_{21}^T Q_{22} \\ 
 Q_{12}^T Q_{11} + Q_{22}^T Q_{21} & Q_{12}^T Q_{12} + Q_{22}^T Q_{22}
-\end{pmatrix}  = I =
-\begin{pmatrix}
+\end{bmatrix}  = I =
+\begin{bmatrix}
 I_k & 0\\ 
 0 & I_{p+n-k}
-\end{pmatrix} \text{.}
+\end{bmatrix} \text{.}
 \end{gather*}
 Definirajmo matriko $G$, ki jo dobimo s preoblikovanjem enačbe \textit{\eqref{eq:3}}:
 $$ G := K_{B_1} Z_2 = V \Sigma_{B_t} \in \mathbb{R}^{n \times k} \text{.}
@@ -452,32 +461,32 @@ $$
 Velja tudi
 \begin{gather*}
 U^T K_A Z_1
-\begin{pmatrix}
+\begin{bmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
-\end{pmatrix} = 
-U^T K_A %\left(\begin{array}{c} Z_{11} | Z_{12} \end{array}\right)
+\end{bmatrix} = 
+U^T K_A %\left[\begin{array}{c} Z_{11} | Z_{12} \end{array}\right]
 \left[Z_{11} \hspace{2mm} Z_{12} \right]
-\begin{pmatrix}
+\begin{bmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
-\end{pmatrix} = \\
+\end{bmatrix} = \\
 U^T K_A
-\begin{pmatrix}
+\begin{bmatrix}
  Z_{11} D^{-1} Z_2 & Z_{12} 
-\end{pmatrix} =
-\begin{pmatrix}
+\end{bmatrix} =
+\begin{bmatrix}
 U^T K_A Z_{11} D^{-1} Z_2 & U^T K_A Z_{12} 
-\end{pmatrix} = \\
-\begin{pmatrix}
+\end{bmatrix} = \\
+\begin{bmatrix}
 U^T K_{A_1} Z_2 & 0_{p, m-k} 
-\end{pmatrix} =
-\begin{pmatrix}
+\end{bmatrix} =
+\begin{bmatrix}
 U^T U R & 0_{p, m-k}
-\end{pmatrix} =
-\begin{pmatrix}
+\end{bmatrix} =
+\begin{bmatrix}
 R & 0_{p, m-k} 
-\end{pmatrix} = \\
+\end{bmatrix} = \\
 \left[
 \begin{array}{c;{2pt/2pt}c}
 \begin{matrix}
@@ -491,10 +500,10 @@ R & 0_{p, m-k}
 \end{gather*}
 kjer smo dodatno definirali $\alpha_i = \sqrt{1-\beta_i^2}$ za $i = 1, \ldots, k$ in $\alpha_{k+1} = \ldots = \alpha_m$.
 S tem smo pokazali, da matrika $$ X = Z_1 
-\begin{pmatrix}
+\begin{bmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
-\end{pmatrix}
+\end{bmatrix}
 $$
 zadošča tako razcepu matrike $K_A$ kot tudi razcepu matrike $K_B$ iz izreka in s tem dokazali izrek.
 \end{proof}
@@ -502,18 +511,20 @@ zadošča tako razcepu matrike $K_A$ kot tudi razcepu matrike $K_B$ iz izreka in
 Problem tega izreka pa je, da se ga ne da uporabiti, kadar dimenzije matrike $K_A$ niso ustrezne. Zaradi tega pretirano zavezujočega pogoja se odločita C.C. Paige in M.A. Saunders ta posplošeni singularni izrek še dodatno posplošiti. Tako dobimo naslednji izrek:
 % !!!!!! Druga posplošitev Singularnega razcepa - IZREK !!!!!
 \begin{izrek}[Posplošeni singularni razcep (Paige in Saunders)]
-\label{izrek:GSVD} Naj bosta dani matriki $K_A \in \mathbb{R}^{p \times m}$ in $K_B \in \mathbb{R}^{n \times m}$. Potem za $K = \left(\begin{array}{c} K_A \\ K_B \end{array}\right)$ in $k = rang(K)$ obstajajo ortogonalne matrike $U \in \mathbb{R}^{p \times p}$, $V \in \mathbb{R}^{n \times n}$, $W \in \mathbb{R}^{k \times k}$ in $Q \in \mathbb{R}^{m \times m}$, da velja 
-$$U^T K_A Q = \Sigma_A  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right) \hspace{4mm} \text{in} \hspace{4mm} V^T K_B Q = \Sigma_B  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right) \text{,}$$ kjer sta
-$$\Sigma_A = \begin{pmatrix} 
+\label{izrek:GSVD} Naj bosta dani matriki $K_A \in \mathbb{R}^{p \times m}$ in $K_B \in \mathbb{R}^{n \times m}$. Potem za $K = \left[\begin{array}{c} K_A \\ K_B \end{array}\right]$ in $k = rang(K)$ obstajajo ortogonalne matrike $U \in \mathbb{R}^{p \times p}$, $V \in \mathbb{R}^{n \times n}$, $W \in \mathbb{R}^{k \times k}$ in $Q \in \mathbb{R}^{m \times m}$, da velja 
+\begin{equation} \label{eq4}
+U^T K_A Q = \Sigma_A  \left[\begin{array}{cc} W^T R, & 0 \end{array}\right] \hspace{4mm} \text{in} \hspace{4mm} V^T K_B Q = \Sigma_B  \left[\begin{array}{cc} W^T R, & 0 \end{array}\right] \text{,}
+\end{equation} kjer sta
+$$\Sigma_A = \begin{bmatrix} 
 I_A &  & \\
  & D_A & \\
  & & 0_A  
-\end{pmatrix} \hspace{4mm} \text{in} \hspace{4mm}
-\Sigma_B = \begin{pmatrix} 
+\end{bmatrix} \hspace{4mm} \text{in} \hspace{4mm}
+\Sigma_B = \begin{bmatrix} 
 0_B &  & \\
  & D_B & \\
  & & I_B  
-\end{pmatrix} \text{,}$$ 
+\end{bmatrix} \text{,}$$ 
 $R \in \mathbb{R}^{k \times k}$ je nesingularna matrika, matriki $I_A \in \mathbb{R}^{r \times r}$ in $I_B \in \mathbb{R}^{(k-r-s) \times (k-r-s)}$ identični matriki, kjer je 
 $$r = rang(K) - rang(K_B) \hspace{4mm} \text{in} \hspace{4mm} s = rang(K_A) + rang(K_B) - rang(K),$$
 $0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ in $0_B \in \mathbb{R}^{(n-k+r) \times r}$ ničelni matriki, ki imata lahko tudi ničelno število vrstic ali stolpcev, matriki
@@ -523,57 +534,58 @@ pri $\alpha_i^2 + \beta_i^2 = 1$ za $ i = r+1,\ldots, r+s$.
 \end{izrek}
 % !!!!! Dokaz druge posplošitve sing. razcepa !!!!!!!!
 \begin{proof}
-Definiramo matriko $K \in \mathbb{R}^{(p+n) \times m}$, ki je sestavljena iz matrik $K_A$ in $K_B$ kot $$K:= \begin{pmatrix} 
-K_A \\
-K_B 
-\end{pmatrix}.$$
-Z $k$ označimo rang te matrike $K$, torej $k = rang(K)$. Na zgoraj definirani matriki $K$ lahko sedaj naredimo singularni razcep. Tako vemo, da za matriko $K$ obstajata ortogonalni matriki $P \in \mathbb{R}^{(n+p) \times (n+p)}$ in $Q \in \mathbb{R}^{m \times m}$, da velja 
+%Definiramo matriko $K \in \mathbb{R}^{(p+n) \times m}$, ki je sestavljena iz matrik $K_A$ in $K_B$ kot $$K:= \begin{bmatrix} 
+%K_A \\
+%K_B 
+%\end{bmatrix}.$$
+%Z $k$ označimo rang te matrike $K$, torej $k = rang(K)$.
+Izračunamo singularni razcep matrike  $K$. Tako dobimo ortogonalni matriki $P \in \mathbb{R}^{(p+n) \times (p+n)}$ in $Q \in \mathbb{R}^{m \times m}$, da velja 
 \begin{equation} P K Q^T = 
-\begin{pmatrix} 
+\begin{bmatrix} 
 R & 0_{k, m-k} \\
 0_{n+p-k, k} & 0_{n+p-k, m-k} 
-\end{pmatrix} \text{,} \label{eq:4}
+\end{bmatrix} \text{,} \label{eq:5}
 \end{equation}
-kjer je $R$ diagonalna matrika ranga $k$. Matriki $Q$ in $P$ razdelimo na podmatrike na sledeči način:
-$$  Q = \left(\begin{array}{c} Q_1 | Q_2 \end{array}\right)
+kjer je $R$ diagonalna matrika ranga $k$. Matriki $Q$ in $P$ razdelimo na podmatrike
+$$  Q = \left[Q_1 \hspace{2mm} Q_2 \right]
 \hspace{4mm} \text{in} \hspace{4mm}
-P = \left(\begin{array}{c} P_1 | P_2 \end{array}\right)
+P = \left[P_1 \hspace{2mm} P_2 \right]
 =
-\begin{pmatrix} 
+\begin{bmatrix} 
 P_{11} & P_{12} \\
 P_{21} & P_{22} 
-\end{pmatrix},
+\end{bmatrix},
 $$
-kjer je matrika $Q_1 \in \mathbb{R}^{m \times k}$ sestavljena iz prvih $k$ stolpcev matrike $Q$, matrika $Q_2 \in \mathbb{R}^{m \times (m-k)}$ pa iz preostalih $m-k$ stolpcev matrike $Q$, podmatrike matrike $P$ pa so sledečih oblik: $P_{11} \in \mathbb{R}^{m \times k}$, $P_{12} \in \mathbb{R}^{m \times (m+p-k)}$, $P_{21} \in \mathbb{R}^{p \times k}$ in $P_{22} \in \mathbb{R}^{p \times (m+p-k)}$.
+kjer je matrika $Q_1 \in \mathbb{R}^{m \times k}$ sestavljena iz prvih $k$ stolpcev matrike $Q$, matrika $Q_2 \in \mathbb{R}^{m \times (m-k)}$ pa iz preostalih $m-k$ stolpcev matrike $Q$, podmatrike matrike $P$ pa so sledečih dimenzij: $P_{11} \in \mathbb{R}^{p \times k}$, $P_{12} \in \mathbb{R}^{p \times (p+n-k)}$, $P_{21} \in \mathbb{R}^{n \times k}$ in $P_{22} \in \mathbb{R}^{n \times (p+n-k)}$.
 %, matrika $P_1 \in \mathbb{R}^{(p+m) \times k}$ iz prvih $k$ stolpcev matrike $P$ in njena podmatrika $P_{11} \in \mathbb{C}^{p \times t}$ pa iz prvih m vrstic matrike $P_1$.
 
-Ker je $P$ ortogonalna matrika, vemo, da velja $\norm{P}_2 \leq 1$ in posledično tudi $\norm{P_{11}}_2 \leq \norm{P_{1}}_2 \leq \norm{P}_2 \leq 1$. Posledično nobena singularna vrednost matrike $P_{11}$ ni večja od $1$. %Velja po izreku iz numeričnih metod, ne vem kako se kliče
+Ker je $P$ ortogonalna matrika velja $\norm{P}_2 \leq 1$ in posledično tudi $\norm{P_{11}}_2 \leq \norm{P_{1}}_2 \leq \norm{P}_2 \leq 1$. Posledično nobena singularna vrednost matrike $P_{11}$ ni večja od $1$. %Velja po izreku iz numeričnih metod, ne vem kako se kliče
 
-Singularni razcep podobno kot na matriki $K$ naredimo tudi na matriki $P_{11}$. Tako dobimo takšni matriki $U \in \mathbb{R}^{m \times m}$ in $W \in \mathbb{R}^{k \times k}$, da velja $$ U^T P_{11} W = \Sigma_A \text{,}$$ kjer je $$\Sigma_A = 
-\begin{pmatrix} 
-I_{r, r} &  & \\
+Singularni razcep podobno kot na matriki $K$ naredimo tudi na matriki $P_{11}$. Tako dobimo ortogonalni matriki $U \in \mathbb{R}^{m \times m}$ in $W \in \mathbb{R}^{k \times k}$, da velja $$ U^T P_{11} W = \Sigma_A \text{,}$$ kjer je $$\Sigma_A = 
+\begin{bmatrix} 
+I_r &  & \\
  & D_A & \\
  & & 0_A  
-\end{pmatrix} \text{,}$$ kjer je $r$ geometrična večkratnost lastne vrednosti $1$, matrika $I_{r, r}$ identična matrika dimenzije $r \times r$, matrika $D_A =
-\begin{pmatrix}
+\end{bmatrix} \text{,}$$ kjer je $r$ geometrična večkratnost lastne vrednosti $1$, matrika $I_r$ identična matrika dimenzije $r \times r$, matrika $D_A =
+\begin{bmatrix}
 \alpha_{r+1} & & \\
  & \ddots & \\
  & & \alpha_{r+s}
-\end{pmatrix}$ diagonalna matrika, kjer $r+s$ predstavlja rang matrike $P_{11}$ in $0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ je ničelna matrika, ki ima lahko nič vrstic ali nič stolpcev.
+\end{bmatrix}$ diagonalna matrika, kjer $r+s$ predstavlja rang matrike $P_{11}$ in $0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ je ničelna matrika, ki ima lahko nič vrstic ali nič stolpcev.
 % za katere velja $1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0.$
 
 Na matriki $P_{21}$ uporabimo \textbf{(-- DOPOLNI!)} razcep (s Householderjevimi zrcaljenji) in tako dobimo matriko $V \in \mathbb{R}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} =
-\begin{pmatrix} 
+\begin{bmatrix} 
 0 & 0 \\
 0 & L_1
-\end{pmatrix} 
+\end{bmatrix} 
 ,$$ \textbf{(-- POVEJ KATERIH DIMENZIJ SO TE NIČELNE MATRIKE!)} kjer je matrika $L_1$ spodnjetrikotna z diagonalnimi elementi večjimi od $0$.
 Opazimo lahko, da velja spodnja enakost
 $$
-\begin{pmatrix} 
+\begin{bmatrix} 
 U^T & 0_{m, n} \\
 0_{n, m} & V^T
-\end{pmatrix}
+\end{bmatrix}
 \begin{bmatrix}
 P_{11} \\
 P_{21}
@@ -582,26 +594,26 @@ P_{21}
 U^T P_{11} W \\
 V^TP_{21} W
 \end{bmatrix} =
-\begin{pmatrix}
+\begin{bmatrix}
 \Sigma_A \\
 L
-\end{pmatrix}.
+\end{bmatrix}.
 $$
-Zgornja matrika $\begin{pmatrix}
+Zgornja matrika $\begin{bmatrix}
 \Sigma_A \\
 L
-\end{pmatrix}$ je ortogonalna, saj je produkt ortogonalnih matrik. To implicira obliko matrike $ \begin{pmatrix}
+\end{bmatrix}$ je ortogonalna, saj je produkt ortogonalnih matrik. To implicira obliko matrike $ \begin{bmatrix}
 \Sigma_A \\
 L
-\end{pmatrix}$, torej
+\end{bmatrix}$, torej
 $$
-\begin{pmatrix}
+\begin{bmatrix}
 \Sigma_A \\
 L
-\end{pmatrix} =
-\left(
+\end{bmatrix} =
+\left[
 \begin{array}{c;{2pt/2pt}c;{2pt/2pt}c}
-I_{r,r} & & \\ 
+I_r & & \\ 
 \hdashline[2pt/2pt]
  & D_A & \\ 
 \hdashline[2pt/2pt]
@@ -612,171 +624,174 @@ I_{r,r} & & \\
  & D_B & \\ 
 \hdashline[2pt/2pt]
  & & I_{k-r-s, k-r-s}
-\end{array} \right) 
+\end{array} \right] 
 %=
-%\begin{pmatrix}
+%\begin{bmatrix}
 %I_{r, r} &  & \\
 % & D_A & \\
 % & & 0_{m-r-s, k-r-s} \\
 %0_{p-k+r, r} &  & \\
 % & D_B & \\
 % & & I_{k-r-s, k-r-s}
-%\end{pmatrix} 
+%\end{bmatrix} 
 \text{,}
 $$ kjer je matrika $D_B$ diagonalna matrika 
 $  D_B = 
-\begin{pmatrix}
+\begin{bmatrix}
 \beta_{r+1} & & \\
  & \ddots & \\
  & & \beta_{r+s}
-\end{pmatrix}$.
+\end{bmatrix}$.
 Za matriko $L$ pa velja $L = \Sigma_B =
-\begin{pmatrix}
+\begin{bmatrix}
 0_{p-k+r, r} & & \\ 
  & D_B & \\ 
  & & I_{k-r-s, k-r-s}
-\end{pmatrix}$.
-Iz ortogonalnosti matrike $\begin{pmatrix}
+\end{bmatrix}$.
+Iz ortogonalnosti matrike $\begin{bmatrix}
 \Sigma_A \\
 L
-\end{pmatrix}$ sledi tudi, da so njeni stolpci ortonormirani (torej tudi po meri enaki 1), iz česar sledi $\alpha_{r+i}^2 + \beta_{r+i}^2 = 1$ za $i = 1, \ldots, s$.
+\end{bmatrix}$ sledi tudi, da so njeni stolpci ortonormirani, iz česar sledi $\alpha_{r+i}^2 + \beta_{r+i}^2 = 1$ za $i = 1, \ldots, s$.
 
-Iz enačbe  \textit{\eqref{eq:4}} sledi
-\begin{equation}
-%\begin{gather*}
-\begin{pmatrix} 
+Iz enačbe  \textit{\eqref{eq:5}} dobimo
+%\begin{equation}
+\begin{equation} \label{eq6}
+\begin{split}
+\begin{bmatrix} 
 K_A \\
 K_B 
-\end{pmatrix} Q =
-\begin{pmatrix} 
+\end{bmatrix} Q =
+\begin{bmatrix} 
 P_{11} & P_{12} \\
 P_{21} & P_{22} 
-\end{pmatrix}
-\begin{pmatrix} 
+\end{bmatrix}
+\begin{bmatrix} 
 R & 0_{k, m-k} \\
 0_{n+p-k, k} & 0_{n+p-k, m-k}  
-\end{pmatrix} =
-\begin{pmatrix} 
+\end{bmatrix} =
+\\
+\begin{bmatrix} 
 P_{11}R & 0_{m, m-k} \\
 P_{21}R & 0_{p, m-k} 
-\end{pmatrix} =
-\begin{pmatrix} 
+\end{bmatrix} =
+\begin{bmatrix} 
 U \Sigma_A W^T R & 0_{m, m-k} \\
 V \Sigma_B W^T R & 0_{p, m-k} 
-\end{pmatrix} \text{,} \label{eq:5}
-%\end{gather*}
+\end{bmatrix} \text{,}
+\end{split}
 \end{equation}
+%\end{equation}
 iz česar sledi
 $$
 P_{11} = U \Sigma_A W^T
 \hspace{2mm} \text{in} \hspace{2mm}
 P_{21} = V \Sigma_B W^T \text{.}
 $$
-Če začetno enačbo iz enačbe  \textit{\eqref{eq:5}} pomnožimo iz leve z matriko 
+Če začetno enačbo iz enačbe \textit{\eqref{eq6}} pomnožimo iz leve z matriko 
 $
-\begin{pmatrix}
+\begin{bmatrix}
 U^T & 0_{m, n} \\
 0_{n, m} & V^T
-\end{pmatrix}
+\end{bmatrix}
 $ dobimo 
 $$
-\begin{pmatrix}
+\begin{bmatrix}
 U^T & 0_{m, n} \\
 0_{n, m} & V^T
-\end{pmatrix}
-\begin{pmatrix} 
+\end{bmatrix}
+\begin{bmatrix} 
 K_A \\
 K_B 
-\end{pmatrix} Q =
-\begin{pmatrix}
+\end{bmatrix} Q =
+\begin{bmatrix}
 U^T & 0_{m, n} \\
 0_{n, m} & V^T
-\end{pmatrix}
-\begin{pmatrix} 
+\end{bmatrix}
+\begin{bmatrix} 
 U \Sigma_A W^T R & 0_{m, m-k} \\
 V \Sigma_B W^T R & 0_{p, m-k} 
-\end{pmatrix} \text{,}
+\end{bmatrix} \text{,}
 $$
 iz česar sledi
 $$
 U^T K_A Q = 
-\Sigma_A  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right) \hspace{4mm} \text{in} \hspace{4mm} V^T K_B Q = \Sigma_B  \left(\begin{array}{cc} W^T R, & 0 \end{array}\right) \text{,}
+\Sigma_A  \left[\begin{array}{cc} W^T R, & 0 \end{array}\right] \hspace{4mm} \text{in} \hspace{4mm} V^T K_B Q = \Sigma_B  \left[\begin{array}{cc} W^T R, & 0 \end{array}\right] \text{,}
 $$
 s čimer smo dokazali izrek.
 \end{proof}
 
 Iz posplošenega singularnega razcepa, ki sta ga definirala Paige in Saunders neposredno sledi Van Loanova posplošitev singularnega razcepa. 
-S preoblikovanjem enačbe \textit{\eqref{eq:3}}, dobimo:
-$$U^T K_A Q = \left(\begin{array}{cc} \Sigma_A, & 0 \end{array}\right)
-\begin{pmatrix}
+S preoblikovanjem enačbe \textit{\eqref{eq:3}}, dobimo
+$$U^T K_A Q = \left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right]
+\begin{bmatrix}
 W^TR & 0 \\
 0 & I 
-\end{pmatrix} \text{.}$$
+\end{bmatrix} \text{.}$$
 Inverz matrike
-$\begin{pmatrix}
+$\begin{bmatrix}
 W^TR & 0 \\
 0 & I 
-\end{pmatrix} $
+\end{bmatrix} $
 je kar matrika 
-$\begin{pmatrix}
+$\begin{bmatrix}
 R^{-1} W & 0 \\
 0 & I 
-\end{pmatrix} \text{,}$
-saj veljata obe enakosi iz definicije inverza, torej:
-$$\begin{pmatrix}
+\end{bmatrix} \text{,}$
+saj veljata obe enakosti iz definicije inverza, torej
+$$\begin{bmatrix}
 R^{-1} W & 0 \\
 0 & I 
-\end{pmatrix}
-\begin{pmatrix}
+\end{bmatrix}
+\begin{bmatrix}
 W^TR & 0 \\
 0 & I 
-\end{pmatrix}
+\end{bmatrix}
 = I \hspace{3mm}\text{in} \hspace{3mm}
-\begin{pmatrix}
+\begin{bmatrix}
 W^TR & 0 \\
 0 & I 
-\end{pmatrix}
-\begin{pmatrix}
+\end{bmatrix}
+\begin{bmatrix}
 R^{-1} W & 0 \\
 0 & I 
-\end{pmatrix}
+\end{bmatrix}
 = I \text{.}$$
-Iz enačbe \textit{\eqref{eq:3}} tako tu očitno sledi:
+Iz enačbe \textit{\eqref{eq:3}} tako tu očitno sledi
 $$ U^T K_A Q
-\begin{pmatrix}
+\begin{bmatrix}
 R^{-1} W & 0 \\
 0 & I 
-\end{pmatrix}
+\end{bmatrix}
 =
-\left(\begin{array}{cc} \Sigma_A, & 0 \end{array}\right) \text{.}
+\left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right] \text{.}
 $$
-Matriko $X$ definiramo kot:
+Matriko $X$ definiramo kot
 $$ Q
-\begin{pmatrix}
+\begin{bmatrix}
 R^{-1} W & 0 \\
 0 & I 
-\end{pmatrix}
-$$ in dobimo ravno Van Loanovo posplošitev razcepa:
-$$ U^T K_A X = \left(\begin{array}{cc} \Sigma_A, & 0 \end{array}\right) \text{.}
+\end{bmatrix}
+$$ in dobimo ravno Van Loanovo posplošitev razcepa
+$$ U^T K_A X = \left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right] \text{.}
 $$
-Podobno lahko pokažemo tudi za matriko $K_B$, za katero dobimo enačbo:
-$$ U^T K_B X = \left(\begin{array}{cc} \Sigma_B, & 0 \end{array}\right) \text{.}
+Podobno lahko pokažemo tudi za matriko $K_B$, za katero iz \textit{\eqref{eq4}} dobimo
+$$ U^T K_B X = \left[\begin{array}{cc} \Sigma_B, & 0 \end{array}\right] \text{.}
 $$
-Tako je definirana matrika $X$ ravno iskana matrika iz prve posplošitve singularnega razcepa in matriki $\left(\begin{array}{cc} \Sigma_A, & 0 \end{array}\right)$ in $ U^T K_B X = \left(\begin{array}{cc} \Sigma_B, & 0 \end{array}\right)$ ravno iskani diagonalni matriki.
+Tako je definirana matrika $X$ ravno iskana matrika iz prve posplošitve singularnega razcepa in matriki $\left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right]$ in $\left[\begin{array}{cc} \Sigma_B, & 0 \end{array}\right]$ ravno iskani diagonalni matriki.
 
 Za nadaljnje delo definirajmo matrike
-$$H_W := [A_1 - c^{(1)}e^{(1)^T}, \ldots, A_k - c^{(k)}e^{(k)^T}] \text{,}$$
-$$H_B := [(c^{(1)} - c)e^{(1)^T}, \ldots,(c^{(k)} - c) e^{(k)^T}]$$
+$$H_W :=\left[A_1 - c^{(1)}e^{(1)^T}, \ldots, A_k - c^{(k)}e^{(k)^T}\right] \text{,}$$
+$$H_B := \left[(c^{(1)} - c)e^{(1)^T}, \ldots,(c^{(k)} - c) e^{(k)^T}\right]$$
 in
-$$H_M := [a_1 - c, ..., a_n - c] = A - ce^T = H_W + H_B\text{,}$$
-kjer velja:
+$$H_M := \left[a_1 - c, \ldots, a_n - c\right] = A - ce^T = H_W + H_B\text{,}$$
+kjer velja
 $e^{(i)} = (1,\ldots, 1) ^T \in \mathbb{R}^{ n_i \times 1 }$ in $e =  (1,\ldots, 1) ^T \in \mathbb{R}^{ n \times 1 }$.
 
-S pomočjo teh matrik lahko definiramo tudi matrike razpršenosti podatkov. Matriko $S_W$ lahko definiramo kot produkt matrike $H_W$ z njeno transponiranko, torej:
+S pomočjo teh matrik lahko definiramo tudi matrike razpršenosti podatkov. Matriko $S_W$ lahko definiramo kot produkt matrike $H_W$ z njeno transponiranko, torej
 $$S_W = H_W H_W^T \text{,}$$
-matriko $S_B$ lahko definiramo na podoben način:
+matriko $S_B$ lahko definiramo na podoben način kot
 $$S_B = H_B H_B^T \text{,}$$
-prav tako pa tudi matrika $S_M$:
+prav tako pa tudi matriko $S_M$
 $$S_M = H_M H_M^T \text{.}$$
 
 S pomočjo tega razcepa lahko tudi na drugačen način pokažemo, da je matrika $S_W$, kadar velja $m>n$, singularna. Razvidno je namreč, da je ta matrika $S_W$ definirana kot produkt dveh matrik, kjer je matrika $H_W$ dimenzije $m \times n$, matrika $H_W^T$ pa dimenzije $n \times m$. V kolikor velja $m>n$, sta tako ti dve matrike največ ranga $n$.
@@ -809,12 +824,12 @@ $$A = U \Sigma V^T \text{,}$$
 kjer sta $U \in \mathbb{R}^{m \times m}$ in $V \in \mathbb{R}^{n \times n}$ ortogonalni matriki, $\Sigma \in \mathbb{R}^{m \times n}$ je oblike
 $$
 \Sigma = 
-\begin{pmatrix} 
+\begin{bmatrix} 
 \sigma_1 &  & \\
  & \ddots & \\
  & & \sigma_n  \\
  & & 
-\end{pmatrix}$$
+\end{bmatrix}$$
 in $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_n \geq 0$ so singularne vrednosti matrike $A$.
 \end{izrek}
 \begin{proof}
@@ -824,11 +839,11 @@ Ustrezni ortonormirani lastni vektorji $v_1, \ldots, v_n$ zadoščajo
 $A^T A v_i = \sigma_i^2 v_i$ za $i = 1, \ldots, n \text{.}$
 Naj bo $\sigma_r > 0$ in $\sigma_{r+1} = \cdots = \sigma_n = 0 \text{.}$
 Matriko $V$ razdelimo na $V_1 = 
-\left( v_1, \ldots, v_r
-\right)$ in $V_2 = 
-\left( v_{r+1}, \ldots, v_n
-\right) \text{.}$ Iz
-$$ (AV_2)^T (AV_2) = V_2^T A^T A V_2 = V_2^T \left( 0, \ldots, 0 \right) = 0
+\left[ v_1, \ldots, v_r
+\right]$ in $V_2 = 
+\left[ v_{r+1}, \ldots, v_n
+\right] \text{.}$ Iz
+$$ (AV_2)^T (AV_2) = V_2^T A^T A V_2 = V_2^T \left[ 0, \ldots, 0 \right] = 0
 $$
 sledi $AV_2 = 0 \text{.}$ Sedaj definiramo $u_i := \frac{1}{\sigma_i} Av_i$ za $i = 1, \ldots, r \text{.}$
 Vekorji $u_1, \ldots, u_r$ so ortonormirani, saj je
@@ -836,16 +851,16 @@ $$ u_i^T u_j = \frac{1}{\sigma_i \sigma_j} v_i^T A^T A v_j = \frac{\sigma_j}{\si
 $$
 kjer smo v zapisu uproabili t.i. \emph{Kroneckerjev delta}, definiran z $\delta_{ij} = 1$ za $i = j$ in $\delta_{ij} = 0$ za $i \neq j$. Označimo 
 $U_1 = 
-\left( u_1 \hspace{2mm} \cdots \hspace{2mm} u_r
-\right)$ in dopolnimo z $U_2 = 
-\left( u_{r+1} \hspace{2mm} \cdots \hspace{2mm} u_n
-\right)$, da je $ U = \left( U_1 \hspace{2mm} U_2 \right)$ ortogonalna matrika. Matrika $U^T A V$ ima obliko 
+\left[ u_1 \hspace{2mm} \cdots \hspace{2mm} u_r
+\right]$ in dopolnimo z $U_2 = 
+\left[ u_{r+1} \hspace{2mm} \cdots \hspace{2mm} u_n
+\right]$, da je $ U = \left[ U_1 \hspace{2mm} U_2 \right]$ ortogonalna matrika. Matrika $U^T A V$ ima obliko 
 $$
 U^T A V = 
-\begin{pmatrix} 
+\begin{bmatrix} 
 U_1^T A V_1 & U_1^T A V_2 \\
 U_2^T A V_1 & U_2^T A V_2
-\end{pmatrix}
+\end{bmatrix}
 \text{.}
 $$
 Desna bloka sta zaradi $AV_2 = 0$ enaka $0$. Za $i = 1, \ldots, r$ in $k = 1, \ldots, m$ velja
@@ -853,10 +868,10 @@ $$ u_k^T A v_i = \sigma_i u_k^T u_i = \sigma_i \delta{ik} \text{,}
 $$
 torej $U_2^T A V_1 = 0$ in $U_1^T A V_1 = diag(\sigma_1, \ldots, \sigma_r) \text{.}$ Dobimo singularni razcep $A = U \Sigma V^T \text{,}$ kjer je $S = diag(\sigma_1, \ldots, \sigma_r)$ in 
 $$ \Sigma = 
-\begin{pmatrix} 
+\begin{bmatrix} 
 S & 0 \\
 0 & 0
-\end{pmatrix}
+\end{bmatrix}
 \text{.}$$
 
 \end{proof}

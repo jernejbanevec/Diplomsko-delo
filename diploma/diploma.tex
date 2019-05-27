@@ -107,13 +107,18 @@ Optimalna preslikava $G^T$ tako maksimizira $sled(S_{B}^{\ell})$ in minimizira $
 
 Kljub temu, da je ta optimizacijski kriterij lažje izračunljiv ima svoje pomanjkljivosti. Opazimo lahko, da kriterija ne moremo uporabiti, ko je matrika $S_W^\ell$ singularna, torej kadar je njena determinanta enaka 0. 
 
-\textbf{-- Zelo narobe, razmisli za rešitev! --}
+\textbf{-- *Ali ta del sploh velja?*--}
+
+\textbf{--Će NE, kako lahko potem pokažem da singularni razcep res potrebujemo? --}
+
+\textbf{--Će DA, kako lahko to dokažem/pokažem? --}
 %Ta del mogoče sploh ne velja!!
 
-Ker pa za determinanto matrike velja
-$$ \det(S_W^\ell) = \det(G^T S_W G) = \det(G^T) \cdot \det(S_W) \cdot \det(G) \text{,}
-$$
-je $\det(S_W^\ell)$ enaka 0 kadar je $\det(S_W)$ enaka 0, torej kadar je matrika $S_W$ singularna. 
+Iz singularnosti matrike $S_W$ sledi singularnoti matrike $S_W^\ell$.
+%Ker pa za determinanto matrike velja
+%$$ \det(S_W^\ell) = \det(G^T S_W G) = \det(G^T) \cdot \det(S_W) \cdot \det(G) \text{,}
+%$$
+%je $\det(S_W^\ell)$ enaka 0 kadar je $\det(S_W)$ enaka 0, torej kadar je matrika $S_W$ singularna. 
 
 \textbf{--}
 
@@ -546,7 +551,7 @@ R & 0_{k, m-k} \\
 0_{n+p-k, k} & 0_{n+p-k, m-k} 
 \end{bmatrix} \text{,} \label{eq:5}
 \end{equation}
-kjer je $R$ diagonalna matrika ranga $k$. Matriki $Q$ in $P$ razdelimo na podmatrike
+kjer je $R \in \mathbb{R}^{k \times k}$ diagonalna matrika ranga $k$. Matriki $Q$ in $P$ razdelimo na podmatrike
 $$  Q = \left[Q_1 \hspace{2mm} Q_2 \right]
 \hspace{4mm} \text{in} \hspace{4mm}
 P = \left[P_1 \hspace{2mm} P_2 \right]
@@ -574,12 +579,25 @@ I_r &  & \\
 \end{bmatrix}$ diagonalna matrika, kjer $r+s$ predstavlja rang matrike $P_{11}$ in $0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ je ničelna matrika, ki ima lahko nič vrstic ali nič stolpcev.
 % za katere velja $1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0.$
 
-Na matriki $P_{21}$ uporabimo \textbf{(-- DOPOLNI!)} razcep (s Householderjevimi zrcaljenji) in tako dobimo matriko $V \in \mathbb{R}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} =
+
+Matriko $P_{21} W$ množimo z ortogonalnimi transformacijami tako, da uničimo vse elemente v zgornjem delu matrike $P_{21} W$. Tako dobimo ortogonalno in simetrično matriko $V$, da velja $V \in \mathbb{R}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} =
 \begin{bmatrix} 
 0 & 0 \\
 0 & L_1
 \end{bmatrix} 
-,$$ \textbf{(-- POVEJ KATERIH DIMENZIJ SO TE NIČELNE MATRIKE!)} kjer je matrika $L_1$ spodnjetrikotna z diagonalnimi elementi večjimi od $0$.
+,$$
+%Matriko $P_{21} W$ iz leve množimo z matriko Householderjevih zrcaljenj $V \in \mathbb{R}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} %=
+%\begin{bmatrix} 
+%0 & 0 \\
+%0 & L_1
+%\end{bmatrix} 
+%,$$
+%\textbf{(-- POVEJ KATERIH DIMENZIJ SO TE NIČELNE MATRIKE!)} 
+kjer je matrika $L_1$ spodnjetrikotna z diagonalnimi elementi večjimi od $0$. Matrika ortogonalnih transformacij $V$ je tu sestavljena kot produkt matrik Householderjevih zrcaljenj $\tilde{P_1}$, $\tilde{P_2}$, \ldots, $\tilde{P_k}$, ki jih dobimo tako, da začnemo elemente zgornjega dela matrike $P_{21} W$ uničevati iz desne proti levi in za to uporabimo manj stabilno verzijo Householderjevih zrcaljenj, tako, da je zadoščeno pogoju, da so diagonalni elementi matrike $L_1$ večji od $0$.
+Velja torej $$V = \tilde{P_1} \tilde{P_2} \dots \tilde{P_k} \text{,}$$
+kjer je $\tilde{P_k} = I - \frac{2}{w_k^T w_k} w_k w_k^T$, $w_k = x_k - \norm{x_k}_2 e_n$, kjer $e_n$ predstavlja enotski vektor z enico na $n$-tem mestu, $x_j$ pa predstavlja $j$-ti stolpec matrike $P_{21} W$.
+
+
 Opazimo lahko, da velja spodnja enakost
 $$
 \begin{bmatrix} 

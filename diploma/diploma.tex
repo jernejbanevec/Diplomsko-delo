@@ -826,8 +826,47 @@ $$J_1(G) = sled((G^T S_2 G)^{-1} (G^T S_1 G))$$
 z izbiro optimalne preslikave $G$, kjer sta matriki $S_1$ in $S_2$ izbrani izmed matrik $S_W$, $S_B$ in $S_M$. Ko je matrika $S_2$ nesingularna, je sestavljena kot produkt matrike in transponiranke te matrike in je zato simetrično pozitivno definitna (posledično so vse lastne vrednosti te matrike večje ali enake 0). Za simetrično pozitivno definitno matriko pa obstaja razcep Choleskega; tako vemo da obstaja spodnjetrikotna matrika $V$ s pozitivnimi elementi na diagonali, da velja:
 $$ S_2 = V V^T \text{.}
 $$
-
-
+Oglejmo si posplošeni problem lastnih vrednosti za matriki $S_2$ in $S_1$, kjer za ti dve matriki iščemo takšen $\lambda \in \mathbb{R}$ in takšen neničelen vektor $x \in \mathbb{R}^m$, da velja
+$$
+S_1 x = \lambda S_2 x
+\text{.}
+$$
+Če sedaj matriko $S_2$ nadomestimo z matriko $VV^T$, ki jo dobimo iz razcepa Choleskega dobimo
+$$
+S_1 x = \lambda V V^T x = V \lambda V^T x
+\text{,}
+$$
+kar lahko iz leve pomnožimo z $V^{-1}$, saj vemo da za matriko $V$ obstaja inverz, in tako dobimo
+$$
+V^{-1} S_1 x = \lambda V^T x
+\text{.}
+$$
+Enačbo lahko dodatno razčlenimo
+$$
+V^{-1} S_1 V^{-T} V^T x = \lambda V^T x
+\text{.}
+$$
+Ker je matrika $S_1$ simetrična, je tudi matrika $V^{-1} S_1 V^{-T}$ simetrična, saj velja
+$$
+(V^{-1} S_1 V^{-T})^T =  (V^{-T})^T S_1^T (V^{-1})^T =  V^{-1} S_1 V^{-T}
+\text{.}
+$$
+Simetrično matriko pa lahko diagonaliziramo v bazi ortonormiranih lastnih vektorjev in tako dobimo takšno matriko $Y$, da velja $Y Y^T = Y^T Y$ in 
+$$
+V^{-1} S_1 V^{-T} = Y \Lambda Y^T
+\text{,}
+$$
+kjer je $\Lambda$ diagonalna matrika. S preoblikovanjem zgornje enačbe pa lahko dobimo
+$$
+S_1 = VY \Lambda Y^TV^T = X \Lambda X^T
+\text{,}
+$$
+kjer smo dodatno definirali $X := VY$.
+Matriko $S_2$ pa preoblikujemo
+$$
+S_2 = VV^T = VYY^TV^T = XX^T
+\text{.}
+$$
 \subsection{Posplošitev maksimizacijskega kriterija $sled((S_W^Y)^{-1}S_B^Y)$ za singularno matriko $S_2$}
 
 \section{Algoritem}

@@ -672,7 +672,6 @@ L
 \end{bmatrix}$ sledi tudi, da so njeni stolpci ortonormirani, iz česar sledi $\alpha_{r+i}^2 + \beta_{r+i}^2 = 1$ za $i = 1, \ldots, s$.
 
 Iz enačbe  \textit{\eqref{eq:5}} dobimo
-%\begin{equation}
 \begin{equation} \label{eq6}
 \begin{split}
 \begin{bmatrix} 
@@ -698,7 +697,6 @@ V \Sigma_B W^T R & 0_{p, m-k}
 \end{bmatrix} \text{,}
 \end{split}
 \end{equation}
-%\end{equation}
 iz česar sledi
 $$
 P_{11} = U \Sigma_A W^T
@@ -731,15 +729,17 @@ V \Sigma_B W^T R & 0_{p, m-k}
 \end{bmatrix} \text{,}
 $$
 iz česar sledi
+%\begin{equation} \label{ena7}
 $$
 U^T K_A Q = 
 \Sigma_A  \left[\begin{array}{cc} W^T R, & 0 \end{array}\right] \hspace{4mm} \text{in} \hspace{4mm} V^T K_B Q = \Sigma_B  \left[\begin{array}{cc} W^T R, & 0 \end{array}\right] \text{,}
+%\end{equation}
 $$
 s čimer smo dokazali izrek.
 \end{proof}
 
 Iz posplošenega singularnega razcepa, ki sta ga definirala Paige in Saunders neposredno sledi Van Loanova posplošitev singularnega razcepa. 
-S preoblikovanjem enačbe \textit{\eqref{eq:3}}, dobimo
+S preoblikovanjem enačbe \textit{\eqref{eq4}}, dobimo
 $$U^T K_A Q = \left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right]
 \begin{bmatrix}
 W^TR & 0 \\
@@ -774,7 +774,7 @@ R^{-1} W & 0 \\
 0 & I 
 \end{bmatrix}
 = I \text{.}$$
-Iz enačbe \textit{\eqref{eq:3}} tako tu očitno sledi
+Tako tu očitno sledi
 $$ U^T K_A Q
 \begin{bmatrix}
 R^{-1} W & 0 \\
@@ -792,8 +792,8 @@ R^{-1} W & 0 \\
 $$ in dobimo ravno Van Loanovo posplošitev razcepa
 $$ U^T K_A X = \left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right] \text{.}
 $$
-Podobno lahko pokažemo tudi za matriko $K_B$, za katero iz \textit{\eqref{eq4}} dobimo
-$$ U^T K_B X = \left[\begin{array}{cc} \Sigma_B, & 0 \end{array}\right] \text{.}
+Podobno lahko pokažemo tudi za matriko $K_B$, za katero iz enačbe \textit{\eqref{eq4}} dobimo
+$$ V^T K_B X = \left[\begin{array}{cc} \Sigma_B, & 0 \end{array}\right] \text{.}
 $$
 Tako je definirana matrika $X$ ravno iskana matrika iz prve posplošitve singularnega razcepa in matriki $\left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right]$ in $\left[\begin{array}{cc} \Sigma_B, & 0 \end{array}\right]$ ravno iskani diagonalni matriki.
 
@@ -823,7 +823,7 @@ V tem odstavku prikažemo uporabo posplošenega singularnega razcepa v namen raz
 \subsection{Optimizacija optimizacijskega kriterija $J_1 = sled(S_2^{-1} S_1)$ za nesingularno matriko $S_2$}
 Tu izhajamo iz optimizacije optimizacijskega kriterija 
 $$J_1(G) = sled((G^T S_2 G)^{-1} (G^T S_1 G))$$
-z izbiro optimalne preslikave $G$, kjer sta matriki $S_1$ in $S_2$ izbrani izmed matrik $S_W$, $S_B$ in $S_M$. Ker je tu matrika $S_2$ nesingularna in je sestavljena kot produkt matrike in transponiranke te matrike je simetrično pozitivno definitna (posledično so vse lastne vrednosti te matrike večje ali enake 0). Za simetrično pozitivno definitno matriko pa obstaja razcep Choleskega; tako vemo da obstaja spodnjetrikotna matrika $V$ s pozitivnimi elementi na diagonali, da velja:
+z izbiro optimalne preslikave $G$, kjer sta matriki $S_1$ in $S_2$ izbrani izmed matrik $S_W$, $S_B$ in $S_M$. Ko je matrika $S_2$ nesingularna, je sestavljena kot produkt matrike in transponiranke te matrike in je zato simetrično pozitivno definitna (posledično so vse lastne vrednosti te matrike večje ali enake 0). Za simetrično pozitivno definitno matriko pa obstaja razcep Choleskega; tako vemo da obstaja spodnjetrikotna matrika $V$ s pozitivnimi elementi na diagonali, da velja:
 $$ S_2 = V V^T \text{.}
 $$
 

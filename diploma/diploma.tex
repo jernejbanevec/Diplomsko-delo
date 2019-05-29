@@ -827,10 +827,10 @@ z izbiro optimalne preslikave $G$, kjer sta matriki $S_1$ in $S_2$ izbrani izmed
 $$ S_2 = V V^T \text{.}
 $$
 Oglejmo si posplošeni problem lastnih vrednosti za matriki $S_2$ in $S_1$, kjer za ti dve matriki iščemo takšen $\lambda \in \mathbb{R}$ in takšen neničelen vektor $x \in \mathbb{R}^m$, da velja
-$$
+\begin{equation} \label{pos-prob-last-v}
 S_1 x = \lambda S_2 x
 \text{.}
-$$
+\end{equation}
 Če sedaj matriko $S_2$ nadomestimo z matriko $VV^T$, ki jo dobimo iz razcepa Choleskega dobimo
 $$
 S_1 x = \lambda V V^T x = V \lambda V^T x
@@ -856,7 +856,7 @@ $$
 V^{-1} S_1 V^{-T} = Y \Lambda Y^T
 \text{,}
 $$
-kjer je $\Lambda$ diagonalna matrika. S preoblikovanjem zgornje enačbe pa lahko dobimo
+kjer je $\Lambda = diag\left(\lambda_1, \ldots, \lambda_m \right)$ diagonalna matrika. S preoblikovanjem zgornje enačbe pa lahko dobimo
 $$
 S_1 = VY \Lambda Y^TV^T = X \Lambda X^T
 \text{,}
@@ -867,6 +867,67 @@ $$
 S_2 = VV^T = VYY^TV^T = XX^T
 \text{.}
 $$
+Ker ima matrika $X$ inverz, lahko zgornji enačbi tudi obrnemo, tako da je $X^T S_1 X = \Lambda$ in $X^T S_2 X = I_m$.
+Iz posplošenega problema lastnih vrednosti $\textit{\eqref{pos-prob-last-v}}$ lahko vidimo, da sta $\lambda_i$ in $x_i$ ravno lastna vrednosti in lastni vektor za dano lastno vrednost $\lambda_i$ za matriko $S_2^{-1} S_1$. Ker je matrika $S_1$ simetrična pozitivno definitna, vemo, da so vse njene lastne vrednosti $\lambda_i \geq 0$ za $i = 1, \ldots, m$. Z uporabo permutacijskih matrik, lahko matriko $\Lambda$ preuredimo tako, da za  $q := \text{rang} \left( S_1 \right)$ velja $\lambda_1 \geq \ldots \geq \lambda_q > \lambda_{q+1} = \ldots = \lambda_m = 0$.
+
+Optimizacijski kriterij ima tako sledečo obliko
+\begin{equation} \label{pospJ1}
+\begin{split}
+J_1\left(G\right)
+=
+\text{sled} \left( (G^T S_2 G)^{-1} G^T S_1 G \right)
+\\
+=
+\text{sled} \left( (G^T X^{-T}X^{-1} G)^{-1} G^T X^{-T} \Lambda X^{-1} G \right)
+\\
+= 
+\text{sled} \left( (\tilde{G}^T \tilde{G})^{-1} \tilde{G}^T \Lambda \tilde{G} \right)
+\text{,}
+\end{split}
+\end{equation}
+kjer je matrika $\tilde{G} := X^{-1} G \in \mathbb{R}^{m \times \ell}$. Ker vemo, da ima matrik $X$ poln rang, ima matrika $\tilde{G}$ rang enak številu stolpec, torej $\ell$ in tako lahko na njen naredimo $QR$ razcep in tako dobimo matriko $Q \in \mathbb{R}^{m \times \ell}$, ki ima ortonormirane stolpce in nesingularno matriko $R \in \mathbb{R}^{\ell \times \ell}$, da velja $\tilde{G} = QR$. Tako lahko zgornjo enačbo $\textit{\eqref{pospJ1}}$ dodatno preoblikujemo
+\begin{align*}
+J_1(G)
+=
+\text{sled} \left( ((QR)^T QR)^{-1} (QR)^T \Lambda QR \right)
+\\
+=
+\text{sled} \left( (R^T Q^T QR)^{-1} R^T Q^T \Lambda QR \right)
+\\
+=
+\text{sled} \left( (R^T R)^{-1} R^T Q^T \Lambda QR \right)
+\\
+=
+\text{sled} \left( (R)^{-1} Q^T \Lambda QR \right)
+\text{,}
+\end{align*}
+ker pa vemo, da imata podobni matriki enako sled, lahko to matriko z leve množimo z $R$, z desne pa z $R^{-1}$ in tako dobimo
+\begin{align*}
+J_1(G)
+=
+\text{sled} \left(Q^T \Lambda QR  (R)^{-1} \right)
+\\
+=
+\text{sled} \left(Q^T \Lambda Q \right)
+\text{.}
+\end{align*}
+Tako lahko vidimo, da ko smo matriki $S_1$ in $S_2$ enkrat diagonalizirali, je maksimizacija optimizacijskega kriterija odvisna le še od matrik $Q$, ki predstavlja ortonormirano bazo za matriko $X^{-1} G$, torej
+\begin{align*}
+\max_G J_1(G) = \max_{Q^TQ=I} \text{sled} \left(Q^T \Lambda Q \right)
+\text{,}
+\end{align*}
+ker pa vemo, da je sled matrike enaka vsoti lastnih vrednosti in da ima matrika $Q$ ortonormirane stolpce, velja
+\begin{align*}
+\max_{Q^TQ=I} \text{sled} \left(Q^T \Lambda Q \right)
+\\
+\leq
+\lambda_1 + \cdots + \lambda_q
+\\
+\text{sled} \left( S_2^{-1} S_1 \right)
+\text{.}
+\end{align*}
+
+
 \subsection{Posplošitev maksimizacijskega kriterija $sled((S_W^Y)^{-1}S_B^Y)$ za singularno matriko $S_2$}
 
 \section{Algoritem}

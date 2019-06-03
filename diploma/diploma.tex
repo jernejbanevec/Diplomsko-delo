@@ -826,24 +826,24 @@ $$J_1(G) = sled((G^T S_2 G)^{-1} (G^T S_1 G))$$
 z izbiro optimalne preslikave $G$, kjer sta matriki $S_1$ in $S_2$ izbrani izmed matrik $S_W$, $S_B$ in $S_M$. Ko je matrika $S_2$ nesingularna, je sestavljena kot produkt matrike in transponiranke te matrike in je zato simetrično pozitivno definitna (posledično so vse lastne vrednosti te matrike večje ali enake 0). Za simetrično pozitivno definitno matriko pa obstaja razcep Choleskega; tako vemo da obstaja spodnjetrikotna matrika $V$ s pozitivnimi elementi na diagonali, da velja:
 $$ S_2 = V V^T \text{.}
 $$
-Oglejmo si posplošeni problem lastnih vrednosti za matriki $S_2$ in $S_1$, kjer za ti dve matriki iščemo takšen $\lambda \in \mathbb{R}$ in takšen neničelen vektor $x \in \mathbb{R}^m$, da velja
+Oglejmo si posplošeni problem lastnih vrednosti za matriki $S_2$ in $S_1$, kjer za ti dve matriki iščemo takšen $\lambda_i \in \mathbb{R}$ in takšen neničelen vektor $x_i \in \mathbb{R}^m$, da velja
 \begin{equation} \label{pos-prob-last-v}
-S_1 x = \lambda S_2 x
+S_1 x_i = \lambda_i S_2 x_i
 \text{.}
 \end{equation}
 Če sedaj matriko $S_2$ nadomestimo z matriko $VV^T$, ki jo dobimo iz razcepa Choleskega dobimo
 $$
-S_1 x = \lambda V V^T x = V \lambda V^T x
+S_1 x_i = \lambda_i V V^T x_i = V \lambda_i V^T x_i
 \text{,}
 $$
 kar lahko iz leve pomnožimo z $V^{-1}$, saj vemo da za matriko $V$ obstaja inverz, in tako dobimo
 $$
-V^{-1} S_1 x = \lambda V^T x
+V^{-1} S_1 x_i = \lambda_i V^T x_i
 \text{.}
 $$
 Enačbo lahko dodatno razčlenimo
 $$
-V^{-1} S_1 V^{-T} V^T x = \lambda V^T x
+V^{-1} S_1 V^{-T} V^T x_i = \lambda_i V^T x_i
 \text{.}
 $$
 Ker je matrika $S_1$ simetrična, je tudi matrika $V^{-1} S_1 V^{-T}$ simetrična, saj velja
@@ -911,7 +911,7 @@ J_1(G)
 \text{sled} \left(Q^T \Lambda Q \right)
 \text{.}
 \end{align*}
-Tako lahko vidimo, da ko smo matriki $S_1$ in $S_2$ enkrat diagonalizirali, je maksimizacija optimizacijskega kriterija odvisna le še od matrik $Q$, ki predstavlja ortonormirano bazo za matriko $X^{-1} G$, torej
+Tako lahko vidimo, da ko smo matriki $S_1$ in $S_2$ enkrat diagonalizirali, je maksimizacija optimizacijskega kriterija odvisna le še od matrike $Q$, ki predstavlja ortonormirano bazo za matriko $X^{-1} G$, torej
 \begin{align*}
 \max_G J_1(G) = \max_{Q^TQ=I} \text{sled} \left(Q^T \Lambda Q \right)
 \text{,}
@@ -926,7 +926,67 @@ ker pa vemo, da je sled matrike enaka vsoti lastnih vrednosti in da ima matrika 
 \text{sled} \left( S_2^{-1} S_1 \right)
 \text{.}
 \end{align*}
+Za vsak $\ell \geq q$, ima optimizacijski kriterij doseže svojo zgornjo mejo za 
+$$ Q = 
+\begin{bmatrix}
+I_{\ell} \\
+0_{m-\ell, \ell}
+\end{bmatrix}
+\hspace{4mm}
+\text{oziroma za}
+\hspace{4mm}
+G = 
+X 
+\begin{bmatrix}
+I_{\ell} \\
+0_{m-\ell, \ell}
+\end{bmatrix}
+R
+\text{.}
+$$
+Preslikava $G$, za katero maksimizacijski kriterij doseže svoj maksimum pa ni edinstvena, saj za katerokoli nesingularno matriko $W \in \mathbb{R}^{\ell \times \ell}$ velja
+\begin{align*}
+J_1(GW) = 
+\text{sled}\left( (W^T G^T S_2 G W)^{-1} W^T G^T S_1 GW \right)
+\\
+=
+\text{sled}\left( W^{-1}(G^T S_2 G)^{-1}W^{-T} W^T G^T S_1 GW \right)
+\\
+=
+\text{sled}\left( W^{-1}(G^T S_2 G)^{-1}G^T S_1 GW \right)
+\text{,}
+\end{align*}
+ker pa velja, da imata podobni matriki enako sled, lahko zgornjo enačbo iz leve množimo z $W$ in iz desne z $W^{-1}$ in tako dobimo
+\begin{align*}
+\text{sled}\left((G^T S_2 G)^{-1} G^T S_1 GW W^{-1} \right)
+=
+J_1(G)
+\text{.}
+\end{align*}
+V kolikor za nesingularno matriko $W$ izberemo $R^{-1}$ (ta obstaja, saj je $R$ po definiciji nesingularna), je maksimum optimizacijskega kriterija $J_1(G)$ dosežen tudi za 
+$$ G = X 
+\begin{bmatrix}
+I_{\ell} \\
+0_{m-\ell, \ell}
+\end{bmatrix}
+\text{.}
+$$
+Tako smo ugotovili, da za $\ell \geq q = rang(S_1)$ velja
+$$
+\text{sled} \left( (G^T S_2 G)^{-1} G^T S_1 G \right)
+=
+\text{sled} \left( S_2^{-1} S_1 \right)
+\text{,}
+$$
+v kolikor preslikavo $G \in \mathbb{R}^{m \times \ell}$
+sestavimo iz $\ell$ lastnih vektorjev matrike $S_2^{-1} S_1$, ki pripadajo $\ell$ največjim lastnim vrednostim te matrike.
 
+Po ugotovitvi iz prvega poglavja, je matrika $S_2$ lahko singularna le, ko velja $m \leq n$, oziroma, ko število pridobljenih podatkov večje od dimenzije posameznega podatka. V nasprotnem primeru trenutne rešitve za maksimizacijski kriterij ne moremo uporabiti. Za nadaljevanje zapišimo $\lambda_i$ iz enačbe $\textit{\eqref{pos-prob-last-v}}$ kot $\alpha_i^2/\beta_i^2$ in tako se naš problem posploši na
+\begin{equation} \label{alpha-beta}
+\beta_i^2 S_1 x_i = \alpha_i^2 S_2 x_i
+\text{.}
+\end{equation}
+V naslednjem poglavju maksimizacijo maksimizacijskega kriterija $J_1(G)$ razširimo tudi na primer, ko je matrika $S_2$ singularna.
 
 \subsection{Posplošitev maksimizacijskega kriterija $sled((S_W^Y)^{-1}S_B^Y)$ za singularno matriko $S_2$}
 

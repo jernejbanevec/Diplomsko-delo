@@ -820,7 +820,7 @@ Ker pa za rang matrike velja, da je rang produkta dveh matrik navzgor omejen z m
 \section{Matematična rešitev problema}
 V tem odstavku prikažemo uporabo posplošenega singularnega razcepa v namen razširjene uporabe posplošene diskriminantne analize.
  
-\subsection{Optimizacija optimizacijskega kriterija $J_1 = sled(S_2^{-1} S_1)$ za nesingularno matriko $S_2$}
+\subsection{Optimizacija optimizacijskega kriterija $J_1 = sled({S^\ell_2}^{-1} S^\ell_1)$ za nesingularno matriko $S_2$}
 Tu izhajamo iz optimizacije optimizacijskega kriterija 
 $$J_1(G) = sled((G^T S_2 G)^{-1} (G^T S_1 G))$$
 z izbiro optimalne preslikave $G$, kjer sta matriki $S_1$ in $S_2$ izbrani izmed matrik $S_W$, $S_B$ in $S_M$. Ko je matrika $S_2$ nesingularna, je sestavljena kot produkt matrike in transponiranke te matrike in je zato simetrično pozitivno definitna (posledično so vse lastne vrednosti te matrike večje ali enake 0). Za simetrično pozitivno definitno matriko pa obstaja razcep Choleskega; tako vemo da obstaja spodnjetrikotna matrika $V$ s pozitivnimi elementi na diagonali, da velja:
@@ -986,9 +986,75 @@ Po ugotovitvi iz prvega poglavja, je matrika $S_2$ lahko singularna le, ko velja
 \beta_i^2 S_1 x_i = \alpha_i^2 S_2 x_i
 \text{.}
 \end{equation}
-V naslednjem poglavju maksimizacijo maksimizacijskega kriterija $J_1(G)$ razširimo tudi na primer, ko je matrika $S_2$ singularna.
+V naslednjem poglavju maksimizacijo maksimizacijskega kriterija $J_1(G)$ posplošimo tudi na primer, ko je matrika $S_2$ singularna.
 
-\subsection{Posplošitev maksimizacijskega kriterija $sled((S_W^Y)^{-1}S_B^Y)$ za singularno matriko $S_2$}
+\subsection{Posplošitev maksimizacijskega kriterija $sled((S^\ell_W)^{-1}S^\ell_B)$ za singularno matriko $S_2$}
+
+V nadaljevanju vzemimo maksimizacijo prejšnjega optimizacijskega kriterija $J_1$, kjer matrik $S_1$ in $S_2$ ne izbiramo več, temveč te določimo: $S_1 = S_B$ in $S_2 = S_W$. Želimo poiskati preslikavo $G$, ki zadošča
+\begin{equation} \label{pogoji-G}
+max_G \text{sled} \left( G^T S_W G \right)
+\hspace{4mm}
+\text{in}
+\hspace{4mm}
+min_G \text{sled} \left( G^T S_B G \right)
+\text{.}
+\end{equation}
+Za iskanje $x_i$-jev iz enačbe \textit{\eqref{alpha-beta}} uporabimo posplošeni singularni razcep. V ta namen naredimo drugo posplošitev singularnega razcepa na matriki 
+$K := 
+\begin{bmatrix}
+H_B^T \\
+H_W^T
+\end{bmatrix}
+$.
+Tako dobimo takšne ortogonalne matrike $U \in \mathbb{R}^{n \times n}$, $V \in \mathbb{R}^{n \times n}$ in $X \in \mathbb{R}^{m \times m}$ ter takšni matriki $\Sigma_A$ in $\Sigma_B$, da velja
+$$
+H_B^T = U \left(\Sigma_A, \hspace{2mm} 0 \right) X^{-1}
+\hspace{4mm}
+\text{in}
+\hspace{4mm}
+H_W^T = V \left(\Sigma_B, \hspace{2mm} 0 \right) X^{-1}
+\text{,}
+$$
+kjer sta matriki $\Sigma_A$ in $\Sigma_B$ sledečih oblik
+$
+\Sigma_A = 
+\begin{bmatrix} 
+I_r &  & \\
+ & D_A & \\
+ & & 0_{n-r-s, t-r-s}  
+\end{bmatrix}
+$ in
+$
+\Sigma_B =
+\begin{bmatrix}
+0_{n-t+r, r} & & \\ 
+ & D_B & \\ 
+ & & I_{k-r-s, k-r-s}
+\end{bmatrix}
+$, matriki $D_A$ in $D_B$ sta pa naslednji
+$
+D_A =
+\begin{bmatrix}
+\alpha_{r+1} & & \\
+ & \ddots & \\
+ & & \alpha_{r+s}
+\end{bmatrix}
+$ in 
+$
+D_B = 
+\begin{bmatrix}
+\beta_{r+1} & & \\
+ & \ddots & \\
+ & & \beta_{r+s}
+\end{bmatrix}
+$, kjer je
+$r = rang(K) - rang(K_B)$,  $s = rang(K_A) + rang(K_B) - rang(K)$ ter $k = rang(K)$. Za elemente matrik $D_A$ in $D_B$ pa velja
+$1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0$ in $ 0 < \beta_{r+1} \leq \ldots \leq \beta_{r+s} < 1$.
+Sedaj si podrobneje oglejmo matriki $H_B H_B^T$ in $H_W H_W^T$. Od prej vemo, da je $S_B = H_B H_B^T$ in $S_W = H_W H_W^T$.
+
+
+
+Najprej bomo pogledali primer, ko je matrika $H_W$ singularna, nato pa bomo potegnili vzporednice med to metodo in metodo iz prejšnjega poglavja, ki velja le za nesingularno matriko $S_W$.
 
 \section{Algoritem}
 

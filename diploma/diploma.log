@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  5 JUN 2019 22:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  10 JUN 2019 23:03
 entering extended mode
 **./diploma.tex
 (diploma.tex
@@ -300,28 +300,28 @@ b/m/n/10 R[]$
 
 [8] [9] [10] [11]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 823.
+(Font)              <12> on input line 827.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 823.
+(Font)              <8> on input line 827.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 823.
+(Font)              <6> on input line 827.
 
-Overfull \hbox (5.72682pt too wide) in paragraph at lines 823--823
+Overfull \hbox (5.72682pt too wide) in paragraph at lines 827--827
 []\T1/lmr/bx/n/12 Optimizacija op-ti-mi-za-cij-skega kri-te-rija $\OML/lmm/m/it
 /12 J[] \OT1/lmr/m/n/12 = \OML/lmm/m/it/12 sled\OT1/lmr/m/n/12 ([][]\OML/lmm/m/
 it/12 S[]\OT1/lmr/m/n/12 )$
  []
 
-[12] [13] [14] [15] [16] [17] (diploma.aux)
+[12] [13] [14] [15] [16] [17] [18] [19] (diploma.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2342 strings out of 492970
- 30295 string characters out of 3126149
- 113823 words of memory out of 3000000
- 6183 multiletter control sequences out of 15000+200000
+ 2346 strings out of 492970
+ 30336 string characters out of 3126149
+ 113862 words of memory out of 3000000
+ 6187 multiletter control sequences out of 15000+200000
  65445 words of font info for 57 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  27i,23n,27p,1156b,383s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -350,9 +350,9 @@ pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lm
 sy7.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
 m/lmsy8.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb>
-Output written on diploma.pdf (17 pages, 304244 bytes).
+Output written on diploma.pdf (19 pages, 317922 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
+ 143 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

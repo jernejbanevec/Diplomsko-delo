@@ -535,7 +535,11 @@ $$r = rang(K) - rang(K_B) \hspace{4mm} \text{in} \hspace{4mm} s = rang(K_A) + ra
 $0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ in $0_B \in \mathbb{R}^{(n-k+r) \times r}$ ničelni matriki, ki imata lahko tudi ničelno število vrstic ali stolpcev, matriki
 $D_A = diag(\alpha_{r+1},..., \alpha_{r+s})$ in $D_B = diag(\beta_{r+1},..., \beta_{r+s})$ pa diagonalni matriki, ki zadoščata pogoju
 $$1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0 \hspace{4mm} \text{in} \hspace{4mm} 0 < \beta_{r+1} \leq \ldots \leq \beta_{r+s} < 1$$
-pri $\alpha_i^2 + \beta_i^2 = 1$ za $ i = r+1,\ldots, r+s$.
+pri
+\begin{equation} \label{alpha+beta-GSVD}
+\alpha_i^2 + \beta_i^2 = 1 \hspace{3mm} \text{za} \hspace{3mm} i = r+1,\ldots, r+s
+\text{.}
+\end{equation}
 \end{izrek}
 % !!!!! Dokaz druge posplošitve sing. razcepa !!!!!!!!
 \begin{proof}
@@ -1021,13 +1025,13 @@ $
 \begin{bmatrix} 
 I_r &  & \\
  & D_A & \\
- & & 0_{n-r-s, t-r-s}  
+ & & 0_{n-r-s, k-r-s}  
 \end{bmatrix}
 $ in
 $
 \Sigma_B =
 \begin{bmatrix}
-0_{n-t+r, r} & & \\ 
+0_{n-k+r, r} & & \\ 
  & D_B & \\ 
  & & I_{k-r-s, k-r-s}
 \end{bmatrix}
@@ -1051,10 +1055,112 @@ $, kjer je
 $r = rang(K) - rang(K_B)$,  $s = rang(K_A) + rang(K_B) - rang(K)$ ter $k = rang(K)$. Za elemente matrik $D_A$ in $D_B$ pa velja
 $1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0$ in $ 0 < \beta_{r+1} \leq \ldots \leq \beta_{r+s} < 1$.
 Sedaj si podrobneje oglejmo matriki $H_B H_B^T$ in $H_W H_W^T$. Od prej vemo, da je $S_B = H_B H_B^T$ in $S_W = H_W H_W^T$.
+Za produkt matrik $H_B H_B^T$ po zgornjem razcepu velja
+\begin{align*}
+H_B H_B^T =
+X^{-T}
+\begin{bmatrix}
+\Sigma_A^T \\
+0^T
+\end{bmatrix}
+U^T
+U \left[\Sigma_A, \hspace{2mm} 0 \right] X^{-1}
+\\
+= X^{-T}
+\begin{bmatrix}
+\Sigma_A^T \Sigma_A & 0 \\
+0 & 0
+\end{bmatrix}
+X^{-1} \text{,}
+\end{align*}
+kjer za matrika $\Sigma_A^T \Sigma_A \in \mathbb{R}^{k \times k}$ enaka diagonalni matriki $\text{diag}\left(\alpha_1^2, \ldots, \alpha_t^2 \right)$. V kolikor tu gledamo le $i$-ti stolpec ortogonalne matrike $X$, ki ga označimo z $x_i$ ter dodatno definiramo $\alpha_i = 0$ za $i = k+1, \ldots, m$, za $i = 1, 2, \ldots, m$ dobimo
+$$
+x_i^T H_B H_B^T x_i = \alpha_i^2
+\text{,}
+$$
+če pa to enačbo množimo z desne z $x_i$ dobimo
+\begin{equation} \label{H_B}
+H_B H_B^T x_i = \alpha_i^2 x_i
+\text{.}
+\end{equation}
+Za produkt matrik $H_W H_W^T$ po podobnem izračunu kot za $H_B H_B^T$ velja
+\begin{align*}
+H_W H_W^T =
+X^{-T}
+\begin{bmatrix}
+\Sigma_B^T \Sigma_B & 0 \\
+0 & 0
+\end{bmatrix}
+X^{-1} \text{,}
+\end{align*}
+prav tako pa velja tudi 
+\begin{equation} \label{H_W}
+H_W H_W^T x_i = \beta_i^2 x_i
+\text{.}
+\end{equation}
+Tu smo dodatno definirali $\beta_i = 0$ za $i = k+1, \ldots, m$.
+
+\textbf{-- DOPOLNI!}
+
+Če združimo enačbi \textit{\eqref{H_W}} in \textit{\eqref{H_B}}, dobimo enačbo
+$$
+\frac{1}{\beta_i^2} H_W H_W^T x_i = \frac{1}{\alpha_i^2} H_B H_B^T x_i
+\text{,}
+$$
+kar se preoblikje v
+\begin{equation} \label{alpha-beta-1}
+\alpha_i^2 H_W H_W^T x_i = \beta_i^2 H_B H_B^T x_i
+\text{.}
+\end{equation}
+Tako dobim enak problem kot v \textit{\eqref{alpha-beta}}.
+Najprej si bomo pogledali primer rešitve tega problema za singularno matriko $H_W$, nato pa bomo potegnili vzporednice med to metodo in metodo iz prejšnjega poglavja, ki velja le za nesingularno matriko $S_W$.
+
+\subsubsection{Matrika $H_W$ nepolnega ranga}
+Do tega primera, ko je matrika $H_W$ nepolnega ranga pride vedno, ko velja $m>n$. Tu tako ne moremo definirati lastnih vektorjev matrike $S_W^{-1} S_B$ in tako klasična diskriminantna analiza propade. Zamislimo si, da imamo posplošeni singularni vektor $x_i$, ki leži v jedru preslikave $S_W$ (torej $x_i \in \ker (S_W)$).  Iz \textit{\eqref{alpha-beta}} vidimo, da potem velja ena izmed možnosti: ta vektor leži tudi v jedru preslikave $S_B$ ali pa je pripadajoča singularna vrednost $\beta_i$ enaka 0.
+
+Tako ločimo obe možnosti:
+\begin{enumerate}
+\item{$x_i \in \ker (S_W) \cap \ker (S_B)$}
+
+V tem primeru je enačbi \textit{\eqref{alpha-beta}} zadoščeno za poljuba $\alpha_i$ in $\beta_i$. To bo primer za $m-k$ desnih stolpcev preslikave $X$ (ti stolpci so očitno v jedru preslikave $S_W$, saj se po \textit{\eqref{eq:5}} preslikajo v 0) Premislimo ali se nam te stolpce preslikave $X$ splača vključiti v preslikavo $G$. Velja:
+$$
+\text{sled}(G^T S_B G) = \sum_j g_j^T S_B g_j
+\hspace{2mm}
+\text{in}
+\hspace{2mm}
+\text{sled}(G^T S_W G) = \sum_j g_j^T S_W g_j
+\text{,}
+$$
+kjer $g_j$ predstavlja $j$-ti stolpec preslikave $G$. Ke velja $x_i^T S_W x_i = 0$ in $x_i^T S_B x_i = 0$, dodajanje teh stolpcev v preslikavo $G$ ne bo imelo vpliva niti na maksimizacijo niti na minimizacijo iz \textit{\eqref{pogoji-G}}. Posledično teh stolpcev $x_i$ ne vključimo v $G$.
+
+\item{$x_i \in \ker (S_W) - \ker (S_B) 	\Rightarrow \beta_i = 0$}
+
+Iz $\beta_i = 0$ in \textit{\eqref{alpha+beta-GSVD}} sledi, da je $\alpha_i = 1$, iz česar sledi $\lambda_i = \infty$. Ti $x_i$-ji bodo predstavljali najbolj leve stolpce matike $X$. Če te stolpce vključimo v preslikavo $G$, bomo na pogoje iz \textit{\eqref{pogoji-G}} vplivali tako, da bomo $\text{sled}(G^T S_B G)$ povečali, medtem, ko bo $\text{sled}(G^T S_W G)$ ostala nespremenjena. Tako lahko skledemo, da te stolpce vključimo v $G$.
+\end{enumerate}
+Tako lahko zaključimo, da tudi ko je matrika $S_W$ singularna, preslikavo $G \in \mathbb{R}^{m \times \ell}$ sestavimo iz $\ell$ levih stolpcev matrike $X$.
 
 
 
-Najprej bomo pogledali primer, ko je matrika $H_W$ singularna, nato pa bomo potegnili vzporednice med to metodo in metodo iz prejšnjega poglavja, ki velja le za nesingularno matriko $S_W$.
+\subsubsection{Matrika $H_W$ polnega ranga}
+V tem primeru bo zagotovo veljalo $n > m$. Matika $H_W$ bo v tem primeru imela poln stolpični rang, torej $\text{rang}(H_W) = m$, iz česar pa sledi $r = m - m = 0$, $s = \text{rang}(H_B^T) + m - m = \text{rang}(H_B^T)$ ter $k = m$. Od tod sledi $\beta_i \neq 0 \hspace{1mm} \forall \hspace{1mm} i = 1, \ldots, m \text{.}$ Posledično lahko v enačbi \textit{\eqref{alpha-beta-1}} delimo z $\beta_i$ in dobimo 
+$$
+\frac{\alpha_i^2}{\beta_i^2} H_W H_W^T x_i =  H_B H_B^T x_i
+\text{.}
+$$
+Ker pa nam posplošeni singularni razcep vrne pare lastnih singularnih vrednosti $(\alpha_i, \beta_i)$ urejene v sledečem vrstnem redu $1 > \alpha_{r+1} \geq \alpha_{r+s} > 0$ in $0 < \beta_{r+1} \leq \beta_{r+s} < 1$, velja, da so koeficienti $\lambda_i = \frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu. Ker za poljuben $i \in {1, \ldots, s}$ velja
+$$
+\frac{\alpha_{r+i}}{\beta_{r+i}} = 
+\frac{\alpha_{r+i}}{\beta_{r+i+1}} \frac{\beta_{r+i + 1}}{\beta_{r+i}} 
+\geq 
+\frac{\alpha_{r+i}}{\beta_{r+i+1}}
+\geq
+\frac{\alpha_{r+i+1}}{\beta_{r+i+1}}
+\text{,}
+$$
+so koeficienti $\frac{\alpha_i}{\beta_i}$ nenaraščajoči, dodatno pa iz $\alpha_i \geq 0$ in $\beta_i \geq 0$ za $i = 1, \ldots, m$ sledi, da so tudi koeficienti $\frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu. Sledi, da potrebujemo le prvih $k - 1$ stolpcev matrike $X$.
+
+\textbf{-- Zakaj ravno k-1?}
+
 
 \section{Algoritem}
 

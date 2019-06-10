@@ -1113,7 +1113,27 @@ kar se preoblikje v
 \text{.}
 \end{equation}
 Tako dobim enak problem kot v \textit{\eqref{alpha-beta}}.
-Najprej si bomo pogledali primer rešitve tega problema za singularno matriko $H_W$, nato pa bomo potegnili vzporednice med to metodo in metodo iz prejšnjega poglavja, ki velja le za nesingularno matriko $S_W$.
+Najprej bomo potegnili vzporednice med to metodo in metodo iz prejšnjega poglavja, ki velja le za nesingularno matriko $S_W$, nato pa si bomo pogledali primer rešitve tega problema za singularno matriko $H_W$.
+
+\subsubsection{Matrika $H_W$ polnega ranga}
+V tem primeru bo zagotovo veljalo $n > m$. Matika $H_W$ bo v tem primeru imela poln stolpični rang, torej $\text{rang}(H_W) = m$, iz česar pa sledi $r = m - m = 0$, $s = \text{rang}(H_B^T) + m - m = \text{rang}(H_B^T)$ ter $k = m$. Od tod sledi $\beta_i \neq 0 \hspace{1mm} \forall \hspace{1mm} i = 1, \ldots, m \text{.}$ Posledično lahko v enačbi \textit{\eqref{alpha-beta-1}} delimo z $\beta_i$ in dobimo 
+$$
+\frac{\alpha_i^2}{\beta_i^2} H_W H_W^T x_i =  H_B H_B^T x_i
+\text{.}
+$$
+Ker pa nam posplošeni singularni razcep vrne pare lastnih singularnih vrednosti $(\alpha_i, \beta_i)$ urejene v sledečem vrstnem redu $1 > \alpha_{r+1} \geq \alpha_{r+s} > 0$ in $0 < \beta_{r+1} \leq \beta_{r+s} < 1$, velja, da so koeficienti $\lambda_i = \frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu. Ker za poljuben $i \in {1, \ldots, s}$ velja
+$$
+\frac{\alpha_{r+i}}{\beta_{r+i}} = 
+\frac{\alpha_{r+i}}{\beta_{r+i+1}} \frac{\beta_{r+i + 1}}{\beta_{r+i}} 
+\geq 
+\frac{\alpha_{r+i}}{\beta_{r+i+1}}
+\geq
+\frac{\alpha_{r+i+1}}{\beta_{r+i+1}}
+\text{,}
+$$
+so koeficienti $\frac{\alpha_i}{\beta_i}$ nenaraščajoči, dodatno pa iz $\alpha_i \geq 0$ in $\beta_i \geq 0$ za $i = 1, \ldots, m$ sledi, da so tudi koeficienti $\frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu. Sledi, da potrebujemo le prvih $k - 1$ stolpcev matrike $X$.
+
+\textbf{-- Zakaj ravno k-1?}
 
 \subsubsection{Matrika $H_W$ nepolnega ranga}
 Do tega primera, ko je matrika $H_W$ nepolnega ranga pride vedno, ko velja $m>n$. Tu tako ne moremo definirati lastnih vektorjev matrike $S_W^{-1} S_B$ in tako klasična diskriminantna analiza propade. Zamislimo si, da imamo posplošeni singularni vektor $x_i$, ki leži v jedru preslikave $S_W$ (torej $x_i \in \ker (S_W)$).  Iz \textit{\eqref{alpha-beta}} vidimo, da potem velja ena izmed možnosti: ta vektor leži tudi v jedru preslikave $S_B$ ali pa je pripadajoča singularna vrednost $\beta_i$ enaka 0.
@@ -1138,28 +1158,6 @@ kjer $g_j$ predstavlja $j$-ti stolpec preslikave $G$. Ke velja $x_i^T S_W x_i = 
 Iz $\beta_i = 0$ in \textit{\eqref{alpha+beta-GSVD}} sledi, da je $\alpha_i = 1$, iz česar sledi $\lambda_i = \infty$. Ti $x_i$-ji bodo predstavljali najbolj leve stolpce matike $X$. Če te stolpce vključimo v preslikavo $G$, bomo na pogoje iz \textit{\eqref{pogoji-G}} vplivali tako, da bomo $\text{sled}(G^T S_B G)$ povečali, medtem, ko bo $\text{sled}(G^T S_W G)$ ostala nespremenjena. Tako lahko skledemo, da te stolpce vključimo v $G$.
 \end{enumerate}
 Tako lahko zaključimo, da tudi ko je matrika $S_W$ singularna, preslikavo $G \in \mathbb{R}^{m \times \ell}$ sestavimo iz $\ell$ levih stolpcev matrike $X$.
-
-
-
-\subsubsection{Matrika $H_W$ polnega ranga}
-V tem primeru bo zagotovo veljalo $n > m$. Matika $H_W$ bo v tem primeru imela poln stolpični rang, torej $\text{rang}(H_W) = m$, iz česar pa sledi $r = m - m = 0$, $s = \text{rang}(H_B^T) + m - m = \text{rang}(H_B^T)$ ter $k = m$. Od tod sledi $\beta_i \neq 0 \hspace{1mm} \forall \hspace{1mm} i = 1, \ldots, m \text{.}$ Posledično lahko v enačbi \textit{\eqref{alpha-beta-1}} delimo z $\beta_i$ in dobimo 
-$$
-\frac{\alpha_i^2}{\beta_i^2} H_W H_W^T x_i =  H_B H_B^T x_i
-\text{.}
-$$
-Ker pa nam posplošeni singularni razcep vrne pare lastnih singularnih vrednosti $(\alpha_i, \beta_i)$ urejene v sledečem vrstnem redu $1 > \alpha_{r+1} \geq \alpha_{r+s} > 0$ in $0 < \beta_{r+1} \leq \beta_{r+s} < 1$, velja, da so koeficienti $\lambda_i = \frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu. Ker za poljuben $i \in {1, \ldots, s}$ velja
-$$
-\frac{\alpha_{r+i}}{\beta_{r+i}} = 
-\frac{\alpha_{r+i}}{\beta_{r+i+1}} \frac{\beta_{r+i + 1}}{\beta_{r+i}} 
-\geq 
-\frac{\alpha_{r+i}}{\beta_{r+i+1}}
-\geq
-\frac{\alpha_{r+i+1}}{\beta_{r+i+1}}
-\text{,}
-$$
-so koeficienti $\frac{\alpha_i}{\beta_i}$ nenaraščajoči, dodatno pa iz $\alpha_i \geq 0$ in $\beta_i \geq 0$ za $i = 1, \ldots, m$ sledi, da so tudi koeficienti $\frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu. Sledi, da potrebujemo le prvih $k - 1$ stolpcev matrike $X$.
-
-\textbf{-- Zakaj ravno k-1?}
 
 
 \section{Algoritem}

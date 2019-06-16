@@ -817,17 +817,17 @@ prav tako pa tudi matriko $S_M$
 $$S_M = H_M H_M^T \text{.}$$
 
 S pomočjo tega razcepa lahko tudi na drugačen način pokažemo, da je matrika $S_W$, kadar velja $m>n$, singularna. Razvidno je namreč, da je ta matrika $S_W$ definirana kot produkt dveh matrik, kjer je matrika $H_W$ dimenzije $m \times n$, matrika $H_W^T$ pa dimenzije $n \times m$. V kolikor velja $m>n$, sta tako ti dve matrike največ ranga $n$.
-Ker pa za rang matrike velja, da je rang produkta dveh matrik navzgor omejen z manjšim izmed rangov teh dveh posameznih matrik ($rang(AB) \leq \min(rang(A), rang(B)$), je posledično tudi matrika $S_W$ največ ranga $n$ in torej očitno singularna.
+Ker pa za rang matrike velja, da je rang produkta dveh matrik navzgor omejen z manjšim izmed rangov teh dveh posameznih matrik ($\text{rang}(AB) \leq \min(\text{rang}(A), \text{rang}(B)$), je posledično tudi matrika $S_W$ največ ranga $n$ in torej očitno singularna.
 
-\textbf{-- Tu mogoče dopiši glede matrik $K_A$ in $K_B$}
+%\textbf{-- Tu mogoče dopiši glede matrik $K_A$ in $K_B$}
 
 \section{Matematična rešitev problema}
 V tem odstavku prikažemo uporabo posplošenega singularnega razcepa v namen razširjene uporabe posplošene diskriminantne analize.
  
-\subsection{Optimizacija optimizacijskega kriterija $J_1 = sled({S^\ell_2}^{-1} S^\ell_1)$ za nesingularno matriko $S_2$}
+\subsection{Optimizacija optimizacijskega kriterija $J_1 = \text{sled}({S^\ell_2}^{-1} S^\ell_1)$ za nesingularno matriko $S_2$}
 Tu izhajamo iz optimizacije optimizacijskega kriterija 
-$$J_1(G) = sled((G^T S_2 G)^{-1} (G^T S_1 G))$$
-z izbiro optimalne preslikave $G$, kjer sta matriki $S_1$ in $S_2$ izbrani izmed matrik $S_W$, $S_B$ in $S_M$. Ko je matrika $S_2$ nesingularna, je sestavljena kot produkt matrike in transponiranke te matrike in je zato simetrično pozitivno definitna (posledično so vse lastne vrednosti te matrike večje ali enake 0). Za simetrično pozitivno definitno matriko pa obstaja razcep Choleskega; tako vemo da obstaja spodnjetrikotna matrika $V$ s pozitivnimi elementi na diagonali, da velja:
+$$J_1(G) = \text{sled}\left((G^T S_2 G)^{-1} (G^T S_1 G)\right)$$
+z izbiro optimalne preslikave $G$, kjer sta matriki $S_1$ in $S_2$ izbrani izmed matrik $S_W$, $S_B$ in $S_M$. Ko je matrika $S_2$ nesingularna, je sestavljena kot produkt matrike in transponiranke te matrike in je zato simetrično pozitivno definitna (posledično so vse lastne vrednosti te matrike večje ali enake 0). Za simetrično pozitivno definitno matriko pa obstaja razcep Choleskega; tako vemo da obstaja spodnjetrikotna matrika $V$ s pozitivnimi elementi na diagonali, da velja
 $$ S_2 = V V^T \text{.}
 $$
 Oglejmo si posplošeni problem lastnih vrednosti za matriki $S_2$ in $S_1$, kjer za ti dve matriki iščemo takšen $\lambda_i \in \mathbb{R}$ in takšen neničelen vektor $x_i \in \mathbb{R}^m$, da velja
@@ -860,19 +860,20 @@ $$
 V^{-1} S_1 V^{-T} = Y \Lambda Y^T
 \text{,}
 $$
-kjer je $\Lambda = diag\left(\lambda_1, \ldots, \lambda_m \right)$ diagonalna matrika. S preoblikovanjem zgornje enačbe pa lahko dobimo
+kjer je $\Lambda = \text{diag}\left(\lambda_1, \ldots, \lambda_m \right)$ diagonalna matrika. S preoblikovanjem zgornje enačbe pa lahko dobimo
 $$
 S_1 = VY \Lambda Y^TV^T = X \Lambda X^T
 \text{,}
 $$
 kjer smo dodatno definirali $X := VY$.
-Matriko $S_2$ pa preoblikujemo
+Poleg matrike $S_1$ pa lahko preoblikujemo tudi matriko $S_2$
 $$
 S_2 = VV^T = VYY^TV^T = XX^T
 \text{.}
 $$
 Ker ima matrika $X$ inverz, lahko zgornji enačbi tudi obrnemo, tako da je $X^T S_1 X = \Lambda$ in $X^T S_2 X = I_m$.
-Iz posplošenega problema lastnih vrednosti $\textit{\eqref{pos-prob-last-v}}$ lahko vidimo, da sta $\lambda_i$ in $x_i$ ravno lastna vrednosti in lastni vektor za dano lastno vrednost $\lambda_i$ za matriko $S_2^{-1} S_1$. Ker je matrika $S_1$ simetrična pozitivno definitna, vemo, da so vse njene lastne vrednosti $\lambda_i \geq 0$ za $i = 1, \ldots, m$. Z uporabo permutacijskih matrik, lahko matriko $\Lambda$ preuredimo tako, da za  $q := \text{rang} \left( S_1 \right)$ velja $\lambda_1 \geq \ldots \geq \lambda_q > \lambda_{q+1} = \ldots = \lambda_m = 0$.
+
+Iz posplošenega problema lastnih vrednosti $\textit{\eqref{pos-prob-last-v}}$ lahko vidimo, da sta $\lambda_i$ in $x_i$ ravno lastna vrednosti in lastni vektor za dano lastno vrednost $\lambda_i$ za matriko $S_2^{-1} S_1$. Ker je matrika $S_1$ simetrična pozitivno definitna, vemo, da so vse njene lastne vrednosti $\lambda_i \geq 0$ za $i = 1, \ldots, m$. Z uporabo permutacijskih matrik, lahko matriko $\Lambda$ preuredimo tako, da za  $q = \text{rang} \left( S_1 \right)$ velja $\lambda_1 \geq \ldots \geq \lambda_q > \lambda_{q+1} = \ldots = \lambda_m = 0$.
 
 Optimizacijski kriterij ima tako sledečo obliko
 \begin{equation} \label{pospJ1}
@@ -889,7 +890,7 @@ J_1\left(G\right)
 \text{,}
 \end{split}
 \end{equation}
-kjer je matrika $\tilde{G} := X^{-1} G \in \mathbb{R}^{m \times \ell}$. Ker vemo, da ima matrik $X$ poln rang, ima matrika $\tilde{G}$ rang enak številu stolpec, torej $\ell$ in tako lahko na njen naredimo $QR$ razcep in tako dobimo matriko $Q \in \mathbb{R}^{m \times \ell}$, ki ima ortonormirane stolpce in nesingularno matriko $R \in \mathbb{R}^{\ell \times \ell}$, da velja $\tilde{G} = QR$. Tako lahko zgornjo enačbo $\textit{\eqref{pospJ1}}$ dodatno preoblikujemo
+kjer je matrika $\tilde{G} := X^{-1} G \in \mathbb{R}^{m \times \ell}$. Ker vemo, da ima matrika $X$ poln rang, ima matrika $\tilde{G}$ rang enak številu stolpcev, torej $\ell$, in tako lahko na njej naredimo $QR$ razcep in tako dobimo matriko $Q \in \mathbb{R}^{m \times \ell}$, ki ima ortonormirane stolpce in nesingularno matriko $R \in \mathbb{R}^{\ell \times \ell}$, da velja $\tilde{G} = QR$. Tako lahko zgornjo enačbo $\textit{\eqref{pospJ1}}$ dodatno preoblikujemo
 \begin{align*}
 J_1(G)
 =
@@ -902,10 +903,10 @@ J_1(G)
 \text{sled} \left( (R^T R)^{-1} R^T Q^T \Lambda QR \right)
 \\
 =
-\text{sled} \left( (R)^{-1} Q^T \Lambda QR \right)
+\text{sled} \left( R^{-1} Q^T \Lambda QR \right)
 \text{,}
 \end{align*}
-ker pa vemo, da imata podobni matriki enako sled, lahko to matriko z leve množimo z $R$, z desne pa z $R^{-1}$ in tako dobimo
+ker pa vemo, da imata podobni matriki enako sled, lahko to matriko množimo z $R$ iz leve in z $R^{-1}$ iz desne. Tako dobimo
 \begin{align*}
 J_1(G)
 =
@@ -918,9 +919,9 @@ J_1(G)
 Tako lahko vidimo, da ko smo matriki $S_1$ in $S_2$ enkrat diagonalizirali, je maksimizacija optimizacijskega kriterija odvisna le še od matrike $Q$, ki predstavlja ortonormirano bazo za matriko $X^{-1} G$, torej
 \begin{align*}
 \max_G J_1(G) = \max_{Q^TQ=I} \text{sled} \left(Q^T \Lambda Q \right)
-\text{,}
+\text{.}
 \end{align*}
-ker pa vemo, da je sled matrike enaka vsoti lastnih vrednosti in da ima matrika $Q$ ortonormirane stolpce, velja
+Ker pa vemo, da je sled matrike enaka vsoti lastnih vrednosti in da ima matrika $Q$ ortonormirane stolpce, velja
 \begin{align*}
 \max_{Q^TQ=I} \text{sled} \left(Q^T \Lambda Q \right)
 \\
@@ -930,7 +931,7 @@ ker pa vemo, da je sled matrike enaka vsoti lastnih vrednosti in da ima matrika 
 \text{sled} \left( S_2^{-1} S_1 \right)
 \text{.}
 \end{align*}
-Za vsak $\ell \geq q$, ima optimizacijski kriterij doseže svojo zgornjo mejo za 
+Za vsak $\ell \geq q$ optimizacijski kriterij doseže svoj maksimum za 
 $$ Q = 
 \begin{bmatrix}
 I_{\ell} \\
@@ -948,7 +949,7 @@ I_{\ell} \\
 R
 \text{.}
 $$
-Preslikava $G$, za katero maksimizacijski kriterij doseže svoj maksimum pa ni edinstvena, saj za katerokoli nesingularno matriko $W \in \mathbb{R}^{\ell \times \ell}$ velja
+Preslikava $G$, za katero maksimizacijski kriterij doseže svoj maksimum, pa ni edinstvena, saj za katerokoli nesingularno matriko $W \in \mathbb{R}^{\ell \times \ell}$ velja
 \begin{align*}
 J_1(GW) = 
 \text{sled}\left( (W^T G^T S_2 G W)^{-1} W^T G^T S_1 GW \right)
@@ -960,7 +961,7 @@ J_1(GW) =
 \text{sled}\left( W^{-1}(G^T S_2 G)^{-1}G^T S_1 GW \right)
 \text{,}
 \end{align*}
-ker pa velja, da imata podobni matriki enako sled, lahko zgornjo enačbo iz leve množimo z $W$ in iz desne z $W^{-1}$ in tako dobimo
+ker pa velja, da imata podobni matriki enako sled, lahko zgornjo enačbo množimo iz leve z $W$ in iz desne z $W^{-1}$ in tako dobimo
 \begin{align*}
 \text{sled}\left((G^T S_2 G)^{-1} G^T S_1 GW W^{-1} \right)
 =
@@ -990,17 +991,17 @@ Po ugotovitvi iz prvega poglavja, je matrika $S_2$ lahko singularna le, ko velja
 \beta_i^2 S_1 x_i = \alpha_i^2 S_2 x_i
 \text{.}
 \end{equation}
-V naslednjem poglavju maksimizacijo maksimizacijskega kriterija $J_1(G)$ posplošimo tudi na primer, ko je matrika $S_2$ singularna.
+V naslednjem poglavju maksimizacijo optimizacijskega kriterija $J_1(G)$ posplošimo tudi na primer, ko je matrika $S_2$ singularna.
 
-\subsection{Posplošitev maksimizacijskega kriterija $sled((S^\ell_W)^{-1}S^\ell_B)$ za singularno matriko $S_2$}
+\subsection{Posplošitev optimizacijskega kriterija $J_1(G) = \text{sled}((S^\ell_W)^{-1}S^\ell_B)$ za singularno matriko $S_2$}
 
 V nadaljevanju vzemimo maksimizacijo prejšnjega optimizacijskega kriterija $J_1$, kjer matrik $S_1$ in $S_2$ ne izbiramo več, temveč te določimo: $S_1 = S_B$ in $S_2 = S_W$. Želimo poiskati preslikavo $G$, ki zadošča
 \begin{equation} \label{pogoji-G}
-max_G \text{sled} \left( G^T S_W G \right)
+\max_G \text{sled} \left( G^T S_W G \right)
 \hspace{4mm}
 \text{in}
 \hspace{4mm}
-min_G \text{sled} \left( G^T S_B G \right)
+\min_G \text{sled} \left( G^T S_B G \right)
 \text{.}
 \end{equation}
 Za iskanje $x_i$-jev iz enačbe \textit{\eqref{alpha-beta}} uporabimo posplošeni singularni razcep. V ta namen naredimo drugo posplošitev singularnega razcepa na matriki 
@@ -1009,7 +1010,7 @@ $K :=
 H_B^T \\
 H_W^T
 \end{bmatrix}
-$.
+\in \mathbb{R}^{2n \times m}$.
 Tako dobimo takšne ortogonalne matrike $U \in \mathbb{R}^{n \times n}$, $V \in \mathbb{R}^{n \times n}$ in $X \in \mathbb{R}^{m \times m}$ ter takšni matriki $\Sigma_A$ in $\Sigma_B$, da velja
 $$
 H_B^T = U \left(\Sigma_A, \hspace{2mm} 0 \right) X^{-1}
@@ -1033,7 +1034,7 @@ $
 \begin{bmatrix}
 0_{n-k+r, r} & & \\ 
  & D_B & \\ 
- & & I_{k-r-s, k-r-s}
+ & & I_{k-r-s}
 \end{bmatrix}
 $, matriki $D_A$ in $D_B$ sta pa naslednji
 $
@@ -1052,7 +1053,7 @@ D_B =
  & & \beta_{r+s}
 \end{bmatrix}
 $, kjer je
-$r = rang(K) - rang(K_B)$,  $s = rang(K_A) + rang(K_B) - rang(K)$ ter $k = rang(K)$. Za elemente matrik $D_A$ in $D_B$ pa velja
+$r = \text{rang}(K) - \text{rang}(K_B)$,  $s = \text{rang}(K_A) + \text{rang}(K_B) - \text{rang}(K)$ ter $k = \text{rang}(K)$. Za elemente matrik $D_A$ in $D_B$ pa velja
 $1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0$ in $ 0 < \beta_{r+1} \leq \ldots \leq \beta_{r+s} < 1$.
 Sedaj si podrobneje oglejmo matriki $H_B H_B^T$ in $H_W H_W^T$. Od prej vemo, da je $S_B = H_B H_B^T$ in $S_W = H_W H_W^T$.
 Za produkt matrik $H_B H_B^T$ po zgornjem razcepu velja
@@ -1073,12 +1074,12 @@ U \left[\Sigma_A, \hspace{2mm} 0 \right] X^{-1}
 \end{bmatrix}
 X^{-1} \text{,}
 \end{align*}
-kjer za matrika $\Sigma_A^T \Sigma_A \in \mathbb{R}^{k \times k}$ enaka diagonalni matriki $\text{diag}\left(\alpha_1^2, \ldots, \alpha_t^2 \right)$. V kolikor tu gledamo le $i$-ti stolpec ortogonalne matrike $X$, ki ga označimo z $x_i$ ter dodatno definiramo $\alpha_i = 0$ za $i = k+1, \ldots, m$, za $i = 1, 2, \ldots, m$ dobimo
+kjer za matrika $\Sigma_A^T \Sigma_A \in \mathbb{R}^{k \times k}$ enaka diagonalni matriki $\text{diag}\left(\alpha_1^2, \ldots, \alpha_k^2 \right)$. V kolikor tu gledamo le $i$-ti stolpec ortogonalne matrike $X$, ki ga označimo z $x_i$, ter dodatno definiramo $\alpha_i = 0$ za $i = k+1, \ldots, m$, za $i = 1, 2, \ldots, m$ dobimo
 $$
 x_i^T H_B H_B^T x_i = \alpha_i^2
 \text{,}
 $$
-če pa to enačbo množimo z desne z $x_i$ dobimo
+če pa to enačbo množimo z leve z $x_i$ dobimo
 \begin{equation} \label{H_B}
 H_B H_B^T x_i = \alpha_i^2 x_i
 \text{.}
@@ -1091,16 +1092,16 @@ X^{-T}
 \Sigma_B^T \Sigma_B & 0 \\
 0 & 0
 \end{bmatrix}
-X^{-1} \text{,}
+X^{-1} \text{.}
 \end{align*}
-prav tako pa velja tudi 
+Prav tako velja tudi 
 \begin{equation} \label{H_W}
 H_W H_W^T x_i = \beta_i^2 x_i
-\text{.}
+\text{,}
 \end{equation}
-Tu smo dodatno definirali $\beta_i = 0$ za $i = k+1, \ldots, m$.
+kjer smo dodatno definirali $\beta_i = 0$ za $i = k+1, \ldots, m$.
 
-\textbf{-- DOPOLNI!}
+%\textbf{-- DOPOLNI!}
 
 Če združimo enačbi \textit{\eqref{H_W}} in \textit{\eqref{H_B}}, dobimo enačbo
 $$
@@ -1116,12 +1117,12 @@ Tako dobim enak problem kot v \textit{\eqref{alpha-beta}}.
 Najprej bomo potegnili vzporednice med to metodo in metodo iz prejšnjega poglavja, ki velja le za nesingularno matriko $S_W$, nato pa si bomo pogledali primer rešitve tega problema za singularno matriko $H_W$.
 
 \subsubsection{Matrika $H_W$ polnega ranga}
-V tem primeru bo zagotovo veljalo $n > m$. Matika $H_W$ bo v tem primeru imela poln stolpični rang, torej $\text{rang}(H_W) = m$, iz česar pa sledi $r = m - m = 0$, $s = \text{rang}(H_B^T) + m - m = \text{rang}(H_B^T)$ ter $k = m$. Od tod sledi $\beta_i \neq 0 \hspace{1mm} \forall \hspace{1mm} i = 1, \ldots, m \text{.}$ Posledično lahko v enačbi \textit{\eqref{alpha-beta-1}} delimo z $\beta_i$ in dobimo 
+V tem primeru bo zagotovo veljalo $n > m$. Matika $H_W$ bo v tem primeru imela poln stolpični rang, torej $\text{rang}(H_W) = m$, iz česar pa sledi $r = m - m = 0$, $s = \text{rang}(H_B^T) + m - m = \text{rang}(H_B^T)$ ter $k = m$. Od tod sledi $\beta_i \neq 0 \hspace{2mm}  \text{za} \hspace{2mm}\forall \hspace{1mm} i = 1, \ldots, m \text{.}$ Posledično lahko v enačbi \textit{\eqref{alpha-beta-1}} delimo z $\beta_i$ in dobimo 
 $$
 \frac{\alpha_i^2}{\beta_i^2} H_W H_W^T x_i =  H_B H_B^T x_i
 \text{.}
 $$
-Ker pa nam posplošeni singularni razcep vrne pare lastnih singularnih vrednosti $(\alpha_i, \beta_i)$ urejene v sledečem vrstnem redu $1 > \alpha_{r+1} \geq \alpha_{r+s} > 0$ in $0 < \beta_{r+1} \leq \beta_{r+s} < 1$, velja, da so koeficienti $\lambda_i = \frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu. Ker za poljuben $i \in {1, \ldots, s}$ velja
+Ker pa nam posplošeni singularni razcep vrne pare singularnih vrednosti $(\alpha_i, \beta_i)$ urejene v sledečem vrstnem redu $1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0$ in $0 < \beta_{r+1} \leq \ldots \leq \beta_{r+s} < 1$, velja, da so koeficienti $\lambda_i = \frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu, saj za poljuben $i \in {1, \ldots, s}$ velja
 $$
 \frac{\alpha_{r+i}}{\beta_{r+i}} = 
 \frac{\alpha_{r+i}}{\beta_{r+i+1}} \frac{\beta_{r+i + 1}}{\beta_{r+i}} 
@@ -1131,18 +1132,19 @@ $$
 \frac{\alpha_{r+i+1}}{\beta_{r+i+1}}
 \text{,}
 $$
-so koeficienti $\frac{\alpha_i}{\beta_i}$ nenaraščajoči, dodatno pa iz $\alpha_i \geq 0$ in $\beta_i \geq 0$ za $i = 1, \ldots, m$ sledi, da so tudi koeficienti $\frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu. Sledi, da potrebujemo le prvih $k - 1$ stolpcev matrike $X$.
+%so koeficienti $\frac{\alpha_i}{\beta_i}$ nenaraščajoči, 
+dodatno pa iz $\alpha_i \geq 0$ in $\beta_i \geq 0$ za $i = 1, \ldots, m$ sledi, da so tudi koeficienti $\frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu. Sledi, da za optimalno preslikavo $G$ potrebujemo le prvih $k - 1$ stolpcev matrike $X$, saj v tem primeru velja kar $k = m$, mi pa želimo preslikavo, ki slika v prostor dimenzije manjše od $m$.
 
-\textbf{-- Zakaj ravno k-1?}
+%\textbf{-- Zakaj ravno k-1?}
 
 \subsubsection{Matrika $H_W$ nepolnega ranga}
-Do tega primera, ko je matrika $H_W$ nepolnega ranga pride vedno, ko velja $m>n$. Tu tako ne moremo definirati lastnih vektorjev matrike $S_W^{-1} S_B$ in tako klasična diskriminantna analiza propade. Zamislimo si, da imamo posplošeni singularni vektor $x_i$, ki leži v jedru preslikave $S_W$ (torej $x_i \in \ker (S_W)$).  Iz \textit{\eqref{alpha-beta}} vidimo, da potem velja ena izmed možnosti: ta vektor leži tudi v jedru preslikave $S_B$ ali pa je pripadajoča singularna vrednost $\beta_i$ enaka 0.
+Do tega primera, ko je matrika $H_W$ nepolnega ranga, pride vedno, ko velja $m>n$. Tu tako ne moremo definirati lastnih vektorjev matrike $S_W^{-1} S_B$ in tako klasična diskriminantna analiza propade. Zamislimo si, da imamo posplošeni singularni vektor $x_i$, ki leži v jedru preslikave $S_W$ (torej $x_i \in \ker (S_W)$).  Iz \textit{\eqref{alpha-beta}} vidimo, da potem velja ena izmed možnosti: ta vektor leži tudi v jedru preslikave $S_B$ ali pa je pripadajoča singularna vrednost $\beta_i$ enaka 0.
 
 Tako ločimo obe možnosti:
 \begin{enumerate}
 \item{$x_i \in \ker (S_W) \cap \ker (S_B)$}
 
-V tem primeru je enačbi \textit{\eqref{alpha-beta}} zadoščeno za poljuba $\alpha_i$ in $\beta_i$. To bo primer za $m-k$ desnih stolpcev preslikave $X$ (ti stolpci so očitno v jedru preslikave $S_W$, saj se po \textit{\eqref{eq:5}} preslikajo v 0) Premislimo ali se nam te stolpce preslikave $X$ splača vključiti v preslikavo $G$. Velja:
+V tem primeru je enačbi \textit{\eqref{alpha-beta}} zadoščeno za poljuba $\alpha_i$ in $\beta_i$. To bo primer za $m-k$ desnih stolpcev preslikave $X$ (ti stolpci so očitno v jedru preslikave $S_W$, saj se po \textit{\eqref{eq:5}} preslikajo v 0). Premislimo, ali se nam te stolpce preslikave $X$ splača vključiti v preslikavo $G$. Velja
 $$
 \text{sled}(G^T S_B G) = \sum_j g_j^T S_B g_j
 \hspace{2mm}
@@ -1151,13 +1153,13 @@ $$
 \text{sled}(G^T S_W G) = \sum_j g_j^T S_W g_j
 \text{,}
 $$
-kjer $g_j$ predstavlja $j$-ti stolpec preslikave $G$. Ke velja $x_i^T S_W x_i = 0$ in $x_i^T S_B x_i = 0$, dodajanje teh stolpcev v preslikavo $G$ ne bo imelo vpliva niti na maksimizacijo niti na minimizacijo iz \textit{\eqref{pogoji-G}}. Posledično teh stolpcev $x_i$ ne vključimo v $G$.
+kjer $g_j$ predstavlja $j$-ti stolpec preslikave $G$. Ker velja $x_i^T S_W x_i = 0$ in $x_i^T S_B x_i = 0$, dodajanje teh stolpcev v preslikavo $G$ ne bo imelo vpliva niti na maksimizacijo sledi $\left( G^T S_W G \right)$, niti na minimizacijo sledi $\left( G^T S_B G \right)$ iz \textit{\eqref{pogoji-G}}. Posledično teh stolpcev $x_i$ ne vključimo v $G$.
 
 \item{$x_i \in \ker (S_W) - \ker (S_B) 	\Rightarrow \beta_i = 0$}
 
 Iz $\beta_i = 0$ in \textit{\eqref{alpha+beta-GSVD}} sledi, da je $\alpha_i = 1$, iz česar sledi $\lambda_i = \infty$. Ti $x_i$-ji bodo predstavljali najbolj leve stolpce matike $X$. Če te stolpce vključimo v preslikavo $G$, bomo na pogoje iz \textit{\eqref{pogoji-G}} vplivali tako, da bomo $\text{sled}(G^T S_B G)$ povečali, medtem, ko bo $\text{sled}(G^T S_W G)$ ostala nespremenjena. Tako lahko skledemo, da te stolpce vključimo v $G$.
 \end{enumerate}
-Tako lahko zaključimo, da tudi ko je matrika $S_W$ singularna, preslikavo $G \in \mathbb{R}^{m \times \ell}$ sestavimo iz $\ell$ levih stolpcev matrike $X$. Od tod sledi sledeči algoritem.
+Tako lahko zaključimo, da tudi ko je matrika $S_W$ singularna, preslikavo $G \in \mathbb{R}^{m \times \ell}$ sestavimo iz $\ell$ levih stolpcev matrike $X$. Od tod sledi naslednji algoritem.
 
 
 \section{Algoritem}

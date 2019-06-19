@@ -549,14 +549,21 @@ pri
 %\end{bmatrix}.$$
 %Z $k$ označimo rang te matrike $K$, torej $k = rang(K)$.
 Izračunamo singularni razcep matrike  $K$. Tako dobimo ortogonalni matriki $P \in \mathbb{R}^{(p+n) \times (p+n)}$ in $Q \in \mathbb{R}^{m \times m}$, da velja 
-\begin{equation} P K Q^T = 
+\begin{equation}K = 
+P
 \begin{bmatrix} 
 R & 0_{k, m-k} \\
 0_{n+p-k, k} & 0_{n+p-k, m-k} 
-\end{bmatrix} \text{,} \label{eq:5}
+\end{bmatrix} \label{eq:5}
+Q^T
+\text{,}
 \end{equation}
-kjer je $R \in \mathbb{R}^{k \times k}$ diagonalna matrika ranga $k$. Matriki $Q$ in $P$ razdelimo na podmatrike
-$$  Q = \left[Q_1 \hspace{2mm} Q_2 \right]
+kjer je $R \in \mathbb{R}^{k \times k}$ diagonalna matrika ranga $k$. Matriki $Q^T$ in $P$ razdelimo na podmatrike
+$$  Q^T = 
+\begin{bmatrix}
+Q_1^T\\
+Q_2^T
+\end{bmatrix}
 \hspace{4mm} \text{in} \hspace{4mm}
 P = \left[P_1 \hspace{2mm} P_2 \right]
 =
@@ -568,38 +575,40 @@ $$
 kjer je matrika $Q_1 \in \mathbb{R}^{m \times k}$ sestavljena iz prvih $k$ stolpcev matrike $Q$, matrika $Q_2 \in \mathbb{R}^{m \times (m-k)}$ pa iz preostalih $m-k$ stolpcev matrike $Q$, podmatrike matrike $P$ pa so sledečih dimenzij: $P_{11} \in \mathbb{R}^{p \times k}$, $P_{12} \in \mathbb{R}^{p \times (p+n-k)}$, $P_{21} \in \mathbb{R}^{n \times k}$ in $P_{22} \in \mathbb{R}^{n \times (p+n-k)}$.
 %, matrika $P_1 \in \mathbb{R}^{(p+m) \times k}$ iz prvih $k$ stolpcev matrike $P$ in njena podmatrika $P_{11} \in \mathbb{C}^{p \times t}$ pa iz prvih m vrstic matrike $P_1$.
 
-Ker je $P$ ortogonalna matrika velja $\norm{P}_2 \leq 1$ in posledično tudi $\norm{P_{11}}_2 \leq \norm{P_{1}}_2 \leq \norm{P}_2 \leq 1$. Posledično nobena singularna vrednost matrike $P_{11}$ ni večja od $1$. %Velja po izreku iz numeričnih metod, ne vem kako se kliče
+Ker je $P$ ortogonalna matrika, velja $\norm{P}_2 \leq 1$ in posledično tudi $\norm{P_{11}}_2 \leq \norm{P_{1}}_2 \leq \norm{P}_2 \leq 1$. Posledično nobena singularna vrednost matrike $P_{11}$ ni večja od $1$. %Velja po izreku iz numeričnih metod, ne vem kako se kliče
 
-Singularni razcep podobno kot na matriki $K$ naredimo tudi na matriki $P_{11}$. Tako dobimo ortogonalni matriki $U \in \mathbb{R}^{m \times m}$ in $W \in \mathbb{R}^{k \times k}$, da velja $$ U^T P_{11} W = \Sigma_A \text{,}$$ kjer je $$\Sigma_A = 
+Singularni razcep podobno kot na matriki $K$ naredimo tudi na matriki $P_{11}$. Tako dobimo ortogonalni matriki $U \in \mathbb{R}^{p \times p}$ in $W \in \mathbb{R}^{k \times k}$, da velja $$ P_{11} = U \Sigma_A W^T \text{,}$$ kjer je $$\Sigma_A = 
 \begin{bmatrix} 
 I_r &  & \\
  & D_A & \\
  & & 0_A  
-\end{bmatrix} \text{,}$$ kjer je $r$ geometrična večkratnost lastne vrednosti $1$, matrika $I_r$ identična matrika dimenzije $r \times r$, matrika $D_A =
+\end{bmatrix} \text{,}$$ kjer je $r$ geometrična večkratnost singularne vrednosti $1$, matrika $I_r$ identična matrika dimenzije $r \times r$, matrika $D_A =
 \begin{bmatrix}
 \alpha_{r+1} & & \\
  & \ddots & \\
  & & \alpha_{r+s}
-\end{bmatrix}$ diagonalna matrika, kjer $r+s$ predstavlja rang matrike $P_{11}$ in $0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ je ničelna matrika, ki ima lahko nič vrstic ali nič stolpcev.
+\end{bmatrix}$ diagonalna matrika, kjer $r+s$ predstavlja rang matrike $P_{11}$ in $0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ je ničelna matrika, ki ima lahko ničelno število vrstic ali stolpcev.
 % za katere velja $1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0.$
 
 
-Matriko $P_{21} W$ množimo z ortogonalnimi transformacijami tako, da uničimo vse elemente v zgornjem delu matrike $P_{21} W$. Tako dobimo ortogonalno in simetrično matriko $V$, da velja $V \in \mathbb{R}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} =
-\begin{bmatrix} 
-0 & 0 \\
-0 & L_1
-\end{bmatrix} 
-,$$
+Matriko $P_{21} W$ množimo z ortogonalnimi transformacijami tako, da uničimo vse elemente v zgornjem delu matrike $P_{21} W$. Tako dobimo ortogonalno in simetrično matriko $V \in \mathbb{R}^{n \times n}$, da velja 
+$$ V^T P_{21} W = (\ell_{ij})_{i, j} = L 
+%=
+%\begin{bmatrix} 
+%0 & 0 \\
+%0 & L_1
+%\end{bmatrix} 
+\text{,}$$
 %Matriko $P_{21} W$ iz leve množimo z matriko Householderjevih zrcaljenj $V \in \mathbb{R}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} %=
 %\begin{bmatrix} 
 %0 & 0 \\
 %0 & L_1
 %\end{bmatrix} 
 %,$$
-%\textbf{(-- POVEJ KATERIH DIMENZIJ SO TE NIČELNE MATRIKE!)} 
-kjer je matrika $L_1$ spodnjetrikotna z diagonalnimi elementi večjimi od $0$. Matrika ortogonalnih transformacij $V$ je tu sestavljena kot produkt matrik Householderjevih zrcaljenj $\tilde{P_1}$, $\tilde{P_2}$, \ldots, $\tilde{P_k}$, ki jih dobimo tako, da začnemo elemente zgornjega dela matrike $P_{21} W$ uničevati iz desne proti levi in za to uporabimo manj stabilno verzijo Householderjevih zrcaljenj, tako, da je zadoščeno pogoju, da so diagonalni elementi matrike $L_1$ večji od $0$.
+%\textbf{-- Kako lahko tu naredim, da dobimo v levem delu matrike ničle (v primeru $n < k$)? - Bi morda moral pred razcepom urediti na primeren način? Lahko bi npr. poračunal "stolpično kanonično formo", tako da imam na najbolj levi strani ničelne stolpce. Ali je morda to mišljeno le da te odvečne vrstice preslika v 0?} 
+kjer je matrika $L$ spodnjetrikotna z diagonalnimi elementi večjimi od $0$. Matrika ortogonalnih transformacij $V$ je tu lahko sestavljena kar kot produkt matrik Householderjevih zrcaljenj $\tilde{P_1}$, $\tilde{P_2}$, \ldots, $\tilde{P_k}$, ki jih dobimo tako, da začnemo elemente zgornjega dela matrike $P_{21} W$ uničevati iz desne proti levi (najprej sestavimo torej matriko $\tilde{P_k}$, nato matriko $\tilde{P_{k-1}}$, itd.) in za to uporabimo manj stabilno verzijo Householderjevih zrcaljenj, tako, da je zadoščeno pogoju, da so diagonalni elementi matrike $L$ nenegativni.
 Velja torej $$V = \tilde{P_1} \tilde{P_2} \dots \tilde{P_k} \text{,}$$
-kjer je $\tilde{P_k} = I - \frac{2}{w_k^T w_k} w_k w_k^T$, $w_k = x_k - \norm{x_k}_2 e_n$, kjer $e_n$ predstavlja enotski vektor z enico na $n$-tem mestu, $x_j$ pa predstavlja $j$-ti stolpec matrike $P_{21} W$.
+kjer je $\tilde{P_k} = I - \frac{2}{w_k^T w_k} w_k w_k^T$, $w_k = x_k + \norm{x_k}_2 e_n$, $e_n$ tu predstavlja enotski vektor z enico na $n$-tem mestu, $x_j$ pa $j$-ti stolpec matrike $P_{21} W$.
 
 
 Opazimo lahko, da velja spodnja enakost
@@ -624,7 +633,22 @@ $$
 Zgornja matrika $\begin{bmatrix}
 \Sigma_A \\
 L
-\end{bmatrix}$ je ortogonalna, saj je produkt ortogonalnih matrik. To implicira obliko matrike $ \begin{bmatrix}
+\end{bmatrix}$ je ortogonalna, saj je produkt ortogonalnih matrik. 
+Za matriko $L$ iz ortonormiranosti stolpcev matrike $\begin{bmatrix}
+\Sigma_A \\ 
+L
+\end{bmatrix}$ velja, da je njenih levih $r$ stolpcev enakih nič in tako ima matrika $L$ sledečo obliko
+$$ L =
+\begin{bmatrix} 
+0 & 0 \\
+0 & L_1
+\end{bmatrix} 
+\text{,}
+$$ kjer je $L_1 \in \mathbb{R}^{(k-r) \times (k-r)}$ spodnjetrikotna matrika, z nenegativnimi diagonalnimi elementi. Iz dejstva, da so stolpci matrike $\begin{bmatrix}
+\Sigma_A \\
+L
+\end{bmatrix}$ med seboj pravokotni in po normi enaki $1$, sledi, da je matrika $L_1$ diagonalna matrika, ki ima levih $s$ diagonalnih elementov različnih od nič, preostalih $k-r-s$ diagonalnih elementov pa enakih $1$.
+To implicira obliko matrike $ \begin{bmatrix}
 \Sigma_A \\
 L
 \end{bmatrix}$, torej
@@ -662,20 +686,26 @@ $  D_B =
 \begin{bmatrix}
 \beta_{r+1} & & \\
  & \ddots & \\
- & & \beta_{r+s}
-\end{bmatrix}$.
-Za matriko $L$ pa velja $L = \Sigma_B =
-\begin{bmatrix}
-0_{p-k+r, r} & & \\ 
- & D_B & \\ 
- & & I_{k-r-s, k-r-s}
-\end{bmatrix}$.
+ & & \beta_{r+s} \text{,}
+\end{bmatrix}$
+matrika $I_{k-r-s, k-r-s}$ identična matrika ter matrika $0_{p-k+r, r}$ ničelna matrika, ki ima lahko ničelno število vrstic ali stolpcev.
+%Za matriko $L$ pa velja $L = \Sigma_B =
+%\begin{bmatrix}
+%0_{p-k+r, r} & & \\ 
+% & D_B & \\ 
+% & & I_{k-r-s, k-r-s}
+%\end{bmatrix}$.
 Iz ortogonalnosti matrike $\begin{bmatrix}
 \Sigma_A \\
 L
-\end{bmatrix}$ sledi tudi, da so njeni stolpci ortonormirani, iz česar sledi $\alpha_{r+i}^2 + \beta_{r+i}^2 = 1$ za $i = 1, \ldots, s$.
+\end{bmatrix}$ sledi tudi, da so njeni stolpci ortonormirani, iz česar sledi $\alpha_{r+i}^2 + \beta_{r+i}^2 = 1$ za $i = 1, \ldots, s$. Matriko $L$ sedaj preimenujmo v $\Sigma_B$.
 
-Iz enačbe  \textit{\eqref{eq:5}} dobimo
+Iz enačbe  \textit{\eqref{eq:5}} in enakosti
+$$
+P_{11} = U \Sigma_A W^T
+\hspace{2mm} \text{in} \hspace{2mm}
+P_{21} = V \Sigma_B W^T \text{,}
+$$ dobimo
 \begin{equation} \label{eq6}
 \begin{split}
 \begin{bmatrix} 
@@ -698,22 +728,17 @@ P_{21}R & 0_{p, m-k}
 \begin{bmatrix} 
 U \Sigma_A W^T R & 0_{m, m-k} \\
 V \Sigma_B W^T R & 0_{p, m-k} 
-\end{bmatrix} \text{,}
+\end{bmatrix} \text{.}
 \end{split}
 \end{equation}
-iz česar sledi
-$$
-P_{11} = U \Sigma_A W^T
-\hspace{2mm} \text{in} \hspace{2mm}
-P_{21} = V \Sigma_B W^T \text{.}
-$$
+
 Če začetno enačbo iz enačbe \textit{\eqref{eq6}} pomnožimo iz leve z matriko 
 $
 \begin{bmatrix}
 U^T & 0_{m, n} \\
 0_{n, m} & V^T
 \end{bmatrix}
-$ dobimo 
+$, dobimo 
 $$
 \begin{bmatrix}
 U^T & 0_{m, n} \\
@@ -816,8 +841,8 @@ $$S_B = H_B H_B^T \text{,}$$
 prav tako pa tudi matriko $S_M$
 $$S_M = H_M H_M^T \text{.}$$
 
-S pomočjo tega razcepa lahko tudi na drugačen način pokažemo, da je matrika $S_W$, kadar velja $m>n$, singularna. Razvidno je namreč, da je ta matrika $S_W$ definirana kot produkt dveh matrik, kjer je matrika $H_W$ dimenzije $m \times n$, matrika $H_W^T$ pa dimenzije $n \times m$. V kolikor velja $m>n$, sta tako ti dve matrike največ ranga $n$.
-Ker pa za rang matrike velja, da je rang produkta dveh matrik navzgor omejen z manjšim izmed rangov teh dveh posameznih matrik ($\text{rang}(AB) \leq \min(\text{rang}(A), \text{rang}(B)$), je posledično tudi matrika $S_W$ največ ranga $n$ in torej očitno singularna.
+S pomočjo tega razcepa lahko tudi na drugačen način pokažemo prejšnjo ugotovitev, da je matrika $S_W$, kadar velja $m>n$, singularna. Razvidno je namreč, da je ta matrika $S_W$ definirana kot produkt dveh matrik, kjer je matrika $H_W$ dimenzije $m \times n$, matrika $H_W^T$ pa dimenzije $n \times m$. V kolikor velja $m>n$, sta tako ti dve matrike največ ranga $n$.
+Ker pa za rang matrike velja, da je rang produkta dveh matrik navzgor omejen z manjšim izmed rangov teh dveh posameznih matrik (torej $\text{rang}(AB) \leq \min(\text{rang}(A), \text{rang}(B)$), je posledično tudi matrika $S_W$ največ ranga $n$ in torej očitno singularna.
 
 %\textbf{-- Tu mogoče dopiši glede matrik $K_A$ in $K_B$}
 
@@ -835,7 +860,7 @@ Oglejmo si posplošeni problem lastnih vrednosti za matriki $S_2$ in $S_1$, kjer
 S_1 x_i = \lambda_i S_2 x_i
 \text{.}
 \end{equation}
-Če sedaj matriko $S_2$ nadomestimo z matriko $VV^T$, ki jo dobimo iz razcepa Choleskega dobimo
+Če sedaj matriko $S_2$ nadomestimo z matriko $VV^T$, ki jo dobimo iz razcepa Choleskega, dobimo
 $$
 S_1 x_i = \lambda_i V V^T x_i = V \lambda_i V^T x_i
 \text{,}

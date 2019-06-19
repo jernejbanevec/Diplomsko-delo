@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  16 JUN 2019 23:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  19 JUN 2019 23:02
 entering extended mode
 **./diploma.tex
 (diploma.tex
@@ -300,26 +300,26 @@ b/m/n/10 R[]$
 
 [8] [9] [10] [11]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 827.
+(Font)              <12> on input line 852.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 827.
+(Font)              <8> on input line 852.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 827.
+(Font)              <6> on input line 852.
 
-Overfull \hbox (7.61195pt too wide) in paragraph at lines 827--827
+Overfull \hbox (7.61195pt too wide) in paragraph at lines 852--852
 []\T1/lmr/bx/n/12 Optimizacija op-ti-mi-za-cij-skega kri-te-rija $\OML/lmm/m/it
 /12 J[] \OT1/lmr/m/n/12 = []([][]\OML/lmm/m/it/12 S[]\OT1/lmr/m/n/12 )$
  []
 
 [12] [13] [14]
-Overfull \hbox (34.55626pt too wide) in paragraph at lines 996--996
+Overfull \hbox (34.55626pt too wide) in paragraph at lines 1021--1021
 []\T1/lmr/bx/n/12 Posplo²itev op-ti-mi-za-cij-skega kri-te-rija $\OML/lmm/m/it/
 12 J[]\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 G\OT1/lmr/m/n/12 ) = []((\OML/lmm/m/it/
 12 S[]\OT1/lmr/m/n/12 )[]\OML/lmm/m/it/12 S[]\OT1/lmr/m/n/12 )$
  []
 
 
-Overfull \hbox (9.79353pt too wide) in paragraph at lines 1022--1060
+Overfull \hbox (9.79353pt too wide) in paragraph at lines 1047--1085
 []$ \T1/lmr/m/n/10 in $\OML/lmm/m/it/10 D[] \OT1/lmr/m/n/10 = []$\T1/lmr/m/n/10
  , kjer je $\OML/lmm/m/it/10 r \OT1/lmr/m/n/10 = [](\OML/lmm/m/it/10 K\OT1/lmr/
 m/n/10 ) \OMS/lmsy/m/n/10   []\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 K[]\OT1/lmr/m/n
@@ -364,7 +364,7 @@ pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lm
 sy7.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
 m/lmsy8.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb>
-Output written on diploma.pdf (19 pages, 316861 bytes).
+Output written on diploma.pdf (19 pages, 317065 bytes).
 PDF statistics:
  143 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

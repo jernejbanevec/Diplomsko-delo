@@ -8,11 +8,23 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{arydshln}
+\usepackage{algorithm}
+%\usepackage{arevmath}     % For math symbols
+\usepackage[noend]{algpseudocode}
 %\usepackage{fontspec,xcolor}
 %\usepackage{luacode,luatexbase}
+%\usepackage{xcolor}
+%\usepackage{algorithm2e}
+%\SetKwInput{KwInput}{Input}                % Set the Input
+%\SetKwInput{KwOutput}{Output}
 \newtheorem{izrek}{Izrek}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand\bigzero{\makebox(0,0){\text{\huge0}}}
+
+%ukazi za matematična okolja
+\theoremstyle{definition}
+\newtheorem{definicija}{Definicija}[section]
+\newtheorem{opomba}[definicija]{Opomba}
 
 %za x piši \times
 % \in \mathbb{R}^{m \times n}
@@ -606,7 +618,7 @@ $$ V^T P_{21} W = (\ell_{ij})_{i, j} = L
 %\end{bmatrix} 
 %,$$
 %\textbf{-- Kako lahko tu naredim, da dobimo v levem delu matrike ničle (v primeru $n < k$)? - Bi morda moral pred razcepom urediti na primeren način? Lahko bi npr. poračunal "stolpično kanonično formo", tako da imam na najbolj levi strani ničelne stolpce. Ali je morda to mišljeno le da te odvečne vrstice preslika v 0?} 
-kjer je matrika $L$ spodnjetrikotna z diagonalnimi elementi večjimi od $0$. Matrika ortogonalnih transformacij $V$ je tu lahko sestavljena kar kot produkt matrik Householderjevih zrcaljenj $\tilde{P_1}$, $\tilde{P_2}$, \ldots, $\tilde{P_k}$, ki jih dobimo tako, da začnemo elemente zgornjega dela matrike $P_{21} W$ uničevati iz desne proti levi (najprej sestavimo torej matriko $\tilde{P_k}$, nato matriko $\tilde{P_{k-1}}$, itd.) in za to uporabimo manj stabilno verzijo Householderjevih zrcaljenj, tako, da je zadoščeno pogoju, da so diagonalni elementi matrike $L$ nenegativni.
+kjer je matrika $L \in \mathbb{R}^{n \times k}$ spodnjetrikotna z diagonalnimi elementi večjimi od $0$. Matrika ortogonalnih transformacij $V$ je tu lahko sestavljena kar kot produkt matrik Householderjevih zrcaljenj $\tilde{P_1}$, $\tilde{P_2}$, \ldots, $\tilde{P_k}$, ki jih dobimo tako, da začnemo elemente zgornjega dela matrike $P_{21} W$ uničevati iz desne proti levi (najprej sestavimo torej matriko $\tilde{P_k}$, nato matriko $\tilde{P_{k-1}}$, itd.) in za to uporabimo manj stabilno verzijo Householderjevih zrcaljenj, tako, da je zadoščeno pogoju, da so diagonalni elementi matrike $L$ nenegativni.
 Velja torej $$V = \tilde{P_1} \tilde{P_2} \dots \tilde{P_k} \text{,}$$
 kjer je $\tilde{P_k} = I - \frac{2}{w_k^T w_k} w_k w_k^T$, $w_k = x_k + \norm{x_k}_2 e_n$, $e_n$ tu predstavlja enotski vektor z enico na $n$-tem mestu, $x_j$ pa $j$-ti stolpec matrike $P_{21} W$.
 
@@ -637,17 +649,17 @@ L
 Za matriko $L$ iz ortonormiranosti stolpcev matrike $\begin{bmatrix}
 \Sigma_A \\ 
 L
-\end{bmatrix}$ velja, da je njenih levih $r$ stolpcev enakih nič in tako ima matrika $L$ sledečo obliko
+\end{bmatrix}$ velja, da je levih $r$ stolpcev enakih nič in tako ima matrika $L$ sledečo obliko
 $$ L =
 \begin{bmatrix} 
-0 & 0 \\
-0 & L_1
+0_{n-k+r,r} & 0_{n-k+r,k-r} \\
+0_{k-r, r} & L_1
 \end{bmatrix} 
 \text{,}
 $$ kjer je $L_1 \in \mathbb{R}^{(k-r) \times (k-r)}$ spodnjetrikotna matrika, z nenegativnimi diagonalnimi elementi. Iz dejstva, da so stolpci matrike $\begin{bmatrix}
 \Sigma_A \\
 L
-\end{bmatrix}$ med seboj pravokotni in po normi enaki $1$, sledi, da je matrika $L_1$ diagonalna matrika, ki ima levih $s$ diagonalnih elementov različnih od nič, preostalih $k-r-s$ diagonalnih elementov pa enakih $1$.
+\end{bmatrix}$ med seboj pravokotni in po normi enaki $1$, sledi, da je matrika $L_1$ diagonalna matrika, ki ima levih $s$ diagonalnih elementov med $0$ in $1$, preostalih $k-r-s$ diagonalnih elementov pa enakih $1$.
 To implicira obliko matrike $ \begin{bmatrix}
 \Sigma_A \\
 L
@@ -686,8 +698,8 @@ $  D_B =
 \begin{bmatrix}
 \beta_{r+1} & & \\
  & \ddots & \\
- & & \beta_{r+s} \text{,}
-\end{bmatrix}$
+ & & \beta_{r+s} 
+\end{bmatrix}\text{,}$
 matrika $I_{k-r-s, k-r-s}$ identična matrika ter matrika $0_{p-k+r, r}$ ničelna matrika, ki ima lahko ničelno število vrstic ali stolpcev.
 %Za matriko $L$ pa velja $L = \Sigma_B =
 %\begin{bmatrix}
@@ -722,12 +734,12 @@ R & 0_{k, m-k} \\
 \end{bmatrix} =
 \\
 \begin{bmatrix} 
-P_{11}R & 0_{m, m-k} \\
-P_{21}R & 0_{p, m-k} 
+P_{11}R & 0_{p, m-k} \\
+P_{21}R & 0_{n, m-k} 
 \end{bmatrix} =
 \begin{bmatrix} 
-U \Sigma_A W^T R & 0_{m, m-k} \\
-V \Sigma_B W^T R & 0_{p, m-k} 
+U \Sigma_A W^T R & 0_{p, m-k} \\
+V \Sigma_B W^T R & 0_{n, m-k} 
 \end{bmatrix} \text{.}
 \end{split}
 \end{equation}
@@ -735,26 +747,26 @@ V \Sigma_B W^T R & 0_{p, m-k}
 Če začetno enačbo iz enačbe \textit{\eqref{eq6}} pomnožimo iz leve z matriko 
 $
 \begin{bmatrix}
-U^T & 0_{m, n} \\
-0_{n, m} & V^T
+U^T & 0_{p, n} \\
+0_{n, p} & V^T
 \end{bmatrix}
 $, dobimo 
 $$
 \begin{bmatrix}
-U^T & 0_{m, n} \\
-0_{n, m} & V^T
+U^T & 0_{p, n} \\
+0_{n, p} & V^T
 \end{bmatrix}
 \begin{bmatrix} 
 K_A \\
 K_B 
 \end{bmatrix} Q =
 \begin{bmatrix}
-U^T & 0_{m, n} \\
-0_{n, m} & V^T
+U^T & 0_{p, n} \\
+0_{n, p} & V^T
 \end{bmatrix}
 \begin{bmatrix} 
-U \Sigma_A W^T R & 0_{m, m-k} \\
-V \Sigma_B W^T R & 0_{p, m-k} 
+U \Sigma_A W^T R & 0_{p, m-k} \\
+V \Sigma_B W^T R & 0_{n, m-k} 
 \end{bmatrix} \text{,}
 $$
 iz česar sledi
@@ -826,9 +838,12 @@ $$ V^T K_B X = \left[\begin{array}{cc} \Sigma_B, & 0 \end{array}\right] \text{.}
 $$
 Tako je definirana matrika $X$ ravno iskana matrika iz prve posplošitve singularnega razcepa in matriki $\left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right]$ in $\left[\begin{array}{cc} \Sigma_B, & 0 \end{array}\right]$ ravno iskani diagonalni matriki.
 
-Za nadaljnje delo definirajmo matrike
-$$H_W :=\left[A_1 - c^{(1)}e^{(1)^T}, \ldots, A_k - c^{(k)}e^{(k)^T}\right] \text{,}$$
-$$H_B := \left[(c^{(1)} - c)e^{(1)^T}, \ldots,(c^{(k)} - c) e^{(k)^T}\right]$$
+Za nadaljnje delo definirajmo matrike\begin{equation} \label{H_W1}
+H_W :=\left[A_1 - c^{(1)}e^{(1)^T}, \ldots, A_k - c^{(k)}e^{(k)^T}\right] \text{,}
+\end{equation}
+\begin{equation} \label{H_B1}
+H_B := \left[(c^{(1)} - c)e^{(1)^T}, \ldots,(c^{(k)} - c) e^{(k)^T}\right]
+\end{equation}
 in
 $$H_M := \left[a_1 - c, \ldots, a_n - c\right] = A - ce^T = H_W + H_B\text{,}$$
 kjer velja
@@ -841,16 +856,16 @@ $$S_B = H_B H_B^T \text{,}$$
 prav tako pa tudi matriko $S_M$
 $$S_M = H_M H_M^T \text{.}$$
 
-S pomočjo tega razcepa lahko tudi na drugačen način pokažemo prejšnjo ugotovitev, da je matrika $S_W$, kadar velja $m>n$, singularna. Razvidno je namreč, da je ta matrika $S_W$ definirana kot produkt dveh matrik, kjer je matrika $H_W$ dimenzije $m \times n$, matrika $H_W^T$ pa dimenzije $n \times m$. V kolikor velja $m>n$, sta tako ti dve matrike največ ranga $n$.
-Ker pa za rang matrike velja, da je rang produkta dveh matrik navzgor omejen z manjšim izmed rangov teh dveh posameznih matrik (torej $\text{rang}(AB) \leq \min(\text{rang}(A), \text{rang}(B)$), je posledično tudi matrika $S_W$ največ ranga $n$ in torej očitno singularna.
+S pomočjo tega razcepa lahko tudi na drugačen način pokažemo prejšnjo ugotovitev, da je matrika $S_W$, kadar velja $m>n$, singularna. Razvidno je namreč, da je matrika $S_W$ definirana kot produkt matrik $H_W$ in $H_W^T$, kjer je matrika $H_W$ dimenzije $m \times n$, matrika $H_W^T$ pa dimenzije $n \times m$. V kolikor velja $m>n$, sta tako ti dve matrike največ ranga $n$.
+Ker pa za rang matrike velja, da je rang produkta dveh matrik navzgor omejen z manjšim izmed rangov teh dveh posameznih matrik (torej $\text{rang}(AB) \leq \min(\text{rang}(A), \text{rang}(B)$), je posledično tudi matrika $S_W$ največ ranga $n$ in torej (ker velja $m > n$) očitno singularna.
 
 %\textbf{-- Tu mogoče dopiši glede matrik $K_A$ in $K_B$}
 
 \section{Matematična rešitev problema}
 V tem odstavku prikažemo uporabo posplošenega singularnega razcepa v namen razširjene uporabe posplošene diskriminantne analize.
  
-\subsection{Optimizacija optimizacijskega kriterija $J_1 = \text{sled}({S^\ell_2}^{-1} S^\ell_1)$ za nesingularno matriko $S_2$}
-Tu izhajamo iz optimizacije optimizacijskega kriterija 
+\subsection{Maksimizacija optimizacijskega kriterija $J_1 = \text{sled}({S^\ell_2}^{-1} S^\ell_1)$ za nesingularno matriko $S_2$}
+Tu izhajamo iz maksimizacije optimizacijskega kriterija 
 $$J_1(G) = \text{sled}\left((G^T S_2 G)^{-1} (G^T S_1 G)\right)$$
 z izbiro optimalne preslikave $G$, kjer sta matriki $S_1$ in $S_2$ izbrani izmed matrik $S_W$, $S_B$ in $S_M$. Ko je matrika $S_2$ nesingularna, je sestavljena kot produkt matrike in transponiranke te matrike in je zato simetrično pozitivno definitna (posledično so vse lastne vrednosti te matrike večje ali enake 0). Za simetrično pozitivno definitno matriko pa obstaja razcep Choleskega; tako vemo da obstaja spodnjetrikotna matrika $V$ s pozitivnimi elementi na diagonali, da velja
 $$ S_2 = V V^T \text{.}
@@ -880,7 +895,7 @@ $$
 (V^{-1} S_1 V^{-T})^T =  (V^{-T})^T S_1^T (V^{-1})^T =  V^{-1} S_1 V^{-T}
 \text{.}
 $$
-Simetrično matriko pa lahko diagonaliziramo v bazi ortonormiranih lastnih vektorjev in tako dobimo takšno matriko $Y$, da velja $Y Y^T = Y^T Y$ in 
+Simetrično matriko pa lahko diagonaliziramo v bazi ortonormiranih lastnih vektorjev in tako dobimo takšno matriko $Y$, da velja $Y Y^T = Y^T Y = I $ in 
 $$
 V^{-1} S_1 V^{-T} = Y \Lambda Y^T
 \text{,}
@@ -890,15 +905,15 @@ $$
 S_1 = VY \Lambda Y^TV^T = X \Lambda X^T
 \text{,}
 $$
-kjer smo dodatno definirali $X := VY$.
-Poleg matrike $S_1$ pa lahko preoblikujemo tudi matriko $S_2$
+kjer smo dodatno definirali matriko $X := VY$.
+Poleg matrike $S_1$ pa lahko preoblikujemo tudi matriko $S_2$. Dobimo torej
 $$
 S_2 = VV^T = VYY^TV^T = XX^T
 \text{.}
 $$
 Ker ima matrika $X$ inverz, lahko zgornji enačbi tudi obrnemo, tako da je $X^T S_1 X = \Lambda$ in $X^T S_2 X = I_m$.
 
-Iz posplošenega problema lastnih vrednosti $\textit{\eqref{pos-prob-last-v}}$ lahko vidimo, da sta $\lambda_i$ in $x_i$ ravno lastna vrednosti in lastni vektor za dano lastno vrednost $\lambda_i$ za matriko $S_2^{-1} S_1$. Ker je matrika $S_1$ simetrična pozitivno definitna, vemo, da so vse njene lastne vrednosti $\lambda_i \geq 0$ za $i = 1, \ldots, m$. Z uporabo permutacijskih matrik, lahko matriko $\Lambda$ preuredimo tako, da za  $q = \text{rang} \left( S_1 \right)$ velja $\lambda_1 \geq \ldots \geq \lambda_q > \lambda_{q+1} = \ldots = \lambda_m = 0$.
+Iz posplošenega problema lastnih vrednosti $\textit{\eqref{pos-prob-last-v}}$ lahko vidimo, da sta $\lambda_i$ in $x_i$ ravno lastna vrednosti in lastni vektor za dano lastno vrednost $\lambda_i$ za matriko $S_2^{-1} S_1$. Ker je matrika $S_1$ simetrično pozitivno definitna, vemo, da so vse njene lastne vrednosti $\lambda_i \geq 0$ za $i = 1, \ldots, m$. Z uporabo permutacijskih matrik, lahko matriko $\Lambda$ preuredimo tako, da za  $q = \text{rang} \left( S_1 \right)$ velja $\lambda_1 \geq \ldots \geq \lambda_q > \lambda_{q+1} = \ldots = \lambda_m = 0$.
 
 Optimizacijski kriterij ima tako sledečo obliko
 \begin{equation} \label{pospJ1}
@@ -915,7 +930,7 @@ J_1\left(G\right)
 \text{,}
 \end{split}
 \end{equation}
-kjer je matrika $\tilde{G} := X^{-1} G \in \mathbb{R}^{m \times \ell}$. Ker vemo, da ima matrika $X$ poln rang, ima matrika $\tilde{G}$ rang enak številu stolpcev, torej $\ell$, in tako lahko na njej naredimo $QR$ razcep in tako dobimo matriko $Q \in \mathbb{R}^{m \times \ell}$, ki ima ortonormirane stolpce in nesingularno matriko $R \in \mathbb{R}^{\ell \times \ell}$, da velja $\tilde{G} = QR$. Tako lahko zgornjo enačbo $\textit{\eqref{pospJ1}}$ dodatno preoblikujemo
+kjer je matrika $\tilde{G} := X^{-1} G \in \mathbb{R}^{m \times \ell}$. Ker vemo, da ima matrika $X$ poln rang, ima matrika $\tilde{G}$ rang enak številu stolpcev (torej $\ell$) in tako lahko na njej naredimo $QR$ razcep in tako dobimo matriko $Q \in \mathbb{R}^{m \times \ell}$, ki ima ortonormirane stolpce in nesingularno matriko $R \in \mathbb{R}^{\ell \times \ell}$, da velja $\tilde{G} = QR$. Tako lahko zgornjo enačbo $\textit{\eqref{pospJ1}}$ dodatno preoblikujemo
 \begin{align*}
 J_1(G)
 =
@@ -931,7 +946,7 @@ J_1(G)
 \text{sled} \left( R^{-1} Q^T \Lambda QR \right)
 \text{,}
 \end{align*}
-ker pa vemo, da imata podobni matriki enako sled, lahko to matriko množimo z $R$ iz leve in z $R^{-1}$ iz desne. Tako dobimo
+ker pa vemo, da imata podobni matriki enako sled, lahko to matriko množimo z $R$ iz leve in z $R^{-1}$ iz desne in tako dobimo
 \begin{align*}
 J_1(G)
 =
@@ -1011,7 +1026,7 @@ $$
 v kolikor preslikavo $G \in \mathbb{R}^{m \times \ell}$
 sestavimo iz $\ell$ lastnih vektorjev matrike $S_2^{-1} S_1$, ki pripadajo $\ell$ največjim lastnim vrednostim te matrike.
 
-Po ugotovitvi iz prvega poglavja, je matrika $S_2$ lahko singularna le, ko velja $m \leq n$, oziroma, ko število pridobljenih podatkov večje od dimenzije posameznega podatka. V nasprotnem primeru trenutne rešitve za maksimizacijski kriterij ne moremo uporabiti. Za nadaljevanje zapišimo $\lambda_i$ iz enačbe $\textit{\eqref{pos-prob-last-v}}$ kot $\alpha_i^2/\beta_i^2$ in tako se naš problem posploši na
+Po ugotovitvi iz prvega poglavja, je matrika $S_2$ lahko singularna le, ko velja $m \leq n$, oziroma, ko je število pridobljenih podatkov večje od dimenzije posameznega podatka. V nasprotnem primeru trenutne rešitve za maksimizacijski kriterij ne moremo uporabiti. Za nadaljevanje zapišimo $\lambda_i$ iz enačbe $\textit{\eqref{pos-prob-last-v}}$ kot $\alpha_i^2/\beta_i^2$ in tako se naš problem posploši na
 \begin{equation} \label{alpha-beta}
 \beta_i^2 S_1 x_i = \alpha_i^2 S_2 x_i
 \text{.}
@@ -1038,11 +1053,17 @@ H_W^T
 \in \mathbb{R}^{2n \times m}$.
 Tako dobimo takšne ortogonalne matrike $U \in \mathbb{R}^{n \times n}$, $V \in \mathbb{R}^{n \times n}$ in $X \in \mathbb{R}^{m \times m}$ ter takšni matriki $\Sigma_A$ in $\Sigma_B$, da velja
 $$
-H_B^T = U \left(\Sigma_A, \hspace{2mm} 0 \right) X^{-1}
+H_B^T = U 
+\begin{bmatrix}
+\Sigma_A, \hspace{2mm} 0 
+\end{bmatrix} X^{-1}
 \hspace{4mm}
 \text{in}
 \hspace{4mm}
-H_W^T = V \left(\Sigma_B, \hspace{2mm} 0 \right) X^{-1}
+H_W^T = V 
+\begin{bmatrix}
+\Sigma_B, \hspace{2mm} 0 
+\end{bmatrix} X^{-1}
 \text{,}
 $$
 kjer sta matriki $\Sigma_A$ in $\Sigma_B$ sledečih oblik
@@ -1061,7 +1082,7 @@ $
  & D_B & \\ 
  & & I_{k-r-s}
 \end{bmatrix}
-$, matriki $D_A$ in $D_B$ sta pa naslednji
+$, matriki $D_A$ in $D_B$ sta pa oblike
 $
 D_A =
 \begin{bmatrix}
@@ -1078,7 +1099,7 @@ D_B =
  & & \beta_{r+s}
 \end{bmatrix}
 $, kjer je
-$r = \text{rang}(K) - \text{rang}(K_B)$,  $s = \text{rang}(K_A) + \text{rang}(K_B) - \text{rang}(K)$ ter $k = \text{rang}(K)$. Za elemente matrik $D_A$ in $D_B$ pa velja
+$r = \text{rang}(K) - \text{rang}(H_W^T)$,  $s = \text{rang}(H_B^T) + \text{rang}(H_W^T) - \text{rang}(K)$ ter $k = \text{rang}(K)$. Za elemente matrik $D_A$ in $D_B$ pa velja
 $1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0$ in $ 0 < \beta_{r+1} \leq \ldots \leq \beta_{r+s} < 1$.
 Sedaj si podrobneje oglejmo matriki $H_B H_B^T$ in $H_W H_W^T$. Od prej vemo, da je $S_B = H_B H_B^T$ in $S_W = H_W H_W^T$.
 Za produkt matrik $H_B H_B^T$ po zgornjem razcepu velja
@@ -1133,16 +1154,16 @@ $$
 \frac{1}{\beta_i^2} H_W H_W^T x_i = \frac{1}{\alpha_i^2} H_B H_B^T x_i
 \text{,}
 $$
-kar se preoblikje v
+ki se preoblikje v
 \begin{equation} \label{alpha-beta-1}
 \alpha_i^2 H_W H_W^T x_i = \beta_i^2 H_B H_B^T x_i
 \text{.}
 \end{equation}
-Tako dobim enak problem kot v \textit{\eqref{alpha-beta}}.
+Tako dobimo enak problem kot v \textit{\eqref{alpha-beta}}.
 Najprej bomo potegnili vzporednice med to metodo in metodo iz prejšnjega poglavja, ki velja le za nesingularno matriko $S_W$, nato pa si bomo pogledali primer rešitve tega problema za singularno matriko $H_W$.
 
 \subsubsection{Matrika $H_W$ polnega ranga}
-V tem primeru bo zagotovo veljalo $n > m$. Matika $H_W$ bo v tem primeru imela poln stolpični rang, torej $\text{rang}(H_W) = m$, iz česar pa sledi $r = m - m = 0$, $s = \text{rang}(H_B^T) + m - m = \text{rang}(H_B^T)$ ter $k = m$. Od tod sledi $\beta_i \neq 0 \hspace{2mm}  \text{za} \hspace{2mm}\forall \hspace{1mm} i = 1, \ldots, m \text{.}$ Posledično lahko v enačbi \textit{\eqref{alpha-beta-1}} delimo z $\beta_i$ in dobimo 
+V tem primeru bo zagotovo veljalo $n > m$. Matika $H_W^T$ bo v tem primeru imela poln stolpični rang, torej $\text{rang}(H_W^T) = m$, iz česar pa sledi $r = m - m = 0$, $s = \text{rang}(H_B^T) + m - m = \text{rang}(H_B^T)$ ter $k = m$. Od tod sledi $\beta_i \neq 0 \hspace{2mm}  \text{za} \hspace{2mm}\forall \hspace{1mm} i = 1, \ldots, m \text{.}$ Posledično lahko v enačbi \textit{\eqref{alpha-beta-1}} delimo z $\beta_i$ in dobimo 
 $$
 \frac{\alpha_i^2}{\beta_i^2} H_W H_W^T x_i =  H_B H_B^T x_i
 \text{.}
@@ -1158,18 +1179,18 @@ $$
 \text{,}
 $$
 %so koeficienti $\frac{\alpha_i}{\beta_i}$ nenaraščajoči, 
-dodatno pa iz $\alpha_i \geq 0$ in $\beta_i \geq 0$ za $i = 1, \ldots, m$ sledi, da so tudi koeficienti $\frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu. Sledi, da za optimalno preslikavo $G$ potrebujemo le prvih $k - 1$ stolpcev matrike $X$, saj v tem primeru velja kar $k = m$, mi pa želimo preslikavo, ki slika v prostor dimenzije manjše od $m$.
+dodatno pa iz $\alpha_i \geq 0$ in $\beta_i \geq 0$ za $i = 1, \ldots, m$ sledi, da so tudi koeficienti $\frac{\alpha_i^2}{\beta_i^2}$ v nenaraščajočem vrstnem redu. Sledi, da za optimalno preslikavo $G$ potrebujemo le prvih $k - 1$ stolpcev matrike $X$, saj v tem primeru velja kar $k = m$, mi pa iščemo preslikavo, ki slika v prostor dimenzije manjše od $m$.
 
-%\textbf{-- Zakaj ravno k-1?}
+\textbf{-- Bi bilo morda tu smiselno vzeti kar vseh k stolpcev?}
 
 \subsubsection{Matrika $H_W$ nepolnega ranga}
-Do tega primera, ko je matrika $H_W$ nepolnega ranga, pride vedno, ko velja $m>n$. Tu tako ne moremo definirati lastnih vektorjev matrike $S_W^{-1} S_B$ in tako klasična diskriminantna analiza propade. Zamislimo si, da imamo posplošeni singularni vektor $x_i$, ki leži v jedru preslikave $S_W$ (torej $x_i \in \ker (S_W)$).  Iz \textit{\eqref{alpha-beta}} vidimo, da potem velja ena izmed možnosti: ta vektor leži tudi v jedru preslikave $S_B$ ali pa je pripadajoča singularna vrednost $\beta_i$ enaka 0.
+Do tega primera, ko je matrika $H_W$ nepolnega ranga, pride vedno, ko velja $m>n$. Tu tako ne moremo definirati lastnih vektorjev matrike $S_W^{-1} S_B$ in tako klasična diskriminantna analiza propade. Zamislimo si, da imamo singularni vektor $x_i$, ki leži v jedru preslikave $S_W$ (torej $x_i \in \ker (S_W)$).  Iz \textit{\eqref{alpha-beta}} vidimo, da potem velja ena izmed možnosti: ta vektor leži tudi v jedru preslikave $S_B$ ali pa je pripadajoča singularna vrednost $\beta_i$ enaka 0.
 
 Tako ločimo obe možnosti:
 \begin{enumerate}
 \item{$x_i \in \ker (S_W) \cap \ker (S_B)$}
 
-V tem primeru je enačbi \textit{\eqref{alpha-beta}} zadoščeno za poljuba $\alpha_i$ in $\beta_i$. To bo primer za $m-k$ desnih stolpcev preslikave $X$ (ti stolpci so očitno v jedru preslikave $S_W$, saj se po \textit{\eqref{eq:5}} preslikajo v 0). Premislimo, ali se nam te stolpce preslikave $X$ splača vključiti v preslikavo $G$. Velja
+V tem primeru je enačbi \textit{\eqref{alpha-beta}} zadoščeno za poljubna $\alpha_i$ in $\beta_i$. To bo primer za $m-k$ desnih stolpcev preslikave $X$ (ti stolpci so očitno v jedru preslikave $S_W$, saj se po \textit{\eqref{eq:5}} preslikajo v 0). Premislimo, ali se nam te stolpce preslikave $X$ splača vključiti v preslikavo $G$. Velja
 $$
 \text{sled}(G^T S_B G) = \sum_j g_j^T S_B g_j
 \hspace{2mm}
@@ -1184,10 +1205,65 @@ kjer $g_j$ predstavlja $j$-ti stolpec preslikave $G$. Ker velja $x_i^T S_W x_i =
 
 Iz $\beta_i = 0$ in \textit{\eqref{alpha+beta-GSVD}} sledi, da je $\alpha_i = 1$, iz česar sledi $\lambda_i = \infty$. Ti $x_i$-ji bodo predstavljali najbolj leve stolpce matike $X$. Če te stolpce vključimo v preslikavo $G$, bomo na pogoje iz \textit{\eqref{pogoji-G}} vplivali tako, da bomo $\text{sled}(G^T S_B G)$ povečali, medtem, ko bo $\text{sled}(G^T S_W G)$ ostala nespremenjena. Tako lahko skledemo, da te stolpce vključimo v $G$.
 \end{enumerate}
-Tako lahko zaključimo, da tudi ko je matrika $S_W$ singularna, preslikavo $G \in \mathbb{R}^{m \times \ell}$ sestavimo iz $\ell$ levih stolpcev matrike $X$. Od tod sledi naslednji algoritem.
+Tako lahko zaključimo, da tudi, ko je matrika $S_W$ singularna, preslikavo $G \in \mathbb{R}^{m \times \ell}$ sestavimo iz $\ell$ levih stolpcev matrike $X$. Od tod sledi naslednji algoritem.
 
-
+\newpage 
 \section{Algoritem}
+
+\begin{algorithm}
+\caption{Posplošena linearna diskriminantna analiza z uporabo posplošenega singularnega razcepa}
+\hspace*{\algorithmicindent} \textbf{Vhod:} Matrika $A \in \mathbb{R}^{m \times n}$, katere podatki so $k$ razredih in vektor $a \in \mathbb{R}^{m \times 1}$, katerega razred je neznan.
+\\
+\hspace*{\algorithmicindent} \textbf{Izhod:} Preslikava $G  \in \mathbb{R}^{m \times \ell}$, ki ohranja strukturo razredov podatkov z maksimizacijo $J_1(G) = \text{sled}\left((G^T S_W G)^{-1} G^T S_B G \right)$ ter poračuna $\ell$-dimenzionalno preslikavo $y$ vektorja $a$.
+\begin{algorithmic}[1]
+    \State Iz matrike A poračunamo matriki $H_B$ in $H_W$ z uporabo formule
+      \begin{equation} \label{H_B2}
+	H_B = \left[\sqrt{n_1} (c^{(1)} - c), \hspace{1mm} \sqrt{n_2} (c^{(2)} - c),\ldots, \hspace{1mm} \sqrt{n_k} (c^{(k)} - c)\right]
+      \end{equation}
+      in formule \textit{\eqref{H_W1}}.
+    \State Izračunamo matriki $P$ in $Q$ iz singularnega razcepa matrike $K := \begin{bmatrix} H_B^T \\ H_W^T\end{bmatrix}$,
+      $$
+	K =
+        P
+	\begin{bmatrix} 
+	R & 0_{k, m-k} \\
+	0_{n+p-k, k} & 0_{n+p-k, m-k} 
+	\end{bmatrix}
+	Q^T \text{.} 
+      $$
+    \State Označimo $k := \text{rang}(K)$.
+    \State Matriko $P$ razdelimo 
+      $$
+	P = \left[P_1 \hspace{2mm} P_2 \right]
+		=
+	\begin{bmatrix} 
+	P_{11} & P_{12} \\
+	P_{21} & P_{22} 
+	\end{bmatrix},
+	$$
+	kjer so podmatrike matrike $P$ pa so sledečih dimenzij: $P_{11} \in \mathbb{R}^{p \times k}$, $P_{12} \in 				\mathbb{R}^{p \times (p+n-k)}$, $P_{21} \in \mathbb{R}^{n \times k}$ in $P_{22} \in \mathbb{R}^{n \times (p+n-		k)}$.
+    \State Izračunamo matriko $W$ iz singularnega razcepa matrike $P_{11}$,
+      $$
+	P_{11} =
+        U
+	\begin{bmatrix} 
+	\Sigma_A & 0 
+	\end{bmatrix}
+	W^T \text{.} 
+      $$
+
+    \State Za $G$ razglasimo prvih $\ell$ stolpcev matrike $X = Q
+	\begin{bmatrix}
+	R^{-1} W & 0 \\
+	0 & I 
+	\end{bmatrix}$.
+    \State $y = G^T a$
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{opomba}
+Tu lahko v drugem koraku algoritma namesto matrike $H_B$ iz \textit{\eqref{H_B1}} uporabimo kar matriko $H_B := \left[\sqrt{n_1} (c^{(1)} - c), \hspace{1mm} \sqrt{n_2} (c^{(2)} - c),\ldots, \hspace{1mm} \sqrt{n_k} (c^{(k)} - c)\right]$, saj ta matrika na enak način določa razpršenost podatkov med posamezni razredi. Sled matrikae, ki jo maksimiziramo, se tako ne spremeni, pomnožena je le z neko konstanto manjšo od 1, saj je razlika med centroidom posameznega razreda in centroida celotnih podatkov otežena s korenom števila podatkov v posameznem razredu. Tu za utež razlike namesto bolj očitnega števila podatkov v posameznem razredu vzamemo koren števila podatkov v posameznem razredu, tako da so števila manjša, kar dodatno olajša računsko zahtevnost. To lahko naredimo, saj vemo, da je koren na intervalu $[0, \infty)$ injektivna preslikava. Matiko $H_B$ tu zamenjamo z namenom olajšanja računske zahtevnosti algoritma, saj je nova matrika dimenzije $m \times k$, kar je občutno manj.
+\end{opomba}
 
 \section{Zaključek}
 

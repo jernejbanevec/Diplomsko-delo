@@ -25,6 +25,7 @@
 \theoremstyle{definition}
 \newtheorem{definicija}{Definicija}[section]
 \newtheorem{opomba}[definicija]{Opomba}
+\newtheorem{primer}{Primer}[section]
 
 %za x piši \times
 % \in \mathbb{R}^{m \times n}
@@ -46,13 +47,13 @@
 
 \subsection{Uvod}
 
-\textbf{-- Ta odstavek je potrebno dopolniti!}
+%\textbf{-- Ta odstavek je potrebno dopolniti!}
 
-Diskriminantna analiza se že dolga leta uporablja za določevanje lastnosti, ki poudarjajo razlike med razredi. Definirana je kot optimizacijski problem, ki vključuje kovariančne matrike, ki predstavljajo razpršenost podatkov znotraj posameznega razreda in razpršenost oziroma ločenost posameznih razredov. Diskriminantna analiza pa sama po sebi zahteva, da je ena od teh kovariančnih matrik nesingularna, kar omejuje njeno uporabo na matrikah določenih dimenzij. V nadaljevanju tako preučimo več različnih optimizacijskih kriterijev in poskušamo njihovo uporabo razširiti na vse matrike z uporabo posplošenega singularnega razcepa. Na ta način se izognemo pogoju nesingularnosti, ki ga zahteva diskriminantna analiza. Tako pridemo do posplošene diskriminantne analize, ki jo lahko uporabimo tudi, kadar je ena matrika singularna (v nadaljevanju lahko vidimo, da je matrika singularna, kadar je velikost vzorca manjša, kot pa je dimenzija posamezne meritve. V nadaljevanju bomo testirali učinkovitost posplošene diskriminantne analize in jo, kjer bo to mogoče, primerjali tudi z običajno diskriminantno analizo.
+Diskriminantna analiza se že dolga leta uporablja za določevanje lastnosti, ki poudarjajo razlike med razredi. Definirana je kot optimizacijski problem, ki vključuje kovariančne matrike, ki predstavljajo razpršenost podatkov znotraj posameznega razreda in razpršenost oziroma ločenost posameznih razredov. Diskriminantna analiza pa sama po sebi zahteva, da je ena od teh kovariančnih matrik nesingularna, kar omejuje njeno uporabo na matrikah določenih dimenzij. V nadaljevanju tako preučimo več različnih optimizacijskih kriterijev in poskušamo njihovo uporabo razširiti na vse matrike z uporabo posplošenega singularnega razcepa. Na ta način se izognemo pogoju nesingularnosti, ki ga zahteva diskriminantna analiza. Tako pridemo do posplošene diskriminantne analize, ki jo lahko uporabimo tudi, kadar je ena od kovariančnih matrik singularna (v nadaljevanju lahko vidimo, da je matrika singularna, kadar je velikost vzorca manjša, kot pa je dimenzija posamezne meritve). V delu diplomskega seminarja bomo testirali učinkovitost posplošene diskriminantne analize in jo, kjer bo to mogoče, primerjali tudi z običajno diskriminantno analizo.
 
 \subsection{Matematični uvod}
 
-Cilj diskriminantne analize je združiti lastnosti originalnih podatkov na način, ki kar najučinkoviteje ločuje med razredi, v katerih so podatki. Pri takšnem združevanju lastnosti podatkov se dimenzija teh podatkov zmanjša tako, da se struktura teh podatkov in določenih razredov kar najbolje ohrani.
+Cilj diskriminantne analize je združiti lastnosti originalnih podatkov na način, ki kar najučinkoviteje ločuje med razredi, v katerih so podatki. Pri takšnem združevanju lastnosti podatkov se dimenzija danih podatkov zmanjša tako, da se struktura podatkov in določenih razredov kar najbolje ohrani.
 
 Predpostavimo, da so podatki zloženi v matriko $A \in \mathbb{R}^{m \times n}$, kjer $m$ predstavlja dimenzijo posamezne meritve, $n$ pa predstavlja število meritev oz. podatkov. Denimo, da so podatki v matriki $A$ iz $k$ različnih razredov. Tako so stolpci $a_1, a_2, \ldots, a_n$ matrike $A$ združeni v $k$ podmatrik, ki predstavljajo razrede, v katerih so podatki:
 $$ A = 
@@ -63,7 +64,7 @@ A_1, & A_2, & \ldots, & A_k
 $$ 
 Tu število $n_i$ predstavlja moč indeksne množice razreda $i$. To indeksno množico razreda $i$ označimo z $N_i$. Očitno velja tudi $$
 \sum_{i=1}^{k}n_i = n \text{.}$$
-Matriko $A$ lahko poleg razdelitve na podmatrike razdelimo tudi na stolpce. Matrika $A = \left[ a_{i ,j} \right]  \in \mathbb{R}^{m \times n}$ je tako sestavljena iz $n$ posameznih stolpcev, kjer $i$-ti stolpec označimo z $a_i$:
+Matriko $A$ lahko poleg delitve na podmatrike razdelimo tudi na stolpce. Matrika $A = \left[ a_{i ,j} \right]  \in \mathbb{R}^{m \times n}$ je tako sestavljena iz $n$ posameznih stolpcev, kjer $i$-ti stolpec označimo z $a_i$:
 $$ a_i =
 \begin{bmatrix}
 a_{1, i} \\
@@ -74,8 +75,9 @@ a_{m, i}
 \text{.}
 $$
 
-Cilj diskriminantne analize je najti linearno preslikavo iz $\mathbb{R}^m$ v $\mathbb{R}^\ell$, ki v novem prostoru kar najbolje poudari razrede, v katerih so podatki. Tu navadno velja $\ell \leq m - 1$, torej da je prostor, v katerega ta linearna preslikava slika, manjdimenzionalen kot prvotni prostor. To iskano linearno preslikavo predstavimo z matriko $G^T \in \mathbb{R}^{\ell \times m}$.
-Za preslikavo $G^T$ torej velja $$G^T : \mathbb{R}^m \rightarrow \mathbb{R}^\ell \text{.}$$ Torej preslikava $G^T$ nek $m$-dimenzionalen vektor preslika v nov vektor v $\ell$-dimezionalnem prostoru, v katerem so razredi podatkov poudarjeni, razpršenost podatkov znotraj razredov je zmanjšana, razlike med razredi pa so povečane.
+Cilj diskriminantne analize je najti linearno preslikavo iz $\mathbb{R}^m$ v $\mathbb{R}^\ell$, ki v novem prostoru kar najbolje poudari razrede, v katerih so podatki. Tu navadno velja $\ell \leq m - 1$, kar pomeni, da je prostor, v katerega ta linearna preslikava slika, manjdimenzionalen kot prvotni prostor. Iskano linearno preslikavo predstavimo z matriko $G^T \in \mathbb{R}^{\ell \times m}$.
+Za preslikavo $G^T$ torej velja $$G^T : \mathbb{R}^m \rightarrow \mathbb{R}^\ell \text{.}$$ 
+Cilj je poiskati tako preslikavo $G^T$, ki izbran $m$-dimenzionalen vektor preslika v nov vektor v $\ell$-dimezionalnem prostoru, v katerem so razredi podatkov poudarjeni, razpršenost podatkov znotraj razredov je zmanjšana, razlike med razredi pa so povečane.
 
 Za nadaljnje izračune moramo definirati tudi centroid $i$-tega razreda, ki je izračunan kot povprečje stolpcev v $i$-tem razredu, 
 $$c^{(i)} = \frac{1}{n_i} \sum_{j \in N_i} a_j \text{,}
@@ -111,7 +113,6 @@ sled(S_B) = \sum_{t=1}^{m} \left[ \sum_{i = 1}^{k} \sum_{j \in N_i}(c_t^{(i)} - 
 = \sum_{i = 1}^{k} n_i \norm{ c^{(i)} - c}_2^2
 \text{.}
 \end{gather*}
-
 Optimalna preslikava $G^T$ tako maksimizira $sled(S_{B}^{\ell})$ in minimizira $sled(S_{W}^{\ell})$. Smiselen maksimizacijski kriterij se tako zdi $$sled( G^T S_B G) / sled( G^T S_W G) \text{,}$$ ki pa ga zaradi lažjega računanja aproksimiramo kar s kriterijem $$sled((S_W^\ell)^{-1}S_B^\ell) \text{.}$$
 %\textbf{-- NEJASNOST!}
 % Pojasnitev prvega kriterija: Preslikana matrika S_B mora imeti čim manjšo vsoto lastnih vrednosti, preslikana matrika S_W pa čim večjo.
@@ -119,28 +120,21 @@ Optimalna preslikava $G^T$ tako maksimizira $sled(S_{B}^{\ell})$ in minimizira $
 
 Kljub temu, da je ta optimizacijski kriterij lažje izračunljiv ima svoje pomanjkljivosti. Opazimo lahko, da kriterija ne moremo uporabiti, ko je matrika $S_W^\ell$ singularna, torej kadar je njena determinanta enaka 0. 
 
-\textbf{-- *Ali ta del sploh velja?*--}
+\begin{Large} \textbf{\#1} \end{Large}
+\textbf{-- *Tu popravkov ne razumem najbolje - torej če tu dodam tisti del bo kar uredu? Ker pozneje govorim o singularnosti $S_W$ - ali naj tudi ta del izbrišem - ali naj pozneje pišem kar $S_W^\ell$?*--}
 
-\textbf{--Će NE, kako lahko potem pokažem da singularni razcep res potrebujemo? --}
-
-\textbf{--Će DA, kako lahko to dokažem/pokažem? --}
-%Ta del mogoče sploh ne velja!!
-
-Iz singularnosti matrike $S_W$ sledi singularnoti matrike $S_W^\ell$.
 %Ker pa za determinanto matrike velja
 %$$ \det(S_W^\ell) = \det(G^T S_W G) = \det(G^T) \cdot \det(S_W) \cdot \det(G) \text{,}
 %$$
 %je $\det(S_W^\ell)$ enaka 0 kadar je $\det(S_W)$ enaka 0, torej kadar je matrika $S_W$ singularna. 
 
-\textbf{--}
-
-Do te situacije pa lahko pride kar precej pogosto. Matrika $S_W \in  \mathbb{R}^{m \times m}$ je singularna namreč v vseh primerih, ko za matriko $A \in  \mathbb{R}^{m \times n}$ velja $m > n$, saj je potem po definiciji sestavljena kot vsota $n$ matrik z rangom $1$. $m \times m$ dimenzionalna matrika $S_W$ ima tako rang manjši ali enak $n$, iz česar sledi, da je njena determinanta enaka 0.
+Do te situacije pa lahko pride kar precej pogosto. Matrika $S_W \in  \mathbb{R}^{m \times m}$ je namreč singularna v vseh primerih, ko za matriko $A \in  \mathbb{R}^{m \times n}$ velja $m > n$, saj je potem po definiciji sestavljena kot vsota $n$ matrik z rangom $1$. Matrika $S_W$, ki je dimezij $m \times m$, ima tako rang manjši ali enak $n$, iz česar sledi, da je njena determinanta enaka 0.
 Na primer, do tega problema pride v primeru, ko je pridobivanje podatkov drago oz. zahtevno in so pridobljeni podatki visokih dimenzij (dimenzija posameznega podatka je večja od števila vseh pridobljenih podatkov).
 
-Obstaja več načinov, kako aplicirati diskriminantno analizo na matriki $A \in \mathbb{R}^{m \times n}$ z $m > n$. V grobem jih ločimo na tiste, kjer dimenzijo podatkov zmanjšamo v dveh korakih, in na tiste, kjer dimenzijo podatkov zmanjšamo v enem koraku. Pri prvem načinu se faza diskriminante analize nadaljuje v fazo, v kateri zanemarimo oblike posameznih razredov. Najpopularnejša metoda za prvi del tega procesa je zmanjšanje ranga matrike s pomočjo singularnega razcepa. To je tudi glavno orodje metode imenovane metoda glavnih komponent. Kakorkoli, celotna predstava dvostopenjskih načinov je precej občutljiva na zmanjšanje dimenzije v prvi fazi. V diplomskem delu se bomo osredotočili na način, ki posploši diskriminantno analizo tako, da teoretično optimalno zmanjša dimenzijo podatkov brez da bi uvedel dodaten korak. V ta namen bomo obravnavali kriterij 
+Obstaja več načinov, kako aplicirati diskriminantno analizo na matriki $A \in \mathbb{R}^{m \times n}$ z $m > n$. V grobem jih ločimo na tiste, kjer dimenzijo podatkov zmanjšamo v dveh korakih, in na tiste, kjer dimenzijo podatkov zmanjšamo v enem koraku. Pri prvem načinu se faza diskriminante analize nadaljuje v fazo, v kateri zanemarimo oblike posameznih razredov. Najpopularnejša metoda za prvi del tega procesa je zmanjšanje ranga matrike s pomočjo singularnega razcepa. To je tudi glavno orodje metode imenovane metoda glavnih komponent. Kakorkoli, učinkovitost dvostopenjskih načinov se precej razlikuje glede na način zmanjšanje dimenzije v prvi fazi. V diplomskem delu se bomo osredotočili na način, ki posploši diskriminantno analizo tako, da teoretično optimalno zmanjša dimenzijo podatkov, brez da bi uvedel dodaten korak. V ta namen bomo obravnavali kriterij 
 $$ sled((S_2^\ell)^{-1} S_1^\ell) \hspace{1mm} \text{,}
 $$
-kjer matriki $S_2$ in $S_1$ predstavljata poljubno matriko izmed $S_W$, $S_B$ in $S_M$.  Kadar je matrika $S_2$ nesingularna, klasična diskriminantna analiza predstavi svojo rešitev s pomočjo posplošenega problema lastnih vrednosti. S prestrukturiranjem problema tako, da uporabimo posplošeni singularni razcep, pa lahko razširimo uporabnost diskriminantne analize tudi na primer, ko je matrika $S_2$ singularna.
+kjer matriki $S_2$ in $S_1$ predstavljata poljubno matriko izmed $S_W$, $S_B$ in $S_M$.  Kadar je matrika $S_2$ nesingularna, klasična diskriminantna analiza predstavi svojo rešitev s pomočjo posplošenega problema lastnih vrednosti. S prestrukturiranjem problema in uporabo posplošenega singularnega razcepa, pa lahko razširimo uporabnost diskriminantne analize tudi na primer, ko je matrika $S_2$ singularna.
 
 \section{Matematična priprava - posplošeni singularni razcep}
 Originalna definicija posplošenega singularnega razcepa (Van Loan) je sledeča.
@@ -162,7 +156,7 @@ $$ U^T K_A X =
 \hspace{2mm} \text{in} \hspace{2mm}
  V^T K_B X = 
 \Sigma_{B_q} \text{,}
-$$ kjer je $q = min(n,m) \text{,}$
+$$ kjer je $q = \min(n,m) \text{,}$
 % !!DEFINICIJA DRUGE MATRIKE!!
 \begin{gather*}
 \Sigma_{B_q} = 
@@ -194,7 +188,7 @@ $
 % k_1 = k
 % n = m
 
-Iz matrik $K_A$ in $K_B$ tvorimo združeno $(p+n)\times m$ matriko $K = \left[\begin{array}{c} K_A \\ K_B \end{array}\right]$, na kateri naredimo singularni razcep. Iz singularnega razcepa dobimo matriki $Q \in \mathbb{R}^{(p+n) \times (p+n)}$ in matriko $Z_1 \in \mathbb{R}^{m \times m}$, tako da velja 
+Iz matrik $K_A$ in $K_B$ tvorimo združeno $(p+n)\times m$ matriko $K = \left[\begin{array}{c} K_A \\ K_B \end{array}\right]$, za katero izračunamo singularni razcep. Iz singularnega razcepa dobimo matriki $Q \in \mathbb{R}^{(p+n) \times (p+n)}$ in matriko $Z_1 \in \mathbb{R}^{m \times m}$, tako da velja 
 \begin{equation}
 Q^T \left[\begin{array}{c} K_A \\ K_B \end{array}\right] Z_1 = 
 \begin{bmatrix}
@@ -214,7 +208,6 @@ k = rang(K) \hspace{2mm} \text{velja} \hspace{2mm}
 \gamma_1 \geq \ldots \geq \gamma_k > \gamma_{k+1} = \ldots \gamma_m = 0\text{.} $
 
 Matriko $Z_1$ razdelimo na dve matriki, matriko $Z_{11} \in \mathbb{R}^{m \times k}$, ki je sestavljena iz prvih $k$ stolpcev matrike $Z_1$ in matriko $Z_{12} \in \mathbb{R}^{m \times (m-k)}$, ki je sestavljena iz preostalih $m-k$ stolpcev matrike $Z_1$. Pišemo $$Z_1 = \left[ Z_{11} \hspace{2mm} Z_{12} \right] \text{.}$$
-
 %, lahko vidimo, da velja
 %$$ Q^T K \left[\begin{array}{c} Z_{11} | Z_{12} \end{array}\right] = 
 %\begin{bmatrix}
@@ -230,7 +223,7 @@ Matriko $Z_1$ razdelimo na dve matriki, matriko $Z_{11} \in \mathbb{R}^{m \times
 %\end{bmatrix}
 %\text{.}
 %$$
-Po predpostavki velja $p \geq m$ in ker je očitno tudi $m \geq k$ sledi $p \geq m \geq k$. Sedaj definirajmo matriko 
+Po predpostavki velja $p \geq m$ in ker je očitno tudi $m \geq k$, sledi $p \geq m \geq k$. Sedaj definirajmo matriko 
 $$ D := diag(\gamma_1,..., \gamma_k) \in \mathbb{R}^{k \times k} \text{.}
 $$
 Tako iz zgornje enačbe \textit{\eqref{eq:1}} dobimo
@@ -261,7 +254,7 @@ $$ Q =
 Q_{11} & Q_{12} \\ 
 Q_{21} & Q_{22}
 \end{bmatrix} \text{,}
-$$ kjer je matrika $Q_{11} \in \mathbb{R}^{p \times k}$, matrika $Q_{12} \in \mathbb{R}^{p \times (p+n-k)}$, matrika $Q_{21} \in \mathbb{R}^{ n \times k}$ in matrika matrika $Q_{22} \in \mathbb{R}^{ n \times (p+n-k)}$, ugotovimo, da je
+$$ kjer je matrika $Q_{11} \in \mathbb{R}^{p \times k}$, matrika $Q_{12} \in \mathbb{R}^{p \times (p+n-k)}$, matrika $Q_{21} \in \mathbb{R}^{ n \times k}$ in matrika $Q_{22} \in \mathbb{R}^{ n \times (p+n-k)}$, ugotovimo, da je
 $$Q
 \begin{bmatrix}
 D \\ 
@@ -293,7 +286,7 @@ Sedaj singularni razcep naredimo na matriki $K_{B_1}$. Za matriko $K_{B_1}$ vemo
 V^T K_{B_1} Z_2 = \Sigma_{B_t}
  \text{,}  \label{eq:3}
 \end{equation}
-kjer je $t = min\{n, k\}$, 
+kjer je $t = \min\{n, k\}$, 
 $\Sigma_{B_t} = 
 \left[
 \begin{array}{c;{2pt/2pt}c}
@@ -376,7 +369,7 @@ D^{-1} Z_2 & 0\\
 \end{bmatrix}
 \text{.}$$
 
-Dokazati pa moramo tudi, da zgornja matrika $X$ ustreza tudi enačbi iz izreka za matriko $K_A$, torej, da obstaja tudi taka matrika $U$, da velja
+Dokazati pa moramo še, da zgornja matrika $X$ ustreza tudi enačbi iz izreka za matriko $K_A$, torej, da obstaja tudi taka matrika $U$, da velja
 \begin{gather*}
  U^T K_A X = 
 \begin{bmatrix}
@@ -418,7 +411,7 @@ Definirajmo matriko $G$, ki jo dobimo s preoblikovanjem enačbe \textit{\eqref{e
 $$ G := K_{B_1} Z_2 = V \Sigma_{B_t} \in \mathbb{R}^{n \times k} \text{.}
 $$
 
-Za matriko $K_{A_1} Z_2$ izračunamo razširjen QR razcep, $ K_{A_1} Z_2 = U R$, kjer je $U \in \mathbb{R}^{p \times p}$ ortogonalna in $R \in \mathbb{R}^{p \times k}$ zgornja trapezna matrika. Tak razcep lahko naredimo na primer z uporabo Householderjevih zrcaljenj.
+Za matriko $K_{A_1} Z_2$ izračunamo razširjen QR razcep, $ K_{A_1} Z_2 = U R$, kjer je $U \in \mathbb{R}^{p \times p}$ ortogonalna matrika in $R \in \mathbb{R}^{p \times k}$ zgornja trapezna matrika. Tak razcep lahko naredimo na primer z uporabo Householderjevih zrcaljenj.
 
 %STAR DEL!!!
 %naredimo Householderjeva zrcaljenja: Dobimo matriko ortogonalno matriko $U^T \in \mathbb{R}^{p \times p}$, da velja
@@ -477,6 +470,7 @@ $$
 $$
 Velja tudi
 \begin{gather*}
+U^T K_A X =
 U^T K_A Z_1
 \begin{bmatrix}
 D^{-1} Z_2 & 0\\ 
@@ -507,22 +501,33 @@ R & 0_{p, m-k}
 \left[
 \begin{array}{c;{2pt/2pt}c}
 \begin{matrix}
-\alpha_i & & \\
+\alpha_1 & & \\
  & \ddots & \\
  & & \alpha_k
 \end{matrix} & 0_{k, m-k}
  \\ \hdashline[2pt/2pt]
 0_{p-k, k} & 0_{p-k, m-k}
-\end{array} \right] \text{,}
+\end{array} \right] =
+\left[
+\begin{array}{c}
+\begin{matrix}
+\alpha_1 & & \\
+ & \ddots & \\
+ & & \alpha_m
+\end{matrix}
+ \\ \hdashline[2pt/2pt]
+0_{p-m, m}
+\end{array} \right] 
+\text{,}
 \end{gather*}
-kjer smo dodatno definirali $\alpha_i = \sqrt{1-\beta_i^2}$ za $i = 1, \ldots, k$ in $\alpha_{k+1} = \ldots = \alpha_m$.
+kjer smo definirali $\alpha_i = \sqrt{1-\beta_i^2}$ za $i = 1, \ldots, k$ in $\alpha_{k+1} = \ldots = \alpha_m = 0$.
 S tem smo pokazali, da matrika $$ X = Z_1 
 \begin{bmatrix}
 D^{-1} Z_2 & 0\\ 
 0 & I_{m-k}
 \end{bmatrix}
 $$
-zadošča tako razcepu matrike $K_A$ kot tudi razcepu matrike $K_B$ iz izreka in s tem dokazali izrek.
+zadošča tako razcepu matrike $K_A$ kot tudi razcepu matrike $K_B$ iz izreka, kar zaključuje dokaz.
 \end{proof}
 
 Problem tega izreka pa je, da se ga ne da uporabiti, kadar dimenzije matrike $K_A$ niso ustrezne. Zaradi tega pretirano zavezujočega pogoja se odločita C.C. Paige in M.A. Saunders ta posplošeni singularni izrek še dodatno posplošiti. Tako dobimo naslednji izrek:
@@ -543,9 +548,9 @@ I_A &  & \\
  & & I_B  
 \end{bmatrix} \text{,}$$ 
 $R \in \mathbb{R}^{k \times k}$ je nesingularna matrika, matriki $I_A \in \mathbb{R}^{r \times r}$ in $I_B \in \mathbb{R}^{(k-r-s) \times (k-r-s)}$ identični matriki, kjer je 
-$$r = rang(K) - rang(K_B) \hspace{4mm} \text{in} \hspace{4mm} s = rang(K_A) + rang(K_B) - rang(K),$$
-$0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ in $0_B \in \mathbb{R}^{(n-k+r) \times r}$ ničelni matriki, ki imata lahko tudi ničelno število vrstic ali stolpcev, matriki
-$D_A = diag(\alpha_{r+1},..., \alpha_{r+s})$ in $D_B = diag(\beta_{r+1},..., \beta_{r+s})$ pa diagonalni matriki, ki zadoščata pogoju
+$$r = rang(K) - rang(K_B) \hspace{4mm} \text{in} \hspace{4mm} s = rang(K_A) + rang(K_B) - rang(K) \text{.}$$
+Dalje sta $0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ in $0_B \in \mathbb{R}^{(n-k+r) \times r}$ ničelni matriki, ki imata lahko tudi ničelno število vrstic ali stolpcev, matriki
+$D_A = diag(\alpha_{r+1},..., \alpha_{r+s})$ in $D_B = diag(\beta_{r+1},..., \beta_{r+s})$ pa sta diagonalni matriki, ki zadoščata pogoju
 $$1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0 \hspace{4mm} \text{in} \hspace{4mm} 0 < \beta_{r+1} \leq \ldots \leq \beta_{r+s} < 1$$
 pri
 \begin{equation} \label{alpha+beta-GSVD}
@@ -602,26 +607,28 @@ I_r &  & \\
 \end{bmatrix}$ diagonalna matrika, kjer $r+s$ predstavlja rang matrike $P_{11}$ in $0_A \in \mathbb{R}^{(p-r-s) \times (k-r-s)}$ je ničelna matrika, ki ima lahko ničelno število vrstic ali stolpcev.
 % za katere velja $1 > \alpha_{r+1} \geq \ldots \geq \alpha_{r+s} > 0.$
 
+%% Star del - ZAČETEK --
+%Matriko $P_{21} W$ množimo z ortogonalnimi transformacijami tako, da uničimo vse elemente v zgornjem delu matrike $P_{21} W$. Tako dobimo ortogonalno in simetrično matriko $V \in \mathbb{R}^{n \times n}$, da velja 
+%$$ V^T P_{21} W = (\ell_{ij})_{i, j} = L \text{,}$$
+%kjer je matrika $L \in \mathbb{R}^{n \times k}$ spodnjetrikotna z diagonalnimi elementi večjimi od $0$. Matrika ortogonalnih transformacij $V$ je tu lahko sestavljena kar kot produkt matrik Householderjevih zrcaljenj $\tilde{P_1}$, $\tilde{P_2}$, \ldots, $\tilde{P_k}$, ki jih dobimo tako, da začnemo elemente zgornjega dela matrike $P_{21} W$ uničevati iz desne proti levi (najprej sestavimo torej matriko $\tilde{P_k}$, nato matriko $\tilde{P_{k-1}}$, itd.) in za to uporabimo manj stabilno verzijo Householderjevih zrcaljenj, tako, da je zadoščeno pogoju, da so diagonalni elementi matrike $L$ nenegativni.
+%Velja torej $$V = \tilde{P_1} \tilde{P_2} \dots \tilde{P_k} \text{,}$$
+%kjer je $\tilde{P_k} = I - \frac{2}{w_k^T w_k} w_k w_k^T$, $w_k = x_k + \norm{x_k}_2 e_n$, $e_n$ tu predstavlja enotski vektor z enico na $n$-tem mestu, $x_j$ pa $j$-ti stolpec matrike $P_{21} W$.
+%% Star del - KONEC --
 
-Matriko $P_{21} W$ množimo z ortogonalnimi transformacijami tako, da uničimo vse elemente v zgornjem delu matrike $P_{21} W$. Tako dobimo ortogonalno in simetrično matriko $V \in \mathbb{R}^{n \times n}$, da velja 
-$$ V^T P_{21} W = (\ell_{ij})_{i, j} = L 
-%=
-%\begin{bmatrix} 
-%0 & 0 \\
-%0 & L_1
-%\end{bmatrix} 
+%\textbf{-- Popravljen del ZAČETEK --}
+
+Matriko $P_{21} W$ množimo z ortogonalnimi transformacijami tako, da uničimo vse elemente v zgornjem delu matrike $P_{21} W$. Tako dobimo ortogonalno matriko $V^T \in \mathbb{R}^{n \times n}$, da velja 
+$$ V^T P_{21} W = (\ell_{ij})_{i, j} = L
 \text{,}$$
-%Matriko $P_{21} W$ iz leve množimo z matriko Householderjevih zrcaljenj $V \in \mathbb{R}^{n \times n}$, da velja $$ V^H P_{21} W = L = (\ell_{ij})_{i, j} %=
-%\begin{bmatrix} 
-%0 & 0 \\
-%0 & L_1
-%\end{bmatrix} 
-%,$$
-%\textbf{-- Kako lahko tu naredim, da dobimo v levem delu matrike ničle (v primeru $n < k$)? - Bi morda moral pred razcepom urediti na primeren način? Lahko bi npr. poračunal "stolpično kanonično formo", tako da imam na najbolj levi strani ničelne stolpce. Ali je morda to mišljeno le da te odvečne vrstice preslika v 0?} 
-kjer je matrika $L \in \mathbb{R}^{n \times k}$ spodnjetrikotna z diagonalnimi elementi večjimi od $0$. Matrika ortogonalnih transformacij $V$ je tu lahko sestavljena kar kot produkt matrik Householderjevih zrcaljenj $\tilde{P_1}$, $\tilde{P_2}$, \ldots, $\tilde{P_k}$, ki jih dobimo tako, da začnemo elemente zgornjega dela matrike $P_{21} W$ uničevati iz desne proti levi (najprej sestavimo torej matriko $\tilde{P_k}$, nato matriko $\tilde{P_{k-1}}$, itd.) in za to uporabimo manj stabilno verzijo Householderjevih zrcaljenj, tako, da je zadoščeno pogoju, da so diagonalni elementi matrike $L$ nenegativni.
-Velja torej $$V = \tilde{P_1} \tilde{P_2} \dots \tilde{P_k} \text{,}$$
-kjer je $\tilde{P_k} = I - \frac{2}{w_k^T w_k} w_k w_k^T$, $w_k = x_k + \norm{x_k}_2 e_n$, $e_n$ tu predstavlja enotski vektor z enico na $n$-tem mestu, $x_j$ pa $j$-ti stolpec matrike $P_{21} W$.
-
+kjer je matrika $L \in \mathbb{R}^{n \times k}$ v primeru, ko velja $n \geq k$, spodnje trapezna matrika z nenegativnimi diagonalnimi elementi, v primeru ko velja pa $n < k$, ima obliko 
+$$ L =
+\left[ L_1 \hspace{2mm} L_2 \right]
+\text{,} $$ kjer je $L_1$ poljubna $(k-n) \times n$ dimenzionalna matrika realnih števil, matrika $L_2 \in \mathbb{R}^{n \times n}$ pa spodnje trikotna matrika z nenegativnimi diagonalnimi elementi.
+Za elemente matrike $L$ tako velja $\ell_{ij} = 0,$ ko velja $n-i > k-j$, ter $\ell_{ij} \geq 0,$ ko velja $n-i = k-j$.
+Matrika ortogonalnih transformacij $V$ je tu lahko sestavljena kar kot produkt Householderjevih zrcaljenj $\tilde{P_1}$, $\tilde{P_2}$, \ldots, $\tilde{P_k}$, ki jih dobimo tako, da začnemo elemente zgornjega dela matrike $P_{21} W$ uničevati iz desne proti levi (najprej torej sestavimo matriko $\tilde{P}_k$, nato matriko $\tilde{P}_{k-1}$, itd.) in za to uporabimo manj stabilno verzijo Householderjevih zrcaljenj, tako, da je zadoščeno pogoju, da so diagonalni elementi matrike $L$ nenegativni.
+Velja torej $$V^T = \tilde{P_1} \tilde{P_2} \dots \tilde{P_k} \text{.}$$
+Podrobnejši opis razcepa je podan v nadaljevanju (glej \textbf{Primer 2.1.}).
+%\textbf{-- Popravljen del KONEC -}
 
 Opazimo lahko, da velja spodnja enakost
 $$
@@ -656,11 +663,23 @@ $$ L =
 0_{k-r, r} & L_1
 \end{bmatrix} 
 \text{,}
-$$ kjer je $L_1 \in \mathbb{R}^{(k-r) \times (k-r)}$ spodnjetrikotna matrika, z nenegativnimi diagonalnimi elementi. Iz dejstva, da so stolpci matrike $\begin{bmatrix}
+$$ kjer je $L_1 \in \mathbb{R}^{(k-r) \times (k-r)}$ spodnje trikotna matrika z nenegativnimi diagonalnimi elementi.
+%\newline
+Ker je desnih $k-r-s$ stolpcev matrike $\Sigma_A$ ničelnih, stolpci matrike $\begin{bmatrix}
 \Sigma_A \\
 L
-\end{bmatrix}$ med seboj pravokotni in po normi enaki $1$, sledi, da je matrika $L_1$ diagonalna matrika, ki ima levih $s$ diagonalnih elementov med $0$ in $1$, preostalih $k-r-s$ diagonalnih elementov pa enakih $1$.
-To implicira obliko matrike $ \begin{bmatrix}
+\end{bmatrix}$ so pa po normi enaki 1, mora imeti desnih $k-r-s$ stolpcev matrike $L_1$ normo ena. Prav tako morajo biti stolpci matrike $L_1$ medsebojno pravokotni. Ker pa je matrika $L_1$ spodnje trikotna z nenegativnimi diagonalnimi elementi, je desnih $k-r-s$ diagonalnih elementov matrike $L_1$ enakih 1. To lahko bolje vidimo tako, da začnemo dopolnjevati matriko $L_1$ iz desne proti levi. Desni spodnji element matrike $L_1$ mora biti po prajšnjem enak 1 (zaradi pogoja, da imajo stolpci matrike $\begin{bmatrix}
+\Sigma_A \\
+L
+\end{bmatrix}$ normo enako 1, ter pogoja, da so vsi ostali elementi zadnje stolpca matrike $L$ enaki 0). Posledično iz ortogonalnosti stolpcev matrike $\begin{bmatrix} \Sigma_A \\ L \end{bmatrix}$ sledi, da so vsi preostali elementi zadnje vrstice matrike $L_1$ enaki $0$, saj v kolikor bi bil katerikoli neničelen, bi kršili pogoj ortogonalnosti stolpcev. Tako nadaljujemo na naslednjem levem stolpcu in podobno pridemo do ugotovitve, da mora biti predzadnji element tega stolpca enak $1$. Enako lahko določimo vrednosti vseh $k-r-s$ desnih stolpcev matrike $L_1$. Podobno lahko določimo vrednosti tudi za $s$ levih stolpcev matrike $L_1$. V $s$-tem stolpcu matrike mora biti zaradi ortonormiranosti stolpcev $\begin{bmatrix} \Sigma_A \\ L \end{bmatrix}$ vrednost $\beta_{r+s} := \sqrt{1-\alpha^2_{r+s}}$, kjer zaradi pogoja nenegativnosti diagonalnih elementov matrike $L_1$ vzamemo pozitiven predznak. Podobno lahko pokažemo za vseh $s$ levih stolpcev matrike $L_1$. 
+%
+%Iz dejstva, da so stolpci matrike $\begin{bmatrix}
+%\Sigma_A \\
+%L
+%\end{bmatrix}$ med seboj pravokotni in po normi enaki $1$, sledi, da je matrika $L_1$ diagonalna matrika, ki ima levih $s$ diagonalnih elementov med $0$ in $1$, preostalih $k-r-s$ diagonalnih elementov pa enakih $1$.
+\newline
+To implicira obliko matrike 
+$ \begin{bmatrix}
 \Sigma_A \\
 L
 \end{bmatrix}$, torej
@@ -693,7 +712,7 @@ I_r & & \\
 % & & I_{k-r-s, k-r-s}
 %\end{bmatrix} 
 \text{,}
-$$ kjer je matrika $D_B$ diagonalna matrika 
+$$ kjer je matrika $D_B$ diagonalna matrika, 
 $  D_B = 
 \begin{bmatrix}
 \beta_{r+1} & & \\
@@ -716,7 +735,7 @@ Iz enačbe  \textit{\eqref{eq:5}} in enakosti
 $$
 P_{11} = U \Sigma_A W^T
 \hspace{2mm} \text{in} \hspace{2mm}
-P_{21} = V \Sigma_B W^T \text{,}
+P_{21} = V \Sigma_B W^T
 $$ dobimo
 \begin{equation} \label{eq6}
 \begin{split}
@@ -743,8 +762,7 @@ V \Sigma_B W^T R & 0_{n, m-k}
 \end{bmatrix} \text{.}
 \end{split}
 \end{equation}
-
-Če začetno enačbo iz enačbe \textit{\eqref{eq6}} pomnožimo iz leve z matriko 
+Če začetno enačbo iz enačbe \textit{\eqref{eq6}} pomnožimo z leve z matriko 
 $
 \begin{bmatrix}
 U^T & 0_{p, n} \\
@@ -778,6 +796,231 @@ U^T K_A Q =
 $$
 s čimer smo dokazali izrek.
 \end{proof}
+
+Na enostavnem primeru ponazorimo razcep, ki smo ga v zgornjem dokazu uporabili na matriki $P_{21}W$, tako da smo dobili matriko $L$ željene oblike.
+\begin{primer}
+Vzemimo $4 \times 2$ dimenzionalno matriko
+$$ 
+P_{21}W =
+\begin{bmatrix}
+1 & 0 \\
+2 & 1 \\
+2 & 1 \\
+0 & 0
+\end{bmatrix}
+\text{.}
+$$
+Tu za matriko $P_{21}W \in \mathbb{R}^{n \times k}$ (v našem primeru n = 4 in k = 2) velja $n \geq k$, tako, da iščemo ortogonalno matriko $V^T \in \mathbb{R}^{n \times n}$, da velja $V^T P_{21} W = L$, kjer je $L$ spodnje trapezna matrika.
+
+Sedaj izračunajmo manj stabilno različico Householderjevih zrcaljenj. V prvem koraku za
+$$ x_2 =
+\begin{bmatrix}
+0 \\
+1 \\
+1 \\
+0
+\end{bmatrix}
+$$ 
+izračunamo 
+$$ w_2 = x_2 - \norm{x_2}_2 e_n =
+\begin{bmatrix}
+0 \\
+1 \\
+1 \\
+0
+\end{bmatrix}
+- \sqrt{2} 
+\begin{bmatrix}
+0 \\
+0 \\
+0 \\
+1
+\end{bmatrix} =
+\begin{bmatrix}
+0 \\
+1 \\
+1 \\
+- \sqrt{2}
+\end{bmatrix}
+\text{.}
+$$ 
+Iz vektorja $w_2$ pa lahko izračunamo Householderjeva zrcaljenja
+$$
+P_2 = I - \frac{2}{w_2^T w_2} w_2 w_2^T = 
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix} - 
+\frac{2}{4}
+\begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & 1 & 1 & -\sqrt{2} \\
+0 & 1 & 1 & -\sqrt{2} \\
+0 & -\sqrt{2} & -\sqrt{2} & 2
+\end{bmatrix} =
+\frac{1}{2}
+\begin{bmatrix}
+2 & 0 & 0 & 0 \\
+0 & 1 & -1 & \sqrt{2} \\
+0 & -1 & 1 & \sqrt{2} \\
+0 & \sqrt{2} & \sqrt{2} & 0
+\end{bmatrix}
+\text{.}
+$$
+Na prvem koraku za $\tilde{P_2}$ razglasimo kar $P_2$. Izračunajmo sedaj produkt
+$$
+\tilde{P_2} P_{21} W =
+\frac{1}{2}
+\begin{bmatrix}
+2 & 0 & 0 & 0 \\
+0 & 1 & -1 & \sqrt{2} \\
+0 & -1 & 1 & \sqrt{2} \\
+0 & \sqrt{2} & \sqrt{2} & 0
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+2 & 1 \\
+2 & 1 \\
+0 & 0
+\end{bmatrix} =
+\begin{bmatrix}
+2 & 0 \\
+0 & 0 \\
+0 & 0 \\
+4\sqrt{2} & 2\sqrt{2}
+\end{bmatrix} = 
+\begin{bmatrix}
+1 & 0 \\
+0 & 0 \\
+0 & 0 \\
+2\sqrt{2} & \sqrt{2}
+\end{bmatrix}
+\text{.}
+$$
+
+Na drugem koraku vzamemo za $x_1$ naslednji levi stolpec nastalega produkta $\tilde{P_2} P_{21} W$, kjer izpustimo toliko elementov tega stolpca, kolikor je število predhodno narejenih korakov. Tako za vektor
+$$ x_1 = 
+\begin{bmatrix}
+1\\
+0\\
+0\\
+\end{bmatrix}
+$$ 
+izračunamo
+$$
+w_1 = x_1 - \norm{x_1} e_{n-1} = 
+\begin{bmatrix}
+1\\
+0\\
+0\\
+\end{bmatrix} - 
+\begin{bmatrix}
+0\\
+0\\
+1\\
+\end{bmatrix} = 
+\begin{bmatrix}
+1\\
+0\\
+-1\\
+\end{bmatrix}
+\text{,}
+$$
+kjer na $i$-tem (v tem primeru na drugem) koraku uporabimo vektor $e_{n-i+1}$ (v tem primeru torej $e_{n-1}$), ki predstavlja ničelni vektor dimenzije $n-i+1$, ki ima le na zadnjem mestu enico. S pomočjo izračunanega vektorja $w_1$ sedaj izračunajmo Householderjeva zrcaljenja
+$$
+P_1 = I - \frac{2}{w_1^T w_1} w_1 w_1^T = 
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+\end{bmatrix} - 
+\frac{2}{2}
+\begin{bmatrix}
+1 & 0 & -1 \\
+0 & 0 & 0 \\
+-1 & 0 & 1  \\
+\end{bmatrix} =
+\begin{bmatrix}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+1 & 0 & 0  \\
+\end{bmatrix}
+\text{.}
+$$
+Definiramo
+$$
+\tilde{P_1} = 
+\begin{bmatrix}
+P_1 & 0 \\
+0 & I_{1,1} \\
+\end{bmatrix}
+ =
+\begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+\text{.}
+$$
+V splošnem na $i$-tem koraku za matriko $\tilde{P_i}$ vzamemo 
+$
+\begin{bmatrix}
+P_i & 0 \\
+0 & I_{i-1,i-1} \\
+\end{bmatrix}
+$.
+Sedaj lahko poračunamo matriko 
+$$
+\tilde{P_1} \tilde{P_2} P_{21} W = 
+\begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+0 & 0 \\
+0 & 0 \\
+2\sqrt{2} & \sqrt{2}
+\end{bmatrix} =
+\begin{bmatrix}
+0 & 0 \\
+0 & 0 \\
+1 & 0 \\
+2\sqrt{2} & \sqrt{2}
+\end{bmatrix}
+$$
+Opazimo, da je dobljen produkt spodnje trapezna matrika. Definiramo 
+$$ V^T := \tilde{P_1} \tilde{P_2} = 
+\begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+\frac{1}{2}
+\begin{bmatrix}
+2 & 0 & 0 & 0 \\
+0 & 1 & -1 & \sqrt{2} \\
+0 & -1 & 1 & \sqrt{2} \\
+0 & \sqrt{2} & \sqrt{2} & 0
+\end{bmatrix} =
+\begin{bmatrix}
+0 & -\frac{1}{2} & \frac{1}{2} & \frac{\sqrt{2}}{2} \\
+0 & \frac{1}{2} & -\frac{1}{2} & \frac{\sqrt{2}}{2} \\
+1 & 0 & 0 & 0 \\
+0 & \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} & 0
+\end{bmatrix}
+$$
+in dobili smo ravno iskano ortogonalno matriko. Enak postopek lahko uporabimo tudi na poljubni matriki $P_{21}W \in \mathbb{R}^{n \times k}$, kjer velja $n < k$, in tako dobimo matriko $L$, ki ima obliko 
+$$ L =
+\left[ L_1 \hspace{2mm} L_2 \right]
+\text{,} $$ kjer je $L_1$ poljubna $(k-n) \times n$ dimenzionalna matrika realnih števil, matrika $L_2 \in \mathbb{R}^{n \times n}$ pa spodnje trikotna matrika z nenegativnimi diagonalnimi elementi.
+\end{primer}
 
 Iz posplošenega singularnega razcepa, ki sta ga definirala Paige in Saunders neposredno sledi Van Loanova posplošitev singularnega razcepa. 
 S preoblikovanjem enačbe \textit{\eqref{eq4}}, dobimo
@@ -815,7 +1058,7 @@ R^{-1} W & 0 \\
 0 & I 
 \end{bmatrix}
 = I \text{.}$$
-Tako tu očitno sledi
+Očitno sledi
 $$ U^T K_A Q
 \begin{bmatrix}
 R^{-1} W & 0 \\
@@ -824,19 +1067,29 @@ R^{-1} W & 0 \\
 =
 \left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right] \text{.}
 $$
+
+\begin{Large} \textbf{\#3} \end{Large}
+\textbf{-- Ali mora biti ta matrika X ortogonalna? --}
+
 Matriko $X$ definiramo kot
-$$ Q
+\begin{equation} \label{def-X}
+Q
 \begin{bmatrix}
 R^{-1} W & 0 \\
 0 & I 
 \end{bmatrix}
-$$ in dobimo ravno Van Loanovo posplošitev razcepa
-$$ U^T K_A X = \left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right] \text{.}
-$$
+%\text{.}
+\end{equation}
+%Tako definirana matrika $X$ je ortogonalna, saj je definirana kot produkt ortogonalnih matrik.
+in dobimo ravno Van Loanovo posplošitev razcepa
+\begin{equation} \label{Van-Loan-Ka}
+U^T K_A X = \left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right] \text{.}
+\end{equation}
 Podobno lahko pokažemo tudi za matriko $K_B$, za katero iz enačbe \textit{\eqref{eq4}} dobimo
-$$ V^T K_B X = \left[\begin{array}{cc} \Sigma_B, & 0 \end{array}\right] \text{.}
-$$
-Tako je definirana matrika $X$ ravno iskana matrika iz prve posplošitve singularnega razcepa in matriki $\left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right]$ in $\left[\begin{array}{cc} \Sigma_B, & 0 \end{array}\right]$ ravno iskani diagonalni matriki.
+\begin{equation} \label{Van-Loan-Kb}
+V^T K_B X = \left[\begin{array}{cc} \Sigma_B, & 0 \end{array}\right] \text{.}
+\end{equation}
+Tako je definirana matrika $X$ ravno iskana matrika iz prve posplošitve singularnega razcepa in matriki $\left[\begin{array}{cc} \Sigma_A, & 0 \end{array}\right]$ ter $\left[\begin{array}{cc} \Sigma_B, & 0 \end{array}\right]$ ravno iskani diagonalni matriki.
 
 Za nadaljnje delo definirajmo matrike\begin{equation} \label{H_W1}
 H_W :=\left[A_1 - c^{(1)}e^{(1)^T}, \ldots, A_k - c^{(k)}e^{(k)^T}\right] \text{,}
@@ -850,19 +1103,28 @@ kjer velja
 $e^{(i)} = (1,\ldots, 1) ^T \in \mathbb{R}^{ n_i \times 1 }$ in $e =  (1,\ldots, 1) ^T \in \mathbb{R}^{ n \times 1 }$.
 
 S pomočjo teh matrik lahko definiramo tudi matrike razpršenosti podatkov. Matriko $S_W$ lahko definiramo kot produkt matrike $H_W$ z njeno transponiranko, torej
-$$S_W = H_W H_W^T \text{,}$$
+\begin{equation} \label{S_W-def}
+S_W = H_W H_W^T 
+\text{,}
+\end{equation}
 matriko $S_B$ lahko definiramo na podoben način kot
-$$S_B = H_B H_B^T \text{,}$$
+\begin{equation} \label{S_B-def}
+S_B = H_B H_B^T 
+\text{,}
+\end{equation}
 prav tako pa tudi matriko $S_M$
-$$S_M = H_M H_M^T \text{.}$$
+\begin{equation} \label{S_M-def}
+S_M = H_M H_M^T 
+\text{.}
+\end{equation}
 
-S pomočjo tega razcepa lahko tudi na drugačen način pokažemo prejšnjo ugotovitev, da je matrika $S_W$, kadar velja $m>n$, singularna. Razvidno je namreč, da je matrika $S_W$ definirana kot produkt matrik $H_W$ in $H_W^T$, kjer je matrika $H_W$ dimenzije $m \times n$, matrika $H_W^T$ pa dimenzije $n \times m$. V kolikor velja $m>n$, sta tako ti dve matrike največ ranga $n$.
-Ker pa za rang matrike velja, da je rang produkta dveh matrik navzgor omejen z manjšim izmed rangov teh dveh posameznih matrik (torej $\text{rang}(AB) \leq \min(\text{rang}(A), \text{rang}(B)$), je posledično tudi matrika $S_W$ največ ranga $n$ in torej (ker velja $m > n$) očitno singularna.
+Z uporabo enačbe \textit{\eqref{S_W-def}} lahko tudi na drugačen način pokažemo prejšnjo ugotovitev, da je matrika $S_W$, kadar velja $m>n$, singularna. Razvidno je namreč, da je matrika $S_W$ definirana kot produkt matrik $H_W$ in $H_W^T$, kjer je matrika $H_W$ dimenzije $m \times n$, matrika $H_W^T$ pa dimenzije $n \times m$. V kolikor velja $m>n$, sta tako ti dve matriki največ ranga $n$.
+Ker pa za rang matrike velja, da je rang produkta dveh matrik navzgor omejen z manjšim izmed rangov teh dveh posameznih matrik (torej $\text{rang}(AB) \leq \min(\text{rang}(A), \text{rang}(B)$), je posledično tudi matrika $S_W$ največ ranga $n$ in je torej (ker velja $m > n$) očitno singularna.
 
 %\textbf{-- Tu mogoče dopiši glede matrik $K_A$ in $K_B$}
 
 \section{Matematična rešitev problema}
-V tem odstavku prikažemo uporabo posplošenega singularnega razcepa v namen razširjene uporabe posplošene diskriminantne analize.
+V tem poglavju prikažemo uporabo posplošenega singularnega razcepa v namen razširjene uporabe posplošene diskriminantne analize.
  
 \subsection{Maksimizacija optimizacijskega kriterija $J_1 = \text{sled}({S^\ell_2}^{-1} S^\ell_1)$ za nesingularno matriko $S_2$}
 Tu izhajamo iz maksimizacije optimizacijskega kriterija 

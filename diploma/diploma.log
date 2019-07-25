@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  25 JUL 2019 14:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.15)  25 JUL 2019 19:17
 entering extended mode
 **./diploma.tex
 (diploma.tex
@@ -232,6 +232,46 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 \@float@every@algorithm=\toks31
 \c@algorithm=\count113
 )
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\mathtools\mathtoo
+ls.sty"
+Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\keyval.s
+ty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks32
+)
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count114
+\calc@Bcount=\count115
+\calc@Adimen=\dimen121
+\calc@Bdimen=\dimen122
+\calc@Askip=\skip49
+\calc@Bskip=\skip50
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count116
+\calc@Cskip=\skip51
+)
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\mathtools\mhsetup
+.sty"
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count117
+\l_MT_multwidth_dim=\dimen123
+\origjot=\skip52
+\l_MT_shortvdotswithinadjustabove_dim=\dimen124
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen125
+\l_MT_above_intertext_sep=\dimen126
+\l_MT_below_intertext_sep=\dimen127
+\l_MT_above_shortintertext_sep=\dimen128
+\l_MT_below_shortintertext_sep=\dimen129
+)
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\algorithmicx\algp
 seudocode.sty"
 Package: algpseudocode 
@@ -241,22 +281,22 @@ rithmicx.sty"
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count114
-\c@ALG@rem=\count115
-\c@ALG@nested=\count116
-\ALG@tlm=\skip49
-\ALG@thistlm=\skip50
-\c@ALG@Lnr=\count117
-\c@ALG@blocknr=\count118
-\c@ALG@storecount=\count119
-\c@ALG@tmpcounter=\count120
-\ALG@tmplength=\skip51
+\c@ALG@line=\count118
+\c@ALG@rem=\count119
+\c@ALG@nested=\count120
+\ALG@tlm=\skip53
+\ALG@thistlm=\skip54
+\c@ALG@Lnr=\count121
+\c@ALG@blocknr=\count122
+\c@ALG@storecount=\count123
+\c@ALG@tmpcounter=\count124
+\ALG@tmplength=\skip55
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 )
-\c@izrek=\count121
-\c@definicija=\count122
-\c@primer=\count123
+\c@izrek=\count125
+\c@definicija=\count126
+\c@primer=\count127
 
 
 LaTeX Warning: Unused global option(s):
@@ -269,56 +309,159 @@ LaTeX Warning: Label `izrek:SVD' multiply defined.
 )
 \openout1 = `diploma.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 45.
  ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 58.
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphicx
+.sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphics
+.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\trig.sty
+"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-cfg\grap
+hics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-def\pdft
+ex.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.m
+kii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count128
+\scratchdimen=\dimen130
+\scratchbox=\box31
+\nofMPsegments=\count129
+\nofMParguments=\count130
+\everyMPshowfont=\toks33
+\MPscratchCnt=\count131
+\MPscratchDim=\dimen131
+\MPnumerator=\count132
+\makeMPintoPDFobject=\count133
+\everyMPtoPDFconversion=\toks34
+)))
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\epstopdf
+-base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\infwar
+err.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\grfext.s
+ty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\kvdefi
+nekeys.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ltxcmd
+s.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\kvoption
+s.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\kvsetk
+eys.sty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\etexcm
+ds.sty"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifluat
+ex.sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\pdftex
+cmds.sty"
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.
+sty"
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+\Gin@req@height=\dimen132
+\Gin@req@width=\dimen133
+)
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 59.
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 58.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 59.
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 58.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 59.
 
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 58.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 59.
 
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 58.
+(Font)              <10> on input line 59.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 58.
+(Font)              <7> on input line 59.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 58.
-LaTeX Font Info:    Try loading font information for U+msa on input line 58.
+(Font)              <5> on input line 59.
+LaTeX Font Info:    Try loading font information for U+msa on input line 59.
 
 ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 58.
+LaTeX Font Info:    Try loading font information for U+msb on input line 59.
  ("C:\Users\Jernej\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd
 "
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -326,7 +469,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {C:/Users/Jernej/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 [2] [3] [4] [5] [6] [7]
-Overfull \hbox (0.1486pt too wide) in paragraph at lines 549--551
+Overfull \hbox (0.1486pt too wide) in paragraph at lines 550--552
 $\OML/lmm/m/it/10 R \OMS/lmsy/m/n/10 2 \U/msb/m/n/10 R[]$ \T1/lmr/m/it/10 je ne
 -sin-gu-larna ma-trika, ma-triki $\OML/lmm/m/it/10 I[] \OMS/lmsy/m/n/10 2 \U/ms
 b/m/n/10 R[]$ \T1/lmr/m/it/10 in $\OML/lmm/m/it/10 I[] \OMS/lmsy/m/n/10 2 \U/ms
@@ -334,7 +477,7 @@ b/m/n/10 R[]$
  []
 
 [8] [9] [10] [11]
-Overfull \hbox (65.6999pt too wide) detected at line 871
+Overfull \hbox (65.6999pt too wide) detected at line 872
 \OML/lmm/m/it/10 P[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 I \OMS/lmsy/m/n/10   []
 \OML/lmm/m/it/10 w[]w[] \OT1/lmr/m/n/10 = [] \OMS/lmsy/m/n/10   [] [] \OT1/lmr/
 m/n/10 = [] [] []
@@ -342,26 +485,25 @@ m/n/10 = [] [] []
 
 [12] [13] [14]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 1129.
+(Font)              <12> on input line 1130.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 1129.
+(Font)              <8> on input line 1130.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 1129.
+(Font)              <6> on input line 1130.
 
-Overfull \hbox (16.54141pt too wide) in paragraph at lines 1129--1129
+Overfull \hbox (30.48584pt too wide) in paragraph at lines 1130--1130
 []\T1/lmr/bx/n/12 Maksimizacija op-ti-mi-za-cij-skega kri-te-rija $\OML/lmm/m/i
-t/12 J[] \OT1/lmr/m/n/12 = []([][]\OML/lmm/m/it/12 S[]\OT1/lmr/m/n/12 )$
+t/12 J[] \OT1/lmr/m/n/12 = [] []$
  []
 
 [15] [16]
-Overfull \hbox (34.55626pt too wide) in paragraph at lines 1298--1298
-[]\T1/lmr/bx/n/12 Posplo²itev op-ti-mi-za-cij-skega kri-te-rija $\OML/lmm/m/it/
-12 J[]\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 G\OT1/lmr/m/n/12 ) = []((\OML/lmm/m/it/
-12 S[]\OT1/lmr/m/n/12 )[]\OML/lmm/m/it/12 S[]\OT1/lmr/m/n/12 )$
+Overfull \hbox (7.04387pt too wide) in paragraph at lines 1311--1311
+[]\T1/lmr/bx/n/12 Posplo²itev op-ti-mi-za-cij-skega kri-te-rija za sin-gu-larno
+ ma-
  []
 
 [17]
-Overfull \hbox (11.82722pt too wide) in paragraph at lines 1330--1368
+Overfull \hbox (11.82722pt too wide) in paragraph at lines 1343--1381
 []$ \T1/lmr/m/n/10 in $\OML/lmm/m/it/10 D[] \OT1/lmr/m/n/10 = []$\T1/lmr/m/n/10
  , kjer je $\OML/lmm/m/it/10 r \OT1/lmr/m/n/10 = [](\OML/lmm/m/it/10 K\OT1/lmr/
 m/n/10 ) \OMS/lmsy/m/n/10   []\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 H[]\OT1/lmr/m/n
@@ -369,7 +511,7 @@ m/n/10 ) \OMS/lmsy/m/n/10   []\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 H[]\OT1/lmr/m/n
  []
 
 [18] [19] [20]
-Overfull \hbox (7.03156pt too wide) in paragraph at lines 1527--1528
+Overfull \hbox (7.03156pt too wide) in paragraph at lines 1540--1541
 \T1/lmr/m/n/10 upo-ra-bimo kar ma-triko $\OML/lmm/m/it/10 H[] \OT1/lmr/m/n/10 :
 = []$\T1/lmr/m/n/10 ,
  []
@@ -380,13 +522,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2978 strings out of 492970
- 39479 string characters out of 3126149
- 127099 words of memory out of 3000000
- 6798 multiletter control sequences out of 15000+200000
+ 4714 strings out of 492970
+ 67969 string characters out of 3126149
+ 162127 words of memory out of 3000000
+ 8461 multiletter control sequences out of 15000+200000
  74423 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,23n,27p,1187b,383s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,23n,30p,1187b,388s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.e
 nc}{C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mat
 hsy.enc}{C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/l
@@ -412,7 +554,7 @@ pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lm
 sy7.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
 m/lmsy8.pfb><C:/Users/Jernej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb>
-Output written on diploma.pdf (23 pages, 333091 bytes).
+Output written on diploma.pdf (23 pages, 331978 bytes).
 PDF statistics:
  157 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
